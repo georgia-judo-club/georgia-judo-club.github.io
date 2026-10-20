@@ -1,0 +1,1372 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Judo Club Georgia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600&text=%E6%9F%94%E9%81%93&display=swap">
+<style>
+/* fluid canvas: mockup D is a 1440px design; above 900px 1rem = 100vw/90 (16px at 1440), capped */
+html{font-size:16px}
+@media (min-width:900px){html{font-size:clamp(12px,calc(100vw / 90),25.6px)}}
+:root{
+ --navy:#0F1B33;--navy2:#172848;--navy3:#0A1326;--w:#FFFFFF;--sf:#F2F4F8;--ink:#0F1B33;
+ --red:#DD2324;--red2:#B8191A;--redT:#C81D1E;--redL:#FF6B6C;
+ --mu:#4F5869;--muD:#AEB7C8;--ln:rgba(15,27,51,.13);--lnD:rgba(255,255,255,.14);
+ --fd:"Montserrat","Noto Sans Georgian",system-ui,sans-serif;
+ --fb:"Inter","Noto Sans Georgian",system-ui,sans-serif;
+ --g:max(20px,3.75rem,env(safe-area-inset-left));
+ --hh:5rem;--e:cubic-bezier(.16,1,.3,1);--sp:3rem;--r:.75rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hh) + 12px)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--w);color:var(--ink);font:400 1rem/1.6 var(--fb);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,svg,video{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.nv :focus-visible,.rd :focus-visible,.ftr :focus-visible,.hdr :focus-visible,.jb :focus-visible{outline-color:#fff}
+.wrap{width:min(100% - 2*var(--g),82.5rem);margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.nv{background:var(--navy);color:#fff}
+.sf{background:var(--sf)}
+.sec{padding-block:var(--sp)}
+
+/* type: heavy caps for Latin/Cyrillic; Georgian stays mixed-case, never tracked */
+.d{font-family:var(--fd);font-weight:900;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+:lang(ka) .d{font-family:"Noto Sans Georgian",sans-serif;font-weight:900;line-height:1.15;letter-spacing:0;text-transform:none}
+.n{font-family:"Montserrat",sans-serif!important;font-weight:900;letter-spacing:-.03em;text-transform:none!important;font-variant-numeric:tabular-nums}
+.kk{font:600 .72rem/1.5 var(--fb);letter-spacing:.32em;text-transform:uppercase;color:var(--mu)}
+.nv .kk{color:#C9D1DF}
+:lang(ka) .kk{letter-spacing:0;text-transform:none;font-size:.8rem}
+.h2{font-size:2.75rem}
+:lang(ka) .h2{font-size:2rem}
+.lead2{margin-top:.75rem;color:var(--mu);max-width:34ch;font-size:.95rem}
+.nv .lead2{color:#D5DBE6}
+.mu{color:var(--mu)}
+.nv .mu{color:var(--muD)}
+.badge{display:inline-block;vertical-align:middle;margin-left:.5rem;padding:.1rem .5rem;border-radius:99px;background:#FFE7E7;color:#8E1213;font:600 .7rem/1.5 var(--fb);letter-spacing:0;text-transform:none;white-space:nowrap}
+.nv .badge,.cc .badge,.sw .badge{background:#3A1A26;color:#FFC9C9}
+.ph{font-style:italic;color:var(--mu);border-bottom:1px dashed currentColor}
+.nv .ph,.cc .ph,.sw .ph{color:var(--muD)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.75rem;min-height:3.1rem;padding:0 1.6rem;border:2px solid transparent;border-radius:99px;font:700 .95rem/1.1 var(--fb);text-decoration:none;white-space:nowrap;transition:background .3s,color .3s,border-color .3s}
+.btn svg{transition:transform .35s var(--e)}
+.btn:hover svg{transform:translateX(4px)}
+.b-red{background:var(--red);color:#fff}
+.b-red:hover{background:var(--red2)}
+.b-o{border-color:rgba(255,255,255,.7);color:#fff;background:transparent}
+.b-o:hover{background:#fff;color:var(--navy);border-color:#fff}
+.b-w{background:#fff;color:var(--navy)}
+.b-w:hover{background:var(--navy);color:#fff}
+.pc-i{display:inline-grid;place-items:center;width:1.6em;height:1.6em;border-radius:50%;border:1.5px solid currentColor}
+.lk{display:inline-flex;align-items:center;gap:.6rem;font-weight:700;font-size:.95rem;color:var(--redT);text-decoration:none}
+.lk svg{transition:transform .35s var(--e)}
+.lk:hover svg{transform:translateX(5px)}
+.nv .lk{color:var(--redL)}
+.mag{will-change:transform}
+.arr{flex:none;display:grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--navy);color:#fff;transition:background .3s,transform .4s var(--e)}
+.arr svg{width:45%;height:auto}
+.arr.o{background:transparent;border:1.5px solid #fff}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:50;height:var(--hh);background:rgba(15,27,51,.96);backdrop-filter:blur(12px);color:#fff;border-bottom:1px solid transparent;transition:border-color .3s}
+.hdr.solid{border-bottom-color:var(--lnD)}
+.bar{height:100%;display:flex;align-items:center;gap:1.5rem}
+.wm{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex:none}
+.wm img{width:3.2rem;height:auto}
+.wm b{display:block;font:900 1rem/1.05 var(--fd);text-transform:uppercase}
+.wm small{display:block;margin-top:.25rem;font:600 .55rem/1.2 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--muD)}
+:lang(ka) .wm b{font-family:"Noto Sans Georgian";text-transform:none;font-size:.9rem}
+:lang(ka) .wm small{letter-spacing:0;text-transform:none;font-size:.6rem}
+.nav{flex:1;min-width:0;display:flex;justify-content:center;gap:.15rem;overflow:hidden}
+.nav a{padding:.6rem .55rem;font-size:.86rem;font-weight:600;text-decoration:none;white-space:nowrap;position:relative;color:#E9EDF4}
+:lang(ka) .nav a{font-size:.8rem;padding-inline:.45rem}
+.nav a::after{content:"";position:absolute;left:.55rem;right:.55rem;bottom:.2rem;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--e)}
+.nav a:hover::after,.nav a[aria-current]::after{transform:none}
+.langs{display:flex;flex:none;gap:.1rem}
+.langs button{background:none;border:0;padding:.5rem .45rem;font:600 .75rem/1 var(--fb);letter-spacing:.08em;color:var(--muD);position:relative}
+.langs button[aria-pressed=true]{color:#fff}
+.langs button[aria-pressed=true]::after{content:"";position:absolute;left:.45rem;right:.45rem;bottom:1px;height:2px;background:var(--red)}
+.trial{flex:none;min-height:2.75rem;padding:0 1.4rem;font-size:.9rem}
+.menu-btn{display:none;flex:none;background:none;border:1px solid var(--lnD);border-radius:99px;height:44px;padding:0 16px;font-weight:700;font-size:13px;color:#fff}
+.hdr.compact .nav{display:none;position:absolute;top:var(--hh);left:0;right:0;flex-direction:column;padding:8px var(--g) 24px;background:var(--navy);border-bottom:1px solid var(--lnD)}
+.hdr.compact .nav.open{display:flex}
+.hdr.compact .nav a{padding:14px 0;border-bottom:1px solid var(--lnD);font-size:18px}
+.hdr.compact .nav a::after{display:none}
+.hdr.compact .nav a[aria-current]{color:var(--redL)}
+.hdr.compact .menu-btn{display:block}
+.hdr.compact .wm{margin-right:auto}
+.fab{display:none}
+
+/* hero: the mockup's two-column composition at every desktop size */
+.hero{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-rows:minmax(0,1fr) auto;height:min(calc(100svh - var(--hh)),35rem);
+ background:radial-gradient(60% 75% at 66% 45%,#1C3160 0,rgba(28,49,96,0) 70%),linear-gradient(160deg,#122242,#0B1429 70%)}
+.hero-g{display:grid;grid-template-columns:26rem minmax(0,1fr) 7.5rem;align-items:center;min-height:0}
+.hero-t{position:relative;z-index:3;padding-bottom:.6rem}
+.hero-t .kk{font-size:.64rem}
+.hero .btn{min-height:2.7rem;padding:0 1.35rem;font-size:.86rem}
+.h1{margin-top:.8rem}
+.h1 .ln{display:block;overflow:hidden;padding-bottom:.02em}
+.h1 .ln>span{display:block}
+.h1 .l1{font-size:6.6rem;line-height:.9}
+.h1 .l2{font-size:3.4rem;color:var(--red);line-height:1.02}
+:lang(ru) .h1 .l1{font-size:5.9rem}
+:lang(ru) .h1 .l2{font-size:2.3rem}
+:lang(ka) .h1 .l1{font-size:4.5rem;line-height:1.1}
+:lang(ka) .h1 .l2{font-size:2.9rem;line-height:1.15}
+.hero .lead{margin-top:1rem;max-width:23rem;font-size:.95rem;line-height:1.5;color:#E2E7F0}
+.hero .cta{margin-top:1.35rem;display:flex;flex-wrap:wrap;gap:.9rem}
+.hero-a{position:relative;align-self:stretch}
+.sun-w{position:absolute;left:52%;top:47%;width:22rem;aspect-ratio:1;translate:-50% -50%}
+.sun{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F23A3B,var(--red) 55%,#C41C1D)}
+.streak{position:absolute;left:28%;top:-4%;width:110%;height:108%;background:repeating-linear-gradient(90deg,rgba(221,35,36,.55) 0 2px,transparent 2px 1.6rem);transform:skewX(-34deg);-webkit-mask:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);opacity:.75}
+/* 640px source: never render above ~1.25x */
+.throw{position:absolute;right:-3%;bottom:-11%;width:min(136%,800px);max-width:none;height:auto;filter:drop-shadow(0 1.8rem 2.4rem rgba(5,10,25,.55))}
+.hero-r{align-self:stretch;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:1.15rem;text-align:right;z-index:3}
+.kanji{font:600 2.8rem/1.08 "Noto Serif JP",serif;writing-mode:vertical-rl;color:#E8ECF3}
+.vals li{white-space:nowrap;font:600 .64rem/2.15 var(--fb);letter-spacing:.3em;text-transform:uppercase;color:#C3CBDA}
+:lang(ka) .vals li{letter-spacing:0;text-transform:none;font-size:.8rem}
+.plus{width:1.25rem;height:1.25rem;background:linear-gradient(var(--red),var(--red)) center/100% 3px no-repeat,linear-gradient(var(--red),var(--red)) center/3px 100% no-repeat}
+
+/* marquee */
+.mq{overflow:hidden;border-top:1px solid var(--lnD);background:rgba(8,15,32,.6);color:#fff;position:relative;z-index:3}
+.mq-t{display:flex;width:max-content;animation:mq 46s linear infinite}
+.mq span{display:flex;align-items:center;gap:1rem;padding:.65rem .5rem;font:800 .78rem/1 var(--fd);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+:lang(ka) .mq span{font-family:"Noto Sans Georgian";text-transform:none;letter-spacing:0}
+.mq i{width:.45rem;height:.45rem;border-radius:50%;background:var(--red)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* section heads */
+.shd{display:flex;flex-direction:column;gap:.55rem}
+.shd .lk{margin-top:1rem}
+
+/* programmes + schedule widget */
+.pg{display:grid;grid-template-columns:minmax(0,1fr) 23.5rem;gap:1.5rem;align-items:stretch}
+.pg-h{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1rem 2rem;align-items:end;margin-bottom:1.75rem}
+.pg-h .lk{margin-top:.9rem}
+.pg-h .h2{max-width:11ch}
+:lang(ka) .pg-h .h2{max-width:none}
+.pg-h .mu{font-size:.95rem}
+.pcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.pc{display:flex;flex-direction:column;background:var(--sf);border-radius:var(--r);overflow:hidden;text-decoration:none;transition:transform .5s var(--e),box-shadow .5s var(--e)}
+.pc:hover{transform:translateY(-6px);box-shadow:0 1.5rem 3rem rgba(15,27,51,.14)}
+.pc .im{aspect-ratio:1.62;overflow:hidden;background:var(--navy)}
+.pc .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e)}
+.pc:hover .im img,.st:hover .im img,.vc:hover .im img{transform:scale(1.07)}
+.pc .bd{padding:1rem 1.1rem 1.2rem;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.15rem .75rem;align-items:start}
+.pc h3{font:900 1.2rem/1.15 var(--fd);text-transform:uppercase;letter-spacing:-.01em}
+:lang(ka) .pc h3{font-family:"Noto Sans Georgian";text-transform:none;letter-spacing:0;font-size:1.05rem}
+.pc .ag{grid-column:1;font-weight:600;color:var(--mu);font-size:.85rem}
+.pc .arr{grid-row:1/3;grid-column:2;align-self:center}
+.pc:hover .arr{background:var(--red);transform:translateX(3px)}
+.pc p{grid-column:1/-1;margin-top:.6rem;font-size:.82rem;color:#36404F;line-height:1.5}
+.sw{background:var(--navy);color:#fff;border-radius:var(--r);padding:1.4rem 1.5rem;display:flex;flex-direction:column;box-shadow:0 1.8rem 3.6rem rgba(15,27,51,.25)}
+.sw h3{display:flex;align-items:center;gap:.7rem;font:900 .95rem/1.2 var(--fd);text-transform:uppercase;letter-spacing:.02em}
+:lang(ka) .sw h3{font-family:"Noto Sans Georgian";text-transform:none;letter-spacing:0}
+.sw h3 svg{color:var(--redL);width:1.3rem;height:1.3rem}
+.sw-d{margin-top:1rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding-bottom:.6rem;border-bottom:1px solid var(--lnD);font-weight:700;font-size:.9rem}
+.sw-d .tt{color:var(--redL);font-weight:600;font-size:.85em;margin-left:.5rem}
+.sw-n{display:flex;gap:.4rem}
+.sw-n button{width:1.9rem;height:1.9rem;border-radius:50%;border:1px solid var(--lnD);background:transparent;color:#fff;display:grid;place-items:center;font-size:1rem;line-height:1}
+.sw-n button:hover{background:#fff;color:var(--navy)}
+.sw ul{flex:1;display:flex;flex-direction:column}
+.wr{display:grid;grid-template-columns:3.1rem minmax(0,1fr);gap:.6rem;align-items:baseline;padding:.5rem .2rem;border-bottom:1px solid var(--lnD);text-decoration:none;font-size:.85rem;transition:background .3s}
+.wr:hover{background:rgba(255,255,255,.06)}
+.wr i{display:block;font-style:normal;font-weight:600}
+.wr small{display:block;font-size:.7rem;color:var(--muD);line-height:1.35;margin-top:.1rem}
+.sw .rest,.wday .rest{padding:1rem .2rem;color:var(--muD)}
+.sw .btn{margin-top:1rem}
+.wr b{font-variant-numeric:tabular-nums;font-weight:700}
+.wr .badge{margin-left:.3rem}
+.sw .ft{margin:.7rem 0 1rem;font-size:.72rem;color:var(--muD)}
+.sw .btn{width:100%;min-height:2.6rem}
+
+/* coaches band */
+.cb{display:grid;grid-template-columns:minmax(0,1fr) 24rem;gap:1.8rem 3rem;align-items:end}
+.cgs{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.9rem}
+.cc{display:flex;flex-direction:column;text-align:left;border:1px solid var(--lnD);background:var(--navy2);border-radius:var(--r);overflow:hidden;color:#fff;padding:0;transition:transform .5s var(--e),border-color .3s}
+.cc:hover{transform:translateY(-6px);border-color:rgba(255,107,108,.6)}
+.mono-p{position:relative;aspect-ratio:2.3;overflow:hidden;background:radial-gradient(90% 80% at 50% 110%,#26407A,#13213F 70%);display:grid;place-items:center}
+.mono-p::before{content:"";position:absolute;width:62%;aspect-ratio:1;border-radius:50%;background:var(--red);right:-18%;top:-26%;opacity:.9;transition:transform .8s var(--e)}
+.cc:hover .mono-p::before{transform:scale(1.12)}
+.mono-p .ini{position:relative;font:900 2.8rem/1 var(--fd);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:2px #fff}
+.mono-p .ini.f{color:#fff;-webkit-text-stroke:0}
+.mono-p .cap{position:absolute;left:.7rem;bottom:.5rem;font-size:.62rem;color:var(--muD)}
+.cc .bd{padding:.85rem 1rem 1rem;display:flex;flex-direction:column;gap:.15rem}
+.cc .nm{font-weight:800;font-size:.95rem;line-height:1.3}
+.cc .role{color:var(--redL);font-weight:600;font-size:.78rem}
+.cc .rk{margin-top:.4rem;font-size:.72rem;color:#C9D0DD;line-height:1.45;font-variant-numeric:tabular-nums}
+.cc .fx{margin-top:.35rem;font-size:.7rem;color:var(--muD);line-height:1.4}
+.qt{border-left:3px solid var(--red);padding-left:1.3rem}
+.qt .qm{font:900 3.4rem/.6 Georgia,serif;color:var(--red);display:block;margin-bottom:.6rem}
+.qt blockquote{font:600 1.2rem/1.4 var(--fb)}
+.qt cite{display:block;margin-top:1rem;font-style:normal}
+.qt cite a{color:var(--muD)}
+
+/* split rows: stories, videos, numbers */
+.split{display:grid;grid-template-columns:22rem minmax(0,1fr);gap:2.5rem;align-items:center}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+.st{position:relative;display:block;border-radius:var(--r);overflow:hidden;text-decoration:none;color:#fff;background:var(--navy)}
+.st .im{aspect-ratio:1.36;overflow:hidden}
+.st .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e)}
+.st::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,19,38,0) 35%,rgba(10,19,38,.92));pointer-events:none}
+.st .ov{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1rem;display:flex;align-items:flex-end;gap:.8rem}
+.st .ov div{flex:1;min-width:0}
+.st time{display:block;font-size:.7rem;color:#D5DBE6;margin-bottom:.2rem}
+.st h3{font:700 .92rem/1.3 var(--fb);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st .kd{position:absolute;left:.7rem;top:.7rem;z-index:2;background:#fff;color:var(--navy);padding:.35rem .6rem;border-radius:99px;font:700 .7rem/1 var(--fb)}
+.st .kd.r{background:var(--red);color:#fff}
+.st:hover .arr{background:var(--red);border-color:var(--red)}
+.sg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.1rem}
+.sg .st .im{aspect-ratio:4/5}
+.vc{position:relative;display:block;border-radius:var(--r);overflow:hidden;text-decoration:none;color:#fff;border:1px solid var(--lnD);background:var(--navy2)}
+.vc .im{aspect-ratio:1.55;overflow:hidden;position:relative}
+.vc .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e)}
+.vc .im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,19,38,.05) 40%,rgba(10,19,38,.9))}
+.vc .ds{position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,var(--red) 0 18%,transparent 18.5%),var(--navy2)}
+.vc .pl{position:absolute;left:50%;top:44%;z-index:2;translate:-50% -50%;width:3.2rem;height:3.2rem;border-radius:50%;background:rgba(255,255,255,.18);border:2px solid #fff;backdrop-filter:blur(6px);display:grid;place-items:center;transition:transform .5s var(--e),background .3s}
+.vc .pl svg{width:30%;height:auto;margin-left:6%}
+.vc:hover .pl{transform:scale(1.12);background:var(--red);border-color:var(--red)}
+.vc .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:.7rem;padding:.8rem 1rem}
+.vc .cap b{font-size:.88rem;line-height:1.3}
+.vc .cap span{flex:none;font-variant-numeric:tabular-nums;font-size:.75rem;color:#D5DBE6}
+.vg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.1rem}
+.vg .meta{display:block;padding:.7rem 1rem 1rem;font-size:.75rem;color:var(--muD)}
+.nums{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.nums li{padding:.3rem 1rem;border-left:1px solid var(--ln);text-align:center}
+.nums b{display:flex;justify-content:center;align-items:baseline;font-size:2.5rem;line-height:1}
+.nums b .s{color:var(--red)}
+.nums li>span{display:block;margin-top:.5rem;font-size:.8rem;color:var(--mu);line-height:1.4}
+
+/* join band */
+.jb{position:relative;overflow:hidden;background:var(--red);color:#fff;isolation:isolate}
+.jb>video,.jb>img.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;filter:grayscale(1) contrast(1.2);mix-blend-mode:multiply;z-index:-1}
+.jb::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(221,35,36,.92) 30%,rgba(221,35,36,.55))}
+.jb-g{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem 4rem;align-items:center;padding-block:2.4rem}
+.jb .h2{font-size:2.3rem}
+:lang(ka) .jb .h2{font-size:1.7rem}
+.jb p.sub{margin-top:.6rem;max-width:44ch;font-size:.95rem}
+.jb .act{margin-top:1.1rem}
+.ich{display:flex;gap:1.8rem;align-items:flex-start}
+.ic{display:flex;flex-direction:column;align-items:center;gap:.55rem;text-decoration:none;font-weight:600;font-size:.8rem;transition:transform .4s var(--e)}
+.ic:hover{transform:translateY(-4px)}
+.ic i{display:grid;place-items:center;width:3.5rem;height:3.5rem;border-radius:50%;background:#fff;color:var(--red);box-shadow:0 .75rem 1.6rem rgba(80,0,0,.25)}
+.ic i svg{width:44%;height:44%}
+.ic.wa i{color:#128C7E}.ic.vb i{color:#665CAC}.ic.ms i{color:#0A6CFF}
+.ic.tel b{font-size:.9rem;white-space:nowrap}
+.ich .sep{width:1px;align-self:stretch;background:rgba(255,255,255,.35)}
+
+/* footer */
+.ftr{background:var(--navy3);color:#fff;padding-block:2.4rem 1.4rem}
+.ftr .top{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:1.5rem 3rem;align-items:center}
+.ftr .lg{display:flex;gap:.9rem;align-items:center;text-decoration:none}
+.ftr .lg img{width:4rem;height:auto}
+.ftr .lg b{font:900 1.05rem/1.1 var(--fd);text-transform:uppercase}
+:lang(ka) .ftr .lg b{font-family:"Noto Sans Georgian";text-transform:none}
+.ftr .lg small{display:block;margin-top:.35rem;font-size:.62rem;color:var(--muD);letter-spacing:.16em;text-transform:uppercase}
+:lang(ka) .ftr .lg small{letter-spacing:0;text-transform:none}
+.ftr nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;justify-content:center}
+.ftr nav a{font-size:.82rem;text-decoration:none;padding:.35rem 0;color:#DCE2EC}
+.ftr nav a:hover{color:var(--redL)}
+.soc{display:flex;gap:.6rem}
+.soc a{width:2.5rem;height:2.5rem;border-radius:50%;display:grid;place-items:center;border:1px solid var(--lnD);transition:background .3s}
+.soc a svg{width:45%;height:auto}
+.soc a:hover{background:var(--red);border-color:var(--red)}
+.slg{display:flex;align-items:center;gap:1rem;text-align:right;font-size:.82rem;color:#DCE2EC;line-height:1.4}
+.ftr .fine{margin-top:1.8rem;padding-top:1.1rem;border-top:1px solid var(--lnD);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;font-size:.72rem;color:var(--muD)}
+.ftr .fine a{color:inherit}
+
+/* page title band */
+.pt{position:relative;overflow:hidden;background:linear-gradient(160deg,#122242,#0B1429 70%);color:#fff;padding-block:3.5rem 3rem}
+.pt::before{content:"";position:absolute;right:-6rem;top:50%;width:26rem;aspect-ratio:1;border-radius:50%;background:var(--red);translate:0 -50%;opacity:.95}
+.pt::after{content:"";position:absolute;right:16rem;top:0;bottom:0;width:26rem;background:repeating-linear-gradient(90deg,rgba(221,35,36,.4) 0 2px,transparent 2px 1.5rem);transform:skewX(-34deg);-webkit-mask:linear-gradient(180deg,transparent,#000 40%,transparent);mask:linear-gradient(180deg,transparent,#000 40%,transparent)}
+.pt .wrap{position:relative;z-index:2}
+.pt h1{margin-top:.9rem;font-size:5rem;max-width:14ch}
+:lang(ka) .pt h1{font-size:3.4rem}
+.pt h1.long{font-size:3.2rem;max-width:20ch}
+:lang(ka) .pt h1.long{font-size:2.4rem}
+.pt h1.xl{font-size:2.2rem;max-width:34ch;line-height:1.08}
+:lang(ka) .pt h1.xl{font-size:1.7rem}
+.pt p.sub{margin-top:1.1rem;max-width:56ch;color:#D8DEE9;font-size:1rem}
+
+/* programme rows */
+.prow{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:3.5rem;padding-block:2.5rem;border-top:1px solid var(--ln);align-items:start}
+.prow:first-child{border-top:0}
+.prow .im{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;background:var(--navy)}
+.prow .im img{width:100%;height:100%;object-fit:cover}
+.prow h2{font-size:2.4rem}
+:lang(ka) .prow h2{font-size:1.8rem}
+.prow p{margin-top:.9rem;max-width:58ch}
+.prow dl{margin-top:1.2rem;display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.4rem;border-top:2px solid var(--navy);padding-top:1rem}
+.prow dt{font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);line-height:1.9}
+:lang(ka) .prow dt{letter-spacing:0;text-transform:none;font-size:.8rem}
+.prow .btn{margin-top:1.5rem}
+
+/* schedule */
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips button{border:1px solid var(--ln);background:#fff;border-radius:99px;padding:.6rem 1rem;font-weight:600;font-size:.85rem}
+.chips button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.days{margin-top:1.2rem;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--ln);border-radius:var(--r);overflow:hidden}
+.days button{border:0;border-right:1px solid var(--ln);background:#fff;padding:.9rem .6rem;text-align:left}
+.days button:last-child{border-right:0}
+.days b{display:block;font:900 1.2rem/1 var(--fd);text-transform:uppercase}
+:lang(ka) .days b{font-family:"Noto Sans Georgian";text-transform:none;font-size:1.05rem}
+.days span{display:block;margin-top:.4rem;font-size:.72rem;color:var(--mu)}
+.days .tt{font-style:normal;color:var(--redT);font-weight:700}
+.days button[aria-selected=true]{background:var(--navy);color:#fff}
+.days button[aria-selected=true] span,.days button[aria-selected=true] .tt{color:#fff}
+.slots{margin-top:1.1rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+.slot{display:flex;flex-direction:column;gap:.2rem;padding:1.1rem 1.2rem;border:1px solid var(--ln);border-radius:var(--r);background:#fff;text-decoration:none;transition:border-color .3s,transform .4s var(--e)}
+.slot:hover{border-color:var(--red);transform:translateY(-3px)}
+.slot b{font:900 1.05rem/1.1 var(--fd);font-variant-numeric:tabular-nums}
+.slot .ty{color:var(--ink);font-weight:600}
+.slot .ad{color:var(--redT);font-weight:600;font-size:.72rem}
+.slot .co{font-size:.72rem}
+.slot.phys{box-shadow:inset 3px 0 0 #7E8AA3}.slot.gym{box-shadow:inset 3px 0 0 var(--red)}
+.slot span{font-size:.82rem;color:var(--mu);min-width:0;overflow-wrap:anywhere}
+.slot .badge{white-space:normal;margin-left:0}
+.slot em{font-style:normal;font-weight:700;color:var(--redT);font-size:.82rem}
+.slot.camp b{color:var(--redT)}
+.sch{display:grid;grid-template-columns:minmax(0,1fr) 20rem;gap:2.5rem;align-items:start;margin-top:1.8rem}
+.side{border-left:3px solid var(--red);padding-left:1.4rem;display:flex;flex-direction:column;gap:1.1rem;font-size:.9rem}
+.side b.big{display:block;font-size:1.7rem}
+.empty{color:var(--mu)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.5rem;margin-top:1.5rem}
+.week.one{grid-template-columns:minmax(0,46rem)}
+.week.one .slot{padding:.9rem 0}
+.week.one .slot b{font-size:1.4rem}
+.week.one .slot .co,.week.one .slot .ad{font-size:.85rem}
+.wday.off{background:transparent;border-style:dashed}
+.slot .badge{font-size:.6rem;margin:.15rem 0 0;align-self:flex-start}
+.badge.dsc{background:#FFF1D6;color:#7A4A00;cursor:help}
+.nv .badge.dsc,.sw .badge.dsc,.cc .badge.dsc{background:#4A3410;color:#FFE1A8}
+.dq{display:block;font-size:.66rem;font-style:italic;color:var(--mu);line-height:1.35;margin-top:.1rem}
+.sw .dq,.cc .dq{color:var(--muD)}
+.wr .badge.dsc{margin:.25rem 0 0}
+.dsn p{flex-basis:100%}
+.dsn ul{display:flex;flex-direction:column;gap:.45rem}
+.dsn li{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.dsn .badge{margin:0}
+.wday{border:1px solid var(--ln);border-radius:var(--r);padding:.8rem;background:#fff;min-width:0}
+.wday.today{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
+.wday h3{font-size:1.05rem;margin-bottom:.6rem}
+.wday .slot{padding:.6rem 0 .6rem .45rem;border:0;border-top:1px solid var(--ln);border-radius:0}
+.wday .slot .ty{font-size:.74rem;line-height:1.3}
+.wday .slot .co{font-size:.66rem;line-height:1.35}
+.note{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;font-size:.85rem;color:var(--mu)}
+
+/* hall + branches */
+.hall{position:relative;aspect-ratio:2.6;max-height:calc(100svh - var(--hh));display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--navy)}
+.hall>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hall::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,19,38,.1) 30%,rgba(10,19,38,.9))}
+.hall .wrap{position:relative;z-index:2;padding-block:2.5rem}
+.hall h2{margin-top:.7rem;font-size:4rem;max-width:14ch}
+:lang(ka) .hall h2{font-size:2.8rem}
+.brs{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:var(--lnD)}
+.brs>div{background:var(--navy);padding:2rem var(--g)}
+.brs h3{font-size:1.5rem;margin:.7rem 0 .6rem}
+.brs p,.brs dl{color:#C9D0DD;font-size:.9rem}
+.brs dl{margin-top:.9rem;display:grid;grid-template-columns:auto 1fr;gap:.4rem 1rem}
+.brs dt{color:var(--muD)}
+.brs .lk{margin-top:1.1rem}
+
+/* parents */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;counter-reset:s;margin-top:1.8rem}
+.steps li{counter-increment:s;padding:1.4rem;border-radius:var(--r);background:#fff;border:1px solid var(--ln);font-size:.9rem;color:#36404F}
+.steps li::before{content:"0" counter(s);display:block;font:900 2.8rem/1 var(--fd);color:var(--red);margin-bottom:.9rem}
+.steps b{display:block;font-size:1.05rem;margin-bottom:.5rem;color:var(--navy)}
+.pc3{margin-top:2.8rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem}
+.pc3 h3{font-size:1.4rem;padding-bottom:.9rem;border-bottom:2px solid var(--navy)}
+.pc3 li{padding:.75rem 0;border-bottom:1px solid var(--ln);font-size:.9rem}
+.faq{margin-top:2.8rem;border-top:2px solid var(--navy)}
+.faq details{border-bottom:1px solid var(--ln)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1.2rem;padding:1.3rem 0;font-weight:700;font-size:1.05rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:900 1.8rem/0.8 var(--fd);color:var(--red);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 1.3rem;max-width:70ch;color:#36404F}
+
+/* story page */
+.sp-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:4rem;align-items:start;padding-block:var(--sp)}
+.sp-t{position:sticky;top:calc(var(--hh) + 2rem)}
+.sp-meta{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;color:#D8DEE9;font-size:.85rem}
+.txt{font-size:1.05rem;line-height:1.65}
+.txt p+p{margin-top:1em}
+.txt .ht{color:var(--mu)}
+.sp-t .note{margin-top:1.2rem}
+.sp-t .btn{margin-top:1.8rem}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.gal a{display:block;border-radius:var(--r);overflow:hidden;background:var(--navy);position:relative}
+.gal a:first-child{grid-column:1/-1}
+.gal img{width:100%;height:auto}
+.gal .pl{position:absolute;left:1.1rem;bottom:1.1rem;display:flex;gap:.6rem;align-items:center;background:var(--red);color:#fff;padding:.75rem 1.1rem;border-radius:99px;font-weight:700;font-size:.85rem}
+/* reel covers are 900px: keep them near native size */
+.gal.one{grid-template-columns:1fr;max-width:min(100%,38rem,720px)}
+.pn{display:flex;justify-content:space-between;gap:1.2rem;border-top:1px solid var(--ln);padding-block:1.7rem}
+
+/* contact */
+.ct{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem}
+.ct h3{font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin:0 0 .6rem}
+:lang(ka) .ct h3{letter-spacing:0;text-transform:none;font-size:.8rem}
+.ct .big{font:700 1.3rem/1.3 var(--fb);margin-bottom:1.7rem}
+.ct .big a{text-decoration:none}
+.chans{display:flex;flex-wrap:wrap;gap:.5rem}
+.chan{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-radius:99px;border:1px solid currentColor;text-decoration:none;font-weight:700;font-size:.85rem;transition:background .3s,color .3s}
+.chan:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* dialog */
+dialog{border:0;border-radius:14px;padding:0;width:min(520px,calc(100vw - 32px));max-height:calc(100svh - 32px);background:#fff;color:var(--ink);font-size:16px}
+dialog::backdrop{background:rgba(10,19,38,.75);backdrop-filter:blur(4px)}
+.dlg{padding:28px;display:flex;flex-direction:column;gap:16px}
+.dlg-h{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.dlg h2{font-size:32px}
+:lang(ka) .dlg h2{font-size:26px}
+.x{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--ln);background:#fff;font-size:24px;line-height:1}
+.dlg textarea{width:100%;min-height:80px;padding:12px;border:1px solid var(--ln);border-radius:8px;font:inherit;font-size:14px;resize:vertical}
+.dlg .row{display:flex;gap:14px;align-items:center}
+.dlg .chan{font-size:14px;padding:12px 16px}
+.btn-line{min-height:44px;padding:0 18px;border:1px solid var(--navy);border-radius:99px;background:#fff;font-weight:700}
+.btn-red{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 24px;border:0;border-radius:99px;background:var(--red);color:#fff;font-weight:700}
+.dlg .role{color:var(--redT);font-weight:700}
+.dlg ul{display:flex;flex-direction:column;gap:8px;padding-left:18px;list-style:disc;font-size:15px}
+.muted{color:var(--mu)}
+
+/* menu only when the nav really can't fit */
+@media (max-width:1099px){
+ .hdr .nav{display:none}.hdr .menu-btn{display:block}.hdr .wm{margin-right:auto}
+ .hdr .nav.open{display:flex;position:absolute;top:var(--hh);left:0;right:0;flex-direction:column;padding:8px var(--g) 24px;background:var(--navy);border-bottom:1px solid var(--lnD)}
+ .hdr .nav.open a{padding:14px 0;border-bottom:1px solid var(--lnD);font-size:18px}
+ .hdr .nav.open a::after{display:none}
+}
+/* tablet and phone: content reflows, sizes go back to phone scale */
+@media (max-width:899px){
+ :root{--hh:64px;--sp:56px;--g:max(20px,5vw,env(safe-area-inset-left))}
+ .wrap{width:calc(100% - 2*var(--g))}
+ .wm img{width:44px}
+ .wm b{font-size:15px}
+ .hero{height:auto;min-height:calc(100svh - var(--hh))}
+ .hero-g{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto minmax(0,1fr);padding-top:28px}
+ .hero-t{grid-column:1/-1}
+ .hero-a{grid-column:1;min-height:min(86vw,46svh)}
+ .hero-r{grid-column:2;gap:14px}
+ .h1 .l1{font-size:clamp(56px,17vw,120px)}
+ .h1 .l2{font-size:clamp(30px,8.6vw,64px)}
+ :lang(ru) .h1 .l1{font-size:clamp(50px,15vw,110px)}
+ :lang(ru) .h1 .l2{font-size:clamp(24px,6.6vw,48px)}
+ :lang(ka) .h1 .l1{font-size:clamp(44px,13vw,96px)}
+ :lang(ka) .h1 .l2{font-size:clamp(28px,7.6vw,56px)}
+ .hero .lead{font-size:16px;max-width:40ch}
+ .sun-w{width:min(74vw,44svh);left:50%}
+ .throw{width:140%}
+ .kanji{font-size:34px}.hero-r .vals{display:none}
+ .h2,.jb .h2{font-size:clamp(28px,8vw,44px)}
+ :lang(ka) .h2,:lang(ka) .jb .h2{font-size:clamp(22px,6vw,34px)}
+ .pg,.pg-h,.split,.jb-g{grid-template-columns:1fr}
+ .pcs{grid-template-columns:1fr 1fr}
+ .sw{max-width:560px}
+ .cb{grid-template-columns:1fr;align-items:start}
+ .cgs{grid-template-columns:1fr 1fr}
+ .mono-p .ini{font-size:40px}
+ .nums{grid-template-columns:repeat(3,1fr);row-gap:24px}.nums li:nth-child(4){border-left:0}
+ .nums b{font-size:40px}
+ .ich{flex-wrap:wrap;gap:20px}
+ .ftr .top{grid-template-columns:1fr auto}.ftr nav{grid-column:1/-1;justify-content:flex-start;grid-row:2}
+ .pt h1{font-size:clamp(40px,11vw,72px)}
+ .pt h1.long{font-size:clamp(30px,7.6vw,48px)}
+ .pt h1.xl{font-size:clamp(24px,6vw,36px)}
+ :lang(ka) .pt h1{font-size:clamp(30px,8vw,50px)}
+ .pt::before{right:-40vw;width:80vw;opacity:.5}
+ .prow{grid-template-columns:1fr;gap:20px}
+ .prow h2{font-size:clamp(26px,7vw,40px)}
+ .sch,.sp-g{grid-template-columns:1fr}.sp-t{position:static}
+ .days{grid-template-columns:repeat(3,1fr)}.days button:nth-child(3){border-right:0}.days button:nth-child(-n+3){border-bottom:1px solid var(--ln)}
+ .slots{grid-template-columns:1fr 1fr}
+ .week{grid-template-columns:1fr 1fr}
+ .week.one{grid-template-columns:1fr}
+ .sg,.vg{grid-template-columns:1fr 1fr}
+ .steps{grid-template-columns:1fr 1fr}.pc3,.ct,.brs{grid-template-columns:1fr}
+ .hall{aspect-ratio:auto;min-height:60svh}
+ .hall h2{font-size:clamp(34px,9vw,60px)}
+}
+@media (max-width:620px){
+ .hdr .trial{display:none}
+ .wm small{display:none}
+ .langs button{padding:8px 6px}
+ .fab{display:inline-flex;position:fixed;z-index:40;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));box-shadow:0 10px 30px rgba(221,35,36,.4)}
+ .hero .cta .btn{flex:1 1 auto}
+ .pcs{grid-template-columns:1fr}.pc{display:grid;grid-template-columns:40% minmax(0,1fr)}.pc .im{aspect-ratio:auto;height:100%}.pc p{display:none}
+ .row3{grid-template-columns:1fr}.row3>*:nth-child(n+3){display:none}
+ .nums{grid-template-columns:1fr 1fr}.nums li{border-left:0;text-align:left;padding-inline:0}.nums b{justify-content:flex-start}
+ .ich .sep{display:none}.ich{justify-content:space-between}
+ .ftr .top{grid-template-columns:1fr}.slg{text-align:left}
+ .sg,.vg,.slots,.week,.steps{grid-template-columns:1fr}
+ .cgs{grid-template-columns:1fr 1fr}
+}
+@media (max-width:400px){.wm b{display:none}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div id="app"></div>
+<dialog id="dlg" aria-labelledby="dlg-title"><div class="dlg" id="dlg-body"></div></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script>
+const DATA = {"videos":[{"id":"0EHPu1BNDns","url":"https://www.youtube.com/watch?v=0EHPu1BNDns","t":null,"d":"2024-10-07","s":61,"sh":false,"th":true},{"id":"JaER30_vuUo","url":"https://www.youtube.com/watch?v=JaER30_vuUo","t":null,"d":"2024-10-05","s":96,"sh":false,"th":false},{"id":"VMtjVgoVfRo","url":"https://www.youtube.com/watch?v=VMtjVgoVfRo","t":null,"d":"2024-10-05","s":78,"sh":false,"th":false},{"id":"UFNf9xnrM-w","url":"https://www.youtube.com/watch?v=UFNf9xnrM-w","t":null,"d":"2024-10-05","s":78,"sh":false,"th":false},{"id":"2lGgm5RqHi0","url":"https://www.youtube.com/watch?v=2lGgm5RqHi0","t":null,"d":"2024-10-05","s":55,"sh":false,"th":false},{"id":"GFKY7QXTcro","url":"https://www.youtube.com/watch?v=GFKY7QXTcro","t":"Gela Zaalishvili","d":"2023-11-19","s":70,"sh":false,"th":false},{"id":"fJhFjVSGQQs","url":"https://www.youtube.com/shorts/fJhFjVSGQQs","t":"ძიუდოს საზაფხულო საწვრთნელი ბანაკი","d":"2026-05-29","s":24,"sh":true,"th":false},{"id":"N8YqDoII9y0","url":"https://www.youtube.com/shorts/N8YqDoII9y0","t":null,"d":"2025-12-04","s":28,"sh":true,"th":false},{"id":"6SV5l31KBus","url":"https://www.youtube.com/shorts/6SV5l31KBus","t":null,"d":"2024-12-31","s":13,"sh":true,"th":true},{"id":"7sxOu1mVrDo","url":"https://www.youtube.com/shorts/7sxOu1mVrDo","t":{"ka":"ჩვენი ჩემპიონი","ru":"Наш чемпион","en":"Our champion"},"d":"2024-12-31","s":45,"sh":true,"th":true},{"id":"wYE4DtxT2TM","url":"https://www.youtube.com/shorts/wYE4DtxT2TM","t":null,"d":"2024-12-31","s":14,"sh":true,"th":true},{"id":"HMiYnUjJ7Rg","url":"https://www.youtube.com/shorts/HMiYnUjJ7Rg","t":null,"d":"2024-12-31","s":21,"sh":true,"th":true},{"id":"ivJtWi70XzU","url":"https://www.youtube.com/shorts/ivJtWi70XzU","t":null,"d":"2024-12-31","s":18,"sh":true,"th":true},{"id":"iBMBH1F6Wbw","url":"https://www.youtube.com/shorts/iBMBH1F6Wbw","t":null,"d":"2024-12-31","s":13,"sh":true,"th":true},{"id":"KgetR0X_gyk","url":"https://www.youtube.com/shorts/KgetR0X_gyk","t":null,"d":"2024-12-31","s":10,"sh":true,"th":false},{"id":"DvqxKn95fk0","url":"https://www.youtube.com/shorts/DvqxKn95fk0","t":null,"d":"2024-10-07","s":17,"sh":true,"th":false},{"id":"8UWynl_VHlw","url":"https://www.youtube.com/shorts/8UWynl_VHlw","t":null,"d":"2024-10-07","s":47,"sh":true,"th":false},{"id":"EZH4gb14YOQ","url":"https://www.youtube.com/shorts/EZH4gb14YOQ","t":null,"d":"2024-10-07","s":54,"sh":true,"th":false},{"id":"C7Bjd6zR0_o","url":"https://www.youtube.com/shorts/C7Bjd6zR0_o","t":null,"d":"2024-10-07","s":35,"sh":true,"th":false},{"id":"X9_v8djphEM","url":"https://www.youtube.com/shorts/X9_v8djphEM","t":null,"d":"2024-10-05","s":59,"sh":true,"th":false},{"id":"gb4blqsuOlo","url":"https://www.youtube.com/shorts/gb4blqsuOlo","t":null,"d":"2024-10-05","s":27,"sh":true,"th":false},{"id":"14VLyp8s--k","url":"https://www.youtube.com/shorts/14VLyp8s--k","t":null,"d":"2024-10-05","s":24,"sh":true,"th":false},{"id":"3qClPFhoCB4","url":"https://www.youtube.com/shorts/3qClPFhoCB4","t":null,"d":"2024-10-05","s":10,"sh":true,"th":false},{"id":"y6pCfNOWDe8","url":"https://www.youtube.com/shorts/y6pCfNOWDe8","t":null,"d":"2024-10-05","s":26,"sh":true,"th":false},{"id":"d1d_9bCOi1Y","url":"https://www.youtube.com/shorts/d1d_9bCOi1Y","t":null,"d":"2024-10-05","s":51,"sh":true,"th":false},{"id":"cpvFspnAOrE","url":"https://www.youtube.com/shorts/cpvFspnAOrE","t":null,"d":"2024-10-05","s":24,"sh":true,"th":false},{"id":"uqNNk8kGM08","url":"https://www.youtube.com/shorts/uqNNk8kGM08","t":null,"d":"2024-10-05","s":17,"sh":true,"th":false},{"id":"tvM30yrN3Ug","url":"https://www.youtube.com/shorts/tvM30yrN3Ug","t":null,"d":"2024-09-18","s":23,"sh":true,"th":false},{"id":"LXsaRTwFF3Q","url":"https://www.youtube.com/shorts/LXsaRTwFF3Q","t":null,"d":"2024-09-18","s":51,"sh":true,"th":false},{"id":"d8oC-x-c_NM","url":"https://www.youtube.com/shorts/d8oC-x-c_NM","t":null,"d":"2024-09-18","s":8,"sh":true,"th":false},{"id":"4x-e4SLmo7c","url":"https://www.youtube.com/shorts/4x-e4SLmo7c","t":null,"d":"2024-09-18","s":19,"sh":true,"th":false},{"id":"rvalwAr_Rn8","url":"https://www.youtube.com/shorts/rvalwAr_Rn8","t":null,"d":"2024-09-18","s":24,"sh":true,"th":false},{"id":"DjIZoO5Gibk","url":"https://www.youtube.com/shorts/DjIZoO5Gibk","t":null,"d":"2024-09-18","s":18,"sh":true,"th":false},{"id":"HJHZUE8y02Y","url":"https://www.youtube.com/shorts/HJHZUE8y02Y","t":null,"d":"2024-09-18","s":18,"sh":true,"th":false},{"id":"CLdYODt1gw0","url":"https://www.youtube.com/shorts/CLdYODt1gw0","t":null,"d":"2024-09-18","s":12,"sh":true,"th":false},{"id":"NyjZhHbyGxw","url":"https://www.youtube.com/shorts/NyjZhHbyGxw","t":null,"d":"2024-09-18","s":17,"sh":true,"th":false},{"id":"-Ti06i8FDes","url":"https://www.youtube.com/shorts/-Ti06i8FDes","t":null,"d":"2024-05-29","s":30,"sh":true,"th":false},{"id":"J90bNjrzV_w","url":"https://www.youtube.com/shorts/J90bNjrzV_w","t":null,"d":"2024-05-29","s":12,"sh":true,"th":false},{"id":"FkEm4wzfHjE","url":"https://www.youtube.com/shorts/FkEm4wzfHjE","t":"ძიუდოს კლუბი ჯორჯია","d":"2024-05-29","s":41,"sh":true,"th":false},{"id":"QCMvDSki5DY","url":"https://www.youtube.com/shorts/QCMvDSki5DY","t":null,"d":"2024-05-29","s":12,"sh":true,"th":false}],"news":[{"d":"2026-10-17","title":{"ka":"ბრინჯაო მასტერსზე","ru":"Бронза на Мастерсе","en":"Bronze at the Masters"},"text":{"ka":"2010-2011 წლებში დაბადებულ ვაჟთა მასტერსზე ჩვენმა სპორტსმენმა -50 კგ წონაში ბრინჯაო მოიპოვა.","ru":"На Мастерсе среди юношей 2010-2011 г.р. наш спортсмен завоевал бронзу в весе до 50 кг.","en":"A club athlete took bronze at -50 kg at the Masters for boys born 2010-2011."},"src":"https://www.facebook.com/JudoClubGeorgia/posts/1493148186257926","tag":"res","inf":false},{"d":"2026-10-14","title":{"ka":"ჩემპიონი ქართულ ჭიდაობაში","ru":"Чемпион по грузинской борьбе","en":"Champion in Georgian wrestling"},"text":{"ka":"მცხეთობა-სვეტიცხოვლობის დღისადმი მიძღვნილ ტურნირზე ქართულ ჭიდაობაში ჩვენი სპორტსმენი 60 კგ-ში ჩემპიონი გახდა.","ru":"На турнире по грузинской борьбе ко дню Мцхетоба-Светицховлоба наш спортсмен стал чемпионом в весе 60 кг.","en":"A club athlete won the 60 kg title at the chidaoba (Georgian wrestling) tournament for Mtskhetoba-Svetitskhovloba Day."},"src":"https://www.facebook.com/JudoClubGeorgia/posts/1490477199858358","tag":"res","inf":false},{"d":"2026-10-13","title":{"ka":"გელა ზაალიშვილი კლუბში","ru":"Гела Заалишвили в клубе","en":"Gela Zaalishvili at the club"},"text":{"ka":"კლუბს ესტუმრა გელა ზაალიშვილი, +100 კგ წონის ქართველი ძიუდოისტი, მსოფლიოს ჩემპიონი ახალგაზრდებში (2018).","ru":"Клуб посетил Гела Заалишвили, грузинский дзюдоист в категории +100 кг, чемпион мира среди юниоров (2018).","en":"Gela Zaalishvili, Georgian +100 kg judoka and 2018 junior world champion, joined a session at the club."},"src":"https://www.facebook.com/JudoClubGeorgia/posts/1489413829964695","tag":"club","inf":true},{"d":"2026-10-12","title":{"ka":"საღამოს ვარჯიშები ნე-ვაზაში","ru":"Вечерние тренировки по не-вадза","en":"Evening ne-waza sessions"},"text":{"ka":"საღამოს 21:30-დან 22:30-მდე ვარჯიშებს უძღვება ბრაზილიელი მწვრთნელი, ნე-ვაზის სპეციალისტი გაბრიელ კიტობერი.","ru":"Вечерние тренировки с 21:30 до 22:30 ведёт бразильский тренер, специалист по не-вадза Габриэль Китобер.","en":"Evening sessions from 21:30 to 22:30 are led by Brazilian coach and ne-waza specialist Gabriel Kitober."},"src":"https://www.facebook.com/JudoClubGeorgia/posts/1488502386722506","tag":"club","inf":false},{"d":"2026-10-12","title":{"ka":"ოქრო საფრანგეთში","ru":"Золото во Франции","en":"Gold in France"},"text":{"ka":"ჩვენი სპორტსმენი სეზონის პირველ რეგიონულ ტურნირზე (U15) საფრანგეთში ჩემპიონი გახდა.","ru":"Представитель клуба победил на первом региональном турнире сезона (U15) во Франции.","en":"A club athlete won the first regional U15 tournament of the season in France."},"src":"https://www.facebook.com/JudoClubGeorgia/posts/1488424940063584","tag":"res","inf":false},{"d":"2026-10-10","title":{"ka":"15 მედალი საბა დადვანის ხსოვნის ტურნირზე","ru":"15 медалей на турнире памяти Сабы Дадвани","en":"15 medals at the Saba Dadvani memorial tournament"},"text":{"ka":"ბოლნისში გამართულ XVIII საერთაშორისო ტურნირზე 200-ზე მეტი სპორტსმენი იასპარეზა. ჩვენმა კლუბმა ორ დღეში 3 ოქრო, 3 ვერცხლი და 9 ბრინჯაო მოიპოვა.","ru":"На XVIII международном турнире в Болниси выступили более 200 спортсменов. За два дня наш клуб завоевал 3 золота, 3 серебра и 9 бронз.","en":"More than 200 athletes competed at the XVIII international tournament in Bolnisi. Over two days the club won 3 gold, 3 silver and 9 bronze medals."},"src":"https://www.facebook.com/JudoClubGeorgia/posts/1486655533573858","tag":"res","inf":false},{"d":"2026-10-10","title":{"ka":"შიდა სარეიტინგო ტურნირი","ru":"Внутренний рейтинговый турнир","en":"Internal rating tournament"},"text":{"ka":"კლუბში გაიმართა შიდა სარეიტინგო ტურნირი 2016-17 და 2018-19 წლებში დაბადებულთათვის.","ru":"В клубе прошёл внутренний рейтинговый турнир для детей 2016-17 и 2018-19 годов рождения.","en":"The club held an internal rating tournament for children born 2016-17 and 2018-19."},"src":"https://www.facebook.com/JudoClubGeorgia/posts/1486392156933529","tag":"club","inf":false},{"d":"2026-05-29","title":{"ka":"ძიუდოს საზაფხულო საწვრთნელი ბანაკი","ru":"Летний тренировочный лагерь по дзюдо","en":"Summer judo training camp"},"text":{"ka":"ორშაბათიდან შაბათამდე: ტექნიკური და ფიზიკური მომზადება, ჭიდაობა, ტანვარჯიში და ფსიქოლოგია. ვარჯიშები 09:30-დან 20:00-მდე.","ru":"С понедельника по субботу: техническая и физическая подготовка, борьба, гимнастика и психология. Занятия с 09:30 до 20:00.","en":"Monday to Saturday: technical and physical preparation, wrestling, gymnastics and psychology. Sessions from 09:30 to 20:00."},"src":"https://www.youtube.com/watch?v=fJhFjVSGQQs","tag":"club","inf":false}],"legends":[{"id":"shota-khabareli","name":{"ka":"შოთა ხაბარელი","ru":"Шота Хабарели","en":"Shota Khabareli"},"wiki":"https://en.wikipedia.org/wiki/Shota_Khabareli","photo":null},{"id":"zurab-zviadauri","name":{"ka":"ზურაბ ზვიადაური","ru":"Зураб Звиадаури","en":"Zurab Zviadauri"},"wiki":"https://en.wikipedia.org/wiki/Zurab_Zviadauri","photo":{"author":"Sosomk (en.wikipedia)","lic":"CC BY-SA 2.5","page":"https://commons.wikimedia.org/wiki/File:Zviadauri_(cropped).jpg"}},{"id":"irakli-tsirekidze","name":{"ka":"ირაკლი ცირეკიძე","ru":"Ираклий Цирекидзе","en":"Irakli Tsirekidze"},"wiki":"https://en.wikipedia.org/wiki/Irakli_Tsirekidze","photo":{"author":"Irakli f1","lic":"CC BY-SA 4.0","page":"https://commons.wikimedia.org/wiki/File:Irakli_Tsirekidze.jpg"}},{"id":"lasha-shavdatuashvili","name":{"ka":"ლაშა შავდათუაშვილი","ru":"Лаша Шавдатуашвили","en":"Lasha Shavdatuashvili"},"wiki":"https://en.wikipedia.org/wiki/Lasha_Shavdatuashvili","photo":{"author":"Judomi89","lic":"CC BY-SA 4.0","page":"https://commons.wikimedia.org/wiki/File:Lasha_Shavdatuashvili_(cropped).jpg"}},{"id":"avtandil-tchrikishvili","name":{"ka":"ავთანდილ ჭრიკიშვილი","ru":"Автандил Чрикишвили","en":"Avtandil Tchrikishvili"},"wiki":"https://en.wikipedia.org/wiki/Avtandili_Tchrikishvili","photo":{"author":"Allpresa","lic":"CC BY-SA 4.0","page":"https://commons.wikimedia.org/wiki/File:Avtandili_tchrikishvili.jpg"}},{"id":"guram-tushishvili","name":{"ka":"გურამ თუშიშვილი","ru":"Гурам Тушишвили","en":"Guram Tushishvili"},"wiki":"https://en.wikipedia.org/wiki/Guram_Tushishvili","photo":{"author":"Mavne8","lic":"CC BY-SA 4.0","page":"https://commons.wikimedia.org/wiki/File:Guram_Tushishvili.jpg"}},{"id":"lasha-bekauri","name":{"ka":"ლაშა ბექაური","ru":"Лаша Бекаури","en":"Lasha Bekauri"},"wiki":"https://en.wikipedia.org/wiki/Lasha_Bekauri","photo":{"author":"JudoJV","lic":"CC BY-SA 4.0","page":"https://commons.wikimedia.org/wiki/File:Lasha_Bekauri_2023.png"}}]};
+const PHONE = "+995 599 93 38 97", PHONE_RAW = "995599933897";
+const CLUB_PHOTOS = ["wYE4DtxT2TM","HMiYnUjJ7Rg","iBMBH1F6Wbw","0EHPu1BNDns","ivJtWi70XzU","6SV5l31KBus"];
+
+const T = {
+ka:{brand:"ძიუდოს კლუბი „ჯორჯია“",short:"ჯუდო კლუბი ჯორჯია",sub:"თბილისი, 2008 წლიდან",menu:"მენიუ",
+ nav:{home:"კლუბი",programs:"პროგრამები",schedule:"განრიგი",coaches:"მწვრთნელები",stories:"სიახლეები",videos:"ვიდეო",contact:"კონტაქტი"},
+ join:"ჩაწერა",joinClub:"კლუბში ჩაწერა",draft:"დრაფტი: დაუდასტურებელი",
+ eyebrow:"ძიუდოს კლუბი ისანში, თბილისი",h1a:"პირველი მისალმებიდან",h1b:"შავ ქამრამდე",
+ lead:"ძიუდო ბავშვებისთვის 4–5 წლიდან: დისციპლინა, პატივისცემა და ძლიერი ხასიათი. ტატამზე 2008 წლიდან.",
+ watch:"ნახე ჩვენი ვიდეოები",vals:["პატივისცემა","ძალის საუკეთესო გამოყენება","ერთად წარმატება","2008 წლიდან"],
+ moreThan:"ძიუდო — სპორტზე მეტი",loc:"თბილისი, ისანი",
+ progH:"პროგრამები",progN:"ძიუდო 4–5 წლიდან",ages:"ასაკი",learn:"დაწვრილებით",
+ schH:"ვარჯიშების განრიგი",schN:"ორშ–შაბ, 09:30–22:00",fullSch:"სრული განრიგი",
+ grp:"[ჯგუფი და ასაკი — კლუბისგან]",newaza:"საღამოს ნე-ვაზა",newazaDays:"[დღეები — კლუბისგან]",
+ coachH:"ჩვენი მწვრთნელები",coachN:"[სრული სია — კლუბისგან]",allCoaches:"ყველა მწვრთნელი",
+ stH:"ბოლო სიახლეები",stN:"ჩვენი Facebook-ის გვერდიდან",read:"წაიკითხე",allStories:"ყველა სიახლე",
+ tag:{res:"შედეგები",club:"კლუბის ამბები"},
+ vidH:"ვიდეო",vidN:"YouTube @judoclubgeorgia",allVideos:"ყველა ვიდეო",short_:"Short",video_:"ვიდეო",clubVideo:"კლუბის ვიდეო",
+ legH:"საქართველოს ძიუდოს ლეგენდები",legN:"ოლიმპიური და მსოფლიო ჩემპიონები",quote:"პატარა ქვეყანა. დიდი ჩემპიონები.",
+ photo:"ფოტო",
+ bandH:"შემოგვიერთდი ტატამზე",bandP:"პირველი ნაბიჯი — ერთი შეტყობინება. შეგირჩევთ ჯგუფს და დროს.",call:"დარეკვა",
+ wa:"გამარჯობა! მინდა ძიუდოზე ჩაწერა.",waSes:"ვარჯიში:",waProg:"პროგრამა:",waCoach:"შეკითხვა მწვრთნელისთვის:",
+ dlgP:"აირჩიე არხი. შეტყობინება მზადაა.",msgL:"შეტყობინება (Viber-სა და Messenger-ში ჩასვით)",copy:"კოპირება",copied:"დაკოპირდა",numL:"ტელეფონი",close:"დახურვა",
+ progT:"პროგრამები",progP:"ყველა პროგრამა, რაც კლუბის საჯარო გვერდებზე ჩანს. რაც ჯერ არ არის დადასტურებული, მონიშნულია.",
+ ageL:"ასაკი",timeL:"დრო",daysL:"დღეები",whoL:"ვისთვის",ledL:"ხელმძღვანელი",
+ schT:"განრიგი",schP:"ყოველდღიური სლოტები კლუბის Instagram-იდან. რომელი ჯგუფი რომელ დროს ვარჯიშობს, ჯერ არ გამოქვეყნებულა.",
+ f:{all:"ყველა",daily:"ყოველდღიური",camp:"საზაფხულო ბანაკი 2026",newaza:"ნე-ვაზა"},
+ sunday:"კვირა: Instagram წერს „ყოველდღე“, Fitpass — ორშ–შაბ.",conflict:"15:00 თუ 15:30: Instagram-ზე 15:00, ბანაკის განცხადებაში 15:30.",
+ coT:"მწვრთნელები",coP:"მწვრთნელის ბიოგრაფია მხოლოდ მასზეა. ფოტოები და წოდებები კლუბისგან მოგვაქვს.",write:"მისწერე მწვრთნელს",profile:"პროფილი",
+ rankPh:"[დანი · წოდება]",bioPh:"[მოკლე ბიოგრაფია — კლუბისგან]",
+ stT:"სიახლეები",stP:"კლუბის Facebook-ისა და YouTube-ის პოსტებიდან. სპორტსმენების სახელებს არ ვაქვეყნებთ.",back:"ყველა სიახლე",
+ srcL:"წყარო",illus:"საილუსტრაციო ფოტო კლუბის ვარჯიშიდან",
+ viT:"ვიდეო",viP:"კლუბის ყველა ვიდეო YouTube-ზე. დააჭირე — გაიხსნება ახალ ფანჯარაში.",
+ ctT:"კონტაქტი",addrL:"მისამართი",hoursL:"სამუშაო საათები",hours:"ორშ–შაბ, 09:30–22:00",phoneL:"ტელეფონი",mailL:"ელფოსტა",
+ maps:"გახსენი Google Maps-ში",socL:"სოციალური ქსელები",rateL:"შეფასებები",faqL:"ხშირი კითხვები",
+ rates:["Fitpass: 9.3/10 (14 შეფასება)","Facebook: 100% გვირჩევს (19 შეფასება)"],
+ foot:"ძიუდოს კლუბი „ჯორჯია“, თბილისი",draftSite:"სამუშაო ვერსია. ფაქტები: კლუბის საჯარო გვერდები.",
+ days:["ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],dshort:["ორშ","სამ","ოთხ","ხუთ","პარ","შაბ"]},
+ru:{brand:"Клуб дзюдо «Джорджия»",short:"Judo Club Georgia",sub:"Тбилиси, с 2008 года",menu:"Меню",
+ nav:{home:"Клуб",programs:"Программы",schedule:"Расписание",coaches:"Тренера",stories:"Новости",videos:"Видео",contact:"Контакты"},
+ join:"Записаться",joinClub:"Записаться в клуб",draft:"черновик: не подтверждено",
+ eyebrow:"Клуб дзюдо в Исани, Тбилиси",h1a:"От первого поклона",h1b:"до чёрного пояса",
+ lead:"Дзюдо для детей с 4–5 лет: дисциплина, уважение и сильный характер. На татами с 2008 года.",
+ watch:"Смотреть видео",vals:["Уважение","Лучшее применение силы","Успех вместе","С 2008 года"],
+ moreThan:"Больше, чем спорт",loc:"Тбилиси, Исани",
+ progH:"Программы",progN:"Дзюдо с 4–5 лет",ages:"возраст",learn:"Подробнее",
+ schH:"Расписание тренировок",schN:"Пн–Сб, 09:30–22:00",fullSch:"Полное расписание",
+ grp:"[группа и возраст — от клуба]",newaza:"Вечерняя не-вадза",newazaDays:"[дни — от клуба]",
+ coachH:"Наши тренера",coachN:"[полный список — от клуба]",allCoaches:"Все тренера",
+ stH:"Последние новости",stN:"С нашей страницы в Facebook",read:"Читать",allStories:"Все новости",
+ tag:{res:"Результаты",club:"Новости клуба"},
+ vidH:"Видео",vidN:"YouTube @judoclubgeorgia",allVideos:"Все видео",short_:"Short",video_:"Видео",clubVideo:"Видео клуба",
+ legH:"Легенды грузинского дзюдо",legN:"Олимпийские и мировые чемпионы",quote:"Маленькая страна. Большие чемпионы.",
+ photo:"Фото",
+ bandH:"Приходи на татами",bandP:"Первый шаг — одно сообщение. Подберём группу и время.",call:"Позвонить",
+ wa:"Здравствуйте! Хочу записаться на дзюдо.",waSes:"Тренировка:",waProg:"Программа:",waCoach:"Вопрос тренеру:",
+ dlgP:"Выберите канал. Сообщение уже готово.",msgL:"Сообщение (вставьте в Viber или Messenger)",copy:"Копировать",copied:"Скопировано",numL:"Телефон",close:"Закрыть",
+ progT:"Программы",progP:"Все программы, которые видны на публичных страницах клуба. Неподтверждённое помечено.",
+ ageL:"Возраст",timeL:"Время",daysL:"Дни",whoL:"Для кого",ledL:"Ведёт",
+ schT:"Расписание",schP:"Ежедневные слоты из Instagram клуба. Какая группа в какое время, пока не опубликовано.",
+ f:{all:"Все",daily:"Ежедневные",camp:"Летний лагерь 2026",newaza:"Не-вадза"},
+ sunday:"Воскресенье: в Instagram «каждый день», в Fitpass — Пн–Сб.",conflict:"15:00 или 15:30: в Instagram 15:00, в анонсе лагеря 15:30.",
+ coT:"Тренера",coP:"Биография каждого тренера — только о нём. Фото и звания добавим от клуба.",write:"Написать тренеру",profile:"Профиль",
+ rankPh:"[дан · звание]",bioPh:"[короткая биография — от клуба]",
+ stT:"Новости",stP:"Из постов клуба в Facebook и YouTube. Имена спортсменов не публикуем.",back:"Все новости",
+ srcL:"Источник",illus:"Иллюстрация: фото с тренировки в клубе",
+ viT:"Видео",viP:"Все видео клуба на YouTube. Нажмите — откроется в новой вкладке.",
+ ctT:"Контакты",addrL:"Адрес",hoursL:"Часы работы",hours:"Пн–Сб, 09:30–22:00",phoneL:"Телефон",mailL:"Почта",
+ maps:"Открыть в Google Maps",socL:"Соцсети",rateL:"Отзывы",faqL:"Частые вопросы",
+ rates:["Fitpass: 9.3/10 (14 отзывов)","Facebook: 100% рекомендуют (19 отзывов)"],
+ foot:"Клуб дзюдо «Джорджия», Тбилиси",draftSite:"Черновик сайта. Факты: публичные страницы клуба.",
+ days:["Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"],dshort:["Пн","Вт","Ср","Чт","Пт","Сб"]},
+en:{brand:"Judo Club “Georgia”",short:"Judo Club Georgia",sub:"Tbilisi, since 2008",menu:"Menu",
+ nav:{home:"Club",programs:"Programs",schedule:"Schedule",coaches:"Coaches",stories:"Stories",videos:"Videos",contact:"Contact"},
+ join:"Join the club",joinClub:"Join the club",draft:"draft: unconfirmed",
+ eyebrow:"Judo club in Isani, Tbilisi",h1a:"From first bow",h1b:"to black belt",
+ lead:"Judo for children from age 4–5: discipline, respect and a strong character. On the tatami since 2008.",
+ watch:"Watch our videos",vals:["Respect","Maximum efficiency","Mutual welfare","Since 2008"],
+ moreThan:"More than a sport",loc:"Tbilisi, Isani",
+ progH:"Our programs",progN:"Judo from age 4–5",ages:"ages",learn:"Learn more",
+ schH:"Training schedule",schN:"Mon–Sat, 09:30–22:00",fullSch:"View full schedule",
+ grp:"[group and ages: from the club]",newaza:"Evening ne-waza",newazaDays:"[days: from the club]",
+ coachH:"Our coaches",coachN:"[full list: from the club]",allCoaches:"All coaches",
+ stH:"Latest stories",stN:"From our Facebook page",read:"Read more",allStories:"All stories",
+ tag:{res:"Results",club:"Club news"},
+ vidH:"Videos",vidN:"YouTube @judoclubgeorgia",allVideos:"View all videos",short_:"Short",video_:"Video",clubVideo:"Club video",
+ legH:"Georgian judo legends",legN:"Olympic and world champions",quote:"Small country. Big champions.",
+ photo:"Photo",
+ bandH:"Join our judo family",bandP:"The first step is one message. We’ll suggest a group and a time.",call:"Call",
+ wa:"Hello! I would like to join judo.",waSes:"Session:",waProg:"Program:",waCoach:"Question for coach:",
+ dlgP:"Pick a channel. The message is ready.",msgL:"Message (paste it into Viber or Messenger)",copy:"Copy",copied:"Copied",numL:"Phone",close:"Close",
+ progT:"Programs",progP:"Every program the club’s public pages mention. Anything not yet confirmed is marked.",
+ ageL:"Ages",timeL:"Time",daysL:"Days",whoL:"For",ledL:"Led by",
+ schT:"Schedule",schP:"Daily slots from the club’s Instagram. Which group trains when hasn’t been published yet.",
+ f:{all:"All",daily:"Daily sessions",camp:"Summer camp 2026",newaza:"Ne-waza"},
+ sunday:"Sunday: Instagram says “every day”, Fitpass lists Mon–Sat.",conflict:"15:00 or 15:30: Instagram says 15:00, the camp post says 15:30.",
+ coT:"Coaches",coP:"Each bio covers only that coach. Photos and grades will come from the club.",write:"Write to the coach",profile:"Profile",
+ rankPh:"[dan grade]",bioPh:"[short bio: from the club]",
+ stT:"Stories",stP:"From the club’s Facebook and YouTube posts. We don’t publish athletes’ names.",back:"All stories",
+ srcL:"Source",illus:"Illustration: a club training photo",
+ viT:"Videos",viP:"Every club video on YouTube. Tap a card to open it in a new tab.",
+ ctT:"Contact",addrL:"Address",hoursL:"Opening hours",hours:"Mon–Sat, 09:30–22:00",phoneL:"Phone",mailL:"Email",
+ maps:"Open in Google Maps",socL:"Socials",rateL:"Ratings",faqL:"Questions",
+ rates:["Fitpass: 9.3/10 (14 reviews)","Facebook: 100% recommend (19 reviews)"],
+ foot:"Judo Club “Georgia”, Tbilisi",draftSite:"Draft site. Facts come from the club’s public pages.",
+ days:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],dshort:["Mon","Tue","Wed","Thu","Fri","Sat"]}
+};
+
+const ADDR = {ka:"ბერი გაბრიელ სალოსის გამზირი 144ა, ისანი, თბილისი",ru:"проспект Бери Габриэла Салоси, 144а, Исани, Тбилиси",en:"Monk Gabriel Salos Ave. 144a, Tbilisi, Georgia, 0144"};
+
+// conf: c = confirmed-public, i = inferred, u = unconfirmed
+const PROGS = [
+ {id:"judo-kids",img:"wYE4DtxT2TM",top:"4–5+",conf:"c",home:1,
+  name:{ka:"ძიუდო ბავშვებისთვის",ru:"Дзюдо для детей",en:"Judo for children"},
+  small:{ka:"ასაკი",ru:"возраст",en:"ages"},
+  d:{ka:"4–5 წლიდან. თამაშით ვსწავლობთ კოორდინაციას, სწორად დაცემას და პირველ ილეთებს.",ru:"С 4–5 лет. Играя, учимся координации, страховке и первым броскам.",en:"From age 4–5. Coordination, safe falling and first throws, learned through play."},
+  facts:[["ageL",{ka:"4–5 წლიდან",ru:"с 4–5 лет",en:"from 4–5"},"c"]]},
+ {id:"summer-camp-2026",img:"HMiYnUjJ7Rg",top:"2026",conf:"c",home:1,
+  name:{ka:"საზაფხულო ბანაკი",ru:"Летний лагерь",en:"Summer camp"},
+  small:{ka:"ზაფხული",ru:"лето",en:"summer"},
+  d:{ka:"ტექნიკური და ფიზიკური მომზადება, ჭიდაობა, ტანვარჯიში და ფსიქოლოგია. ეკრანების გარეშე.",ru:"Техническая и физическая подготовка, борьба, гимнастика и психология. Без экранов.",en:"Technique, conditioning, wrestling, gymnastics and psychology. Screen-free."},
+  facts:[["daysL",{ka:"ორშაბათი–შაბათი",ru:"понедельник–суббота",en:"Monday–Saturday"},"c"],["timeL",{ka:"09:30, 11:00, 15:30, 16:30, 18:30, 20:00",ru:"09:30, 11:00, 15:30, 16:30, 18:30, 20:00",en:"09:30, 11:00, 15:30, 16:30, 18:30, 20:00"},"c"],["whoL",{ka:"ბავშვები, ვინც ზაფხულს თბილისში ატარებს",ru:"дети, которые проводят лето в Тбилиси",en:"children spending the summer in Tbilisi"},"c"]]},
+ {id:"ne-waza-evening",img:"iBMBH1F6Wbw",top:"21:30",conf:"c",home:1,
+  name:{ka:"საღამოს ნე-ვაზა",ru:"Вечерняя не-вадза",en:"Evening ne-waza"},
+  small:{ka:"საღამო",ru:"вечер",en:"evening"},
+  d:{ka:"პარტერის ტექნიკა 21:30–22:30. უძღვება ბრაზილიელი მწვრთნელი გაბრიელ კიტობერი.",ru:"Борьба в партере, 21:30–22:30. Ведёт бразильский тренер Габриэль Китобер.",en:"Ground work, 21:30–22:30, led by Brazilian coach Gabriel Kitober."},
+  facts:[["timeL",{ka:"21:30–22:30",ru:"21:30–22:30",en:"21:30–22:30"},"c"],["ledL",{ka:"გაბრიელ კიტობერი",ru:"Габриэль Китобер",en:"Gabriel Kitober"},"c"],["whoL",{ka:"[ასაკი — კლუბისგან]",ru:"[возраст — от клуба]",en:"[ages: from the club]"},"u"]]},
+ {id:"internal-rating",img:"0EHPu1BNDns",top:"2016–19",conf:"c",home:1,
+  name:{ka:"შიდა სარეიტინგო ტურნირი",ru:"Рейтинговый турнир",en:"Rating tournament"},
+  small:{ka:"დაბადების წელი",ru:"год рождения",en:"born"},
+  d:{ka:"კლუბის შიდა ტურნირი 2016–17 და 2018–19 წლებში დაბადებული ბავშვებისთვის.",ru:"Внутренний турнир клуба для детей 2016–17 и 2018–19 годов рождения.",en:"The club’s internal tournament for children born 2016–17 and 2018–19."},
+  facts:[["ageL",{ka:"დაბადებული 2016–17, 2018–19",ru:"2016–17 и 2018–19 г.р.",en:"born 2016–17 and 2018–19"},"c"]]},
+ {id:"gymnastics-wrestling",img:"ivJtWi70XzU",top:"",conf:"i",
+  name:{ka:"ტანვარჯიში + ჭიდაობა",ru:"Гимнастика + борьба",en:"Gymnastics + wrestling"},
+  d:{ka:"კლუბის ვიდეოში ჩანს როგორც სავარჯიშო ბლოკი. რამდენად ხშირად — [კლუბისგან].",ru:"Показан в ролике клуба как блок тренировки. Как часто — [от клуба].",en:"Shown in a club reel as a training block. How often: [from the club]."},facts:[]},
+ {id:"physical-conditioning",img:"6SV5l31KBus",top:"",conf:"i",
+  name:{ka:"ფიზიკური მომზადება",ru:"Физическая подготовка",en:"Physical conditioning"},
+  d:{ka:"ვიდეოს წარწერა: „ოთხშაბათი — ფიზიკური მომზადება“. ყოველ ოთხშაბათს თუ არა — [კლუბისგან].",ru:"Подпись к ролику: «среда — физподготовка». Каждую ли среду — [от клуба].",en:"A reel caption says “Wednesday: physical condition”. Every Wednesday or not: [from the club]."},facts:[]},
+ {id:"venue-other",img:"",top:"",conf:"u",
+  name:{ka:"ბატუტი, კრივი, ფიტნესი",ru:"Батут, бокс, фитнес",en:"Trampoline, boxing, fitness"},
+  d:{ka:"Fitpass-ზე ჩამოთვლილია ამ შენობისთვის. კლუბის პროგრამაა თუ არა — [დასადასტურებელი].",ru:"Указаны для этого здания в Fitpass. Программа ли это клуба — [уточнить].",en:"Listed for the venue on Fitpass. Whether the club runs them: [to confirm]."},
+  facts:[["ageL",{ka:"ბატუტი 3-დან, კრივი 5–6-დან, ფიტნესი 12–13-დან",ru:"батут с 3, бокс с 5–6, фитнес с 12–13",en:"trampoline from 3, boxing from 5–6, fitness from 12–13"},"c"]]}
+];
+
+const COACHES = [
+ {id:"karen",name:{ka:"კარენ არუთინიანი",ru:"Карен Арутинян",en:"Karen Arutinian"},nameConf:{ka:"c",ru:"i",en:"i"},
+  role:{ka:"კლუბის დირექტორი",ru:"Директор клуба",en:"Club director"},
+  lines:[[{ka:"კლუბის იურიდიული პირის დირექტორი (ს/კ 206337374).",ru:"Директор юридического лица клуба (ИК 206337374).",en:"Director of the club’s legal entity (ID 206337374)."},"c"],
+   [{ka:"მწვრთნელი: Facebook-ის კომენტარებში მას „coach Karen“-ს ეძახიან.",ru:"Тренер: в комментариях в Facebook его называют «coach Karen».",en:"Coach: commenters on the club’s posts call him “coach Karen”."},"i"]]},
+ {id:"kitober",name:{ka:"გაბრიელ კიტობერი",ru:"Габриэль Китобер",en:"Gabriel Kitober"},nameConf:{ka:"c",ru:"i",en:"i"},
+  role:{ka:"საღამოს ნე-ვაზა",ru:"Вечерняя не-вадза",en:"Evening ne-waza"},
+  rank:{ka:"ბრაზილიური ჯიუ-ჯიცუს შავი ქამარი",ru:"Чёрный пояс по бразильскому джиу-джитсу",en:"Brazilian jiu-jitsu black belt"},rankConf:"i",
+  lines:[[{ka:"ბრაზილიელი მწვრთნელი, ნე-ვაზის აღიარებული სპეციალისტი. უძღვება ვარჯიშებს 21:30–22:30.",ru:"Бразильский тренер, признанный специалист по не-вадза. Ведёт тренировки 21:30–22:30.",en:"Brazilian coach and recognised ne-waza specialist. Leads the 21:30–22:30 sessions."},"c"],
+   [{ka:"ბრაზილიური ჯიუ-ჯიცუს შავი ქამარი, 2005 (ოსვალდო ალვესი).",ru:"Чёрный пояс по БЖЖ, 2005 (Освалдо Алвес).",en:"BJJ black belt, awarded 2005 by Osvaldo Alves."},"i"],
+   [{ka:"FILA-ს გრეპლინგის მსოფლიო ჩემპიონი, 2009.",ru:"Чемпион мира FILA по грэпплингу, 2009.",en:"FILA World Grappling champion, 2009."},"i"],
+   [{ka:"ისრაელის ძიუდოს ნაკრების პარტერის მწვრთნელი.",ru:"Тренер по партеру сборной Израиля по дзюдо.",en:"Ground-work coach of the Israel national judo team."},"i"],
+   [{ka:"ბავშვობაში ვარჯიშობდა ძიუდოში (3–10 წლამდე).",ru:"В детстве занимался дзюдо (с 3 до 10 лет).",en:"Trained judo as a child, ages 3–10."},"i"]]},
+ {id:"ph",ph:1,name:{ka:"[მწვრთნელის სახელი]",ru:"[Имя тренера]",en:"[Coach name]"},role:{ka:"[როლი]",ru:"[роль]",en:"[role]"},lines:[]}
+];
+
+const LEG = {
+ "shota-khabareli":{ka:"ოლიმპიური ოქრო, მოსკოვი 1980",ru:"Олимпийское золото, Москва 1980",en:"Olympic gold, Moscow 1980"},
+ "zurab-zviadauri":{ka:"ოლიმპიური ოქრო, ათენი 2004, −90 კგ",ru:"Олимпийское золото, Афины 2004, −90 кг",en:"Olympic gold, Athens 2004, −90 kg"},
+ "irakli-tsirekidze":{ka:"ოლიმპიური ოქრო, პეკინი 2008",ru:"Олимпийское золото, Пекин 2008",en:"Olympic gold, Beijing 2008"},
+ "lasha-shavdatuashvili":{ka:"ოლიმპიური ოქრო, ლონდონი 2012, −66 კგ",ru:"Олимпийское золото, Лондон 2012, −66 кг",en:"Olympic gold, London 2012, −66 kg"},
+ "avtandil-tchrikishvili":{ka:"მსოფლიოს ჩემპიონი, 2014",ru:"Чемпион мира 2014",en:"World champion, 2014"},
+ "guram-tushishvili":{ka:"მსოფლიოს ჩემპიონი, ბაქო 2018, +100 კგ",ru:"Чемпион мира, Баку 2018, +100 кг",en:"World champion, Baku 2018, +100 kg"},
+ "lasha-bekauri":{ka:"ოლიმპიური ოქრო, ტოკიო 2020 და პარიზი 2024, −90 კგ",ru:"Олимпийское золото, Токио 2020 и Париж 2024, −90 кг",en:"Olympic gold, Tokyo 2020 and Paris 2024, −90 kg"}
+};
+
+const FAQ = [
+ [{ka:"რა ასაკიდან შეიძლება ძიუდოზე სიარული?",ru:"С какого возраста можно заниматься дзюдо?",en:"From what age can my child start judo?"},{ka:"4-5 წლიდან.",ru:"С 4-5 лет.",en:"From 4-5 years old."}],
+ [{ka:"როდის არის ვარჯიშები?",ru:"Когда проходят тренировки?",en:"When are the sessions?"},{ka:"09:30, 11:00, 15:00, 16:30, 18:30 და 20:00. საღამოს ნე-ვაზა: 21:30-22:30.",ru:"09:30, 11:00, 15:00, 16:30, 18:30 и 20:00. Вечерняя не-вадза: 21:30-22:30.",en:"09:30, 11:00, 15:00, 16:30, 18:30 and 20:00. Evening ne-waza: 21:30-22:30."}],
+ [{ka:"როგორ ჩავეწერო?",ru:"Как записаться?",en:"How do I sign up?"},{ka:"დარეკეთ +995 599 93 38 97 ან გამოიყენეთ რეგისტრაციის ლინკი Instagram-ზე (@geojudoclub).",ru:"Позвоните +995 599 93 38 97 или воспользуйтесь ссылкой на регистрацию в Instagram (@geojudoclub).",en:"Call +995 599 93 38 97 or use the registration link on Instagram (@geojudoclub)."}],
+ [{ka:"არის ზაფხულის ბანაკი?",ru:"Есть ли летний лагерь?",en:"Is there a summer camp?"},{ka:"დიახ, 2026 წლის ზაფხულს: ორშაბათი-შაბათი, ტექნიკა, ფიზიკური მომზადება, ჭიდაობა, ტანვარჯიში, ფსიქოლოგია.",ru:"Да, летом 2026 года: понедельник-суббота, техника, физподготовка, борьба, гимнастика, психология.",en:"Yes, in summer 2026: Monday-Saturday, technique, conditioning, wrestling, gymnastics and psychology."}],
+ [{ka:"მონაწილეობენ თუ არა ბავშვები ტურნირებში?",ru:"Участвуют ли дети в соревнованиях?",en:"Do children compete?"},{ka:"დიახ. კლუბი ატარებს შიდა სარეიტინგო ტურნირებს და მონაწილეობს ტურნირებში საქართველოში და საზღვარგარეთ.",ru:"Да. Клуб проводит внутренние рейтинговые турниры и выступает на турнирах в Грузии и за рубежом.",en:"Yes. The club runs internal rating tournaments and competes in Georgia and abroad."}],
+ [{ka:"მუშაობს Fitpass-ით?",ru:"Принимаете Fitpass?",en:"Can I use Fitpass?"},{ka:"კლუბი Fitpass-ის ობიექტების სიაშია.",ru:"Клуб есть в списке объектов Fitpass.",en:"The club is listed as a Fitpass venue."}]
+];
+
+const DAILY = ["09:30","11:00","15:00","16:30","18:30","20:00"], CAMP = ["09:30","11:00","15:30","16:30","18:30","20:00"];
+const VT = {fJhFjVSGQQs:{ka:"ძიუდოს საზაფხულო საწვრთნელი ბანაკი",ru:"Летний тренировочный лагерь по дзюдо",en:"Summer judo training camp"},
+ FkEm4wzfHjE:{ka:"ძიუდოს კლუბი „ჯორჯია“",ru:"Клуб дзюдо «Джорджия»",en:"Judo Club “Georgia”"},
+ GFKY7QXTcro:{ka:"გელა ზაალიშვილი",ru:"Гела Заалишвили",en:"Gela Zaalishvili"}};
+
+let lang = "ka", route = "home", day = 0, filt = "all";
+try { lang = localStorage.getItem("gj-lang") || "ka"; } catch (e) {}
+if (!T[lang]) lang = "ka";
+
+const t = () => T[lang];
+const L = o => o == null ? "" : typeof o === "string" ? o : (o[lang] ?? o.en);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const B = c => c && c !== "c" ? `<span class="badge">${t().draft}</span>` : "";
+// [bracketed] copy renders as a visible placeholder
+const P = s => esc(s).replace(/\[([^\]]+)\]/g, '<em class="ph">[$1]</em>');
+// manual month names: some Chromium builds ship without Georgian ICU data
+const MON = {ka:["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"],
+ ru:["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"],
+ en:["January","February","March","April","May","June","July","August","September","October","November","December"]};
+const fmtDate = d => { const [y, m, dd] = d.split("-").map(Number), n = MON[lang][m - 1]; return lang === "en" ? `${dd} ${n} ${y}` : lang === "ru" ? `${dd} ${n} ${y} г.` : `${dd} ${n}, ${y}`; };
+const dur = s => s == null ? "" : Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
+const vTitle = v => VT[v.id] ? L(VT[v.id]) : v.t ? L(v.t) : t().clubVideo;
+const img = id => `img/${id}.jpg`;
+
+const ICON = {
+ arrow:'<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+ play:'<svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="#fff"/></svg>',
+ playN:'<svg width="18" height="20" viewBox="0 0 10 12" aria-hidden="true"><path d="M1 0l9 6-9 6z" fill="#0E2A82"/></svg>',
+ wa:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z" fill="currentColor"/></svg>',
+ vb:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 3 4.6 3 10.2c0 3.2 1.1 5.4 3 6.6V21l3.2-2.7c.9.2 1.8.2 2.8.2 5.5 0 9-2.6 9-8.3S17.5 2 12 2zm4.3 12.3c-.4.6-1.2 1-1.8.8-2.9-1-5.1-3.1-6.3-6-.2-.6.2-1.4.8-1.8.4-.3 1-.2 1.3.2l1 1.4c.3.4.2.9-.2 1.2l-.4.3c.6 1.3 1.6 2.3 2.9 2.9l.3-.4c.3-.4.8-.5 1.2-.2l1.4 1c.4.2.5.6-.2.6z" fill="currentColor"/></svg>',
+ ms:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.4 2 2 6.1 2 11.6c0 2.9 1.2 5.4 3.2 7.1V22l3-1.7c1.2.3 2.4.5 3.8.5 5.6 0 10-4.1 10-9.6S17.6 2 12 2zm1 12.8-2.5-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7z" fill="currentColor"/></svg>',
+ tel:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg>',
+ ig:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>',
+ yt:'<svg width="20" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3z" fill="currentColor"/></svg>',
+ fb:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8V6.2c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.3 2 10.3 3.6 10.3 6v2H8v3h2.3v11H14V11h2.7l.3-3z" fill="currentColor"/></svg>',
+ tt:'<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2h-3.4v13.4a2.9 2.9 0 1 1-2-2.8V9.1a6.3 6.3 0 1 0 5.4 6.3V8.6a7.7 7.7 0 0 0 4.5 1.4V6.6a4.5 4.5 0 0 1-4.5-4.6z" fill="currentColor"/></svg>'
+};
+// five-cross mark: one large and four small crosses
+const MARK = (s=40) => `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true"><path d="M17 3h6v14h14v6H23v14h-6V23H3v-6h14z" fill="#C8102E"/><g fill="#C8102E"><path d="M8 6h2v2h2v2h-2v2H8v-2H6V8h2z"/><path d="M30 6h2v2h2v2h-2v2h-2v-2h-2V8h2z"/><path d="M8 28h2v2h2v2h-2v2H8v-2H6v-2h2z"/><path d="M30 28h2v2h2v2h-2v2h-2v-2h-2v-2h2z"/></g></svg>`;
+const SILH = '<svg viewBox="0 0 120 110" aria-hidden="true"><circle cx="60" cy="34" r="20" fill="#B3BAC8"/><path d="M14 110c2-30 20-46 46-46s44 16 46 46z" fill="#fff"/><path d="M48 66l12 26 12-26" fill="none" stroke="#D4D9E2" stroke-width="3"/><rect x="24" y="92" width="72" height="7" fill="#1B1F2A"/></svg>';
+
+const SOC = [["https://www.instagram.com/geojudoclub/","Instagram","ig"],["https://www.youtube.com/@judoclubgeorgia","YouTube","yt"],["https://www.facebook.com/JudoClubGeorgia/","Facebook","fb"]];
+const ROUTES = ["home","parents","programs","schedule","coaches","branches","stories","videos","contact"];
+
+function msg(ctx) { return t().wa + (ctx ? " " + ctx : ""); }
+function jbtn(ctx, cls, label) { return `<button type="button" class="${cls}" data-join="${esc(ctx || "")}">${label}</button>`; }
+function vmeta(v) { return `${v.sh ? t().short_ : t().video_} · ${dur(v.s)} · ${fmtDate(v.d)}`; }
+const V = id => DATA.videos.find(v => v.id === id);
+function channels(m) {
+  const e = encodeURIComponent(m);
+  return `<a class="chan wa" href="https://wa.me/${PHONE_RAW}?text=${e}" target="_blank" rel="noopener">${ICON.wa}WhatsApp</a>
+   <a class="chan vb" href="viber://chat?number=%2B${PHONE_RAW}">${ICON.vb}Viber</a>
+   <a class="chan ms" href="https://m.me/JudoClubGeorgia" target="_blank" rel="noopener">${ICON.ms}Messenger</a>
+   <a class="chan tel" href="tel:+${PHONE_RAW}">${ICON.tel}${esc(t().call)}</a>`;
+}
+/* dialog */
+const dlg = document.getElementById("dlg"), dbody = document.getElementById("dlg-body");
+function openDlg(html) { dbody.innerHTML = html; if (!dlg.open) dlg.showModal(); }
+function openJoin(ctx) {
+  const m = msg(ctx);
+  openDlg(`<div class="dlg-h"><h2 id="dlg-title" class="disp">${esc(t().joinClub)}</h2><button type="button" class="x" data-close aria-label="${esc(t().close)}">×</button></div>
+   <p class="muted">${esc(t().dlgP)}</p><div class="chans">${channels(m)}</div>
+   <label for="jmsg" style="font-size:13px;font-weight:600">${esc(t().msgL)}</label><textarea id="jmsg" readonly>${esc(m)}</textarea>
+   <div class="row"><button type="button" class="btn btn-line" data-copy>${esc(t().copy)}</button><span role="status" aria-live="polite" id="cst" class="muted" style="font-size:13px"></span></div>
+   <p style="font-size:14px">${esc(t().numL)}: <b style="user-select:all">${PHONE}</b></p>`);
+}
+function openCoach(id) {
+  const c = COACHES.find(x => x.id === id);
+  openDlg(`<div class="dlg-h"><h2 id="dlg-title" class="disp">${c.ph ? P(L(c.name)) : esc(L(c.name)) + B(c.nameConf[lang])}</h2><button type="button" class="x" data-close aria-label="${esc(t().close)}">×</button></div>
+   <p class="role">${P(L(c.role))}</p>
+   <p class="muted">${c.rank ? esc(L(c.rank)) + B(c.rankConf) : P(t().rankPh)}</p>
+   ${c.lines.length ? `<ul>${c.lines.map(([x, cf]) => `<li>${esc(L(x))}${B(cf)}</li>`).join("")}</ul>` : `<p>${P(t().bioPh)}</p>`}
+   <div>${jbtn(`${t().waCoach} ${c.ph ? "" : L(c.name)}`.trim(), "btn btn-red", esc(t().write) + " " + ICON.arrow)}</div>`);
+}
+
+/* round 7: strings and renderers for the Budokan/Edinburgh layout */
+Object.assign(T.ka.nav, {parents:"მშობლებს", branches:"ფილიალები"});
+Object.assign(T.ru.nav, {parents:"Родителям", branches:"Филиалы"});
+Object.assign(T.en.nav, {parents:"Parents", branches:"Branches", stories:"News"});
+const X = {
+ka:{wmS:"ძიუდოს კლუბი",wmB:"ჯორჯია",trial:"საცდელი ვარჯიში",trialL:"ჩაეწერეთ საცდელ ვარჯიშზე",trialMsg:"მინდა საცდელ ვარჯიშზე მოსვლა.",
+ eb:"ძიუდოს კლუბი · თბილისი · <b>2008 წლიდან</b>",sched:"განრიგი",heroAlt:"ვარჯიში კლუბის დარბაზში",heroCap:"ვარჯიში კლუბში, თბილისი",
+ trust:[["2008","დაარსების წელი"],["საკუთარი დარბაზი","ისანი, თბილისი",1],["6","ვარჯიში დღეში, 09:30-დან"],["48K","Instagram @geojudoclub"],["110K","Facebook-ის გამომწერი"],["15","მედალი ერთ ტურნირზე, ბოლნისი 2026"]],
+ parEb:"მშობლებისთვის",parH:"ყველაფერი, რასაც მშობელი პირველ ვარჯიშამდე კითხულობს",parP:"ძიუდო 4–5 წლიდან, ჩვენს დარბაზში, ისანში. აი, რას უნდა ელოდოთ.",
+ whyH:"რატომ ძიუდო",why:["დისციპლინა და პატივისცემა: ყოველი ვარჯიში მისალმებით იწყება და მთავრდება.","კოორდინაცია, ძალა და თავდაჯერებულობა — პატარა ასაკში თამაშით.","კანოს ორი პრინციპი: ძალის საუკეთესო გამოყენება და ერთად წარმატება.","საქართველო ძიუდოს ერთ-ერთი უძლიერესი ქვეყანაა — ბავშვებს ნამდვილი მაგალითები ჰყავთ."],
+ safeH:"უსაფრთხოება ტატამზე",safe:["ბავშვები პირველ ილეთებთან ერთად სწორად დაცემას (უკემი) სწავლობენ.","ვარჯიში ტატამზე, კლუბის საკუთარ დარბაზში.","[ჯგუფის ზომა და მწვრთნელების რაოდენობა — კლუბისგან]","[ბავშვთა დაცვის პასუხისმგებელი პირი და პირველი დახმარება — კლუბისგან]"],
+ firstH:"როგორ გადის პირველი ვარჯიში",first:[["მოგვწერეთ","WhatsApp, Viber, Messenger ან დარეკეთ: +995 599 93 38 97."],["შეგირჩევთ ჯგუფს","ბავშვის ასაკის მიხედვით. [რომელი ჯგუფი როდის ვარჯიშობს — კლუბისგან]"],["მობრძანდით დარბაზში","ბერი გაბრიელ სალოსის გამზ. 144ა, ისანი. ორშ–შაბ 09:30–22:00."],["პირველი ვარჯიში","[საცდელი ვარჯიშის პირობები, ფასი და რა წამოიღოთ — კლუბისგან]"]],
+ testi:"[მშობლების შეფასებები — თანხმობით, კლუბისგან]",rev:"შეფასება",rec:"გვირჩევს",
+ grpEb:"ჯგუფები",grpH:"ჯგუფები და პროგრამები",grpP:"პირველი ვარჯიშიდან 4–5 წლის ასაკში — ტურნირებამდე საქართველოში და საზღვარგარეთ.",
+ comp:{name:"შეჯიბრებები",small:"შედეგები",d:"კლუბის სპორტსმენები ასპარეზობენ საქართველოში და საზღვარგარეთ: U15 ოქრო საფრანგეთში, მასტერსის ბრინჯაო (2010–11 წ.დ.), 2026 წლის ოქტომბერი."},
+ allProg:"ყველა პროგრამა",coEb:"მწვრთნელები",coP:"გაიცანით ისინი, ვინც ტატამზე გხვდებათ.",roleL:"როლი",gradeL:"წოდება",licL:"ლიცენზია",licPh:"[ლიცენზია — კლუბისგან]",
+ schEb:"განრიგი",schP:"ექვსი ყოველდღიური ვარჯიში და საღამოს ნე-ვაზა, ორშ–შაბ 09:30–22:00.",hallMain:"მთავარი დარბაზი · ისანი",hallTbc:"ფილიალი · დასადასტურებელი",
+ brEb:"ფილიალები",brH:"ჩვენი დარბაზები",brP:"მთავარი დარბაზი ისანშია. ფილიალების მისამართებს კლუბის დადასტურების შემდეგ დავამატებთ.",mainTag:"მთავარი დარბაზი",
+ tbc:"[ფილიალი — მისამართი დასადასტურებელია]",tbcSub:"[ჯგუფები, საათები და მისამართი — კლუბისგან]",
+ resEb:"შედეგები",resH:"2026 წლის შემოდგომა ტატამზე",resP:"კლუბის პოსტებიდან. ბავშვების სახელებს არ ვაქვეყნებთ.",
+ medals:"მედალი",gold:"ოქრო",silver:"ვერცხლი",bronze:"ბრინჯაო",champ:"ჩემპიონი",
+ bigT:"საბა დადვანის ხსოვნისადმი მიძღვნილი XVIII საერთაშორისო ტურნირი",bigP:"ბოლნისი, 2026 წლის 10–11 ოქტომბერი. 200-ზე მეტი სპორტსმენი საქართველოს რეგიონებიდან.",
+ r:[["სეზონის პირველი რეგიონული ტურნირი (U15), საფრანგეთი"],["მასტერსი 2010–2011 წლებში დაბადებულ ვაჟთა შორის, −50 კგ"],["ქართული ჭიდაობა, მცხეთობა-სვეტიცხოვლობის ტურნირი, 60 კგ"]],
+ nwEb:"სიახლეები",viEb:"ვიდეო",faqEb:"კითხვები",ctEb:"კონტაქტი",
+ rbH:"მოიყვანეთ ბავშვი საცდელ ვარჯიშზე",colClub:"კლუბი",colVisit:"მოგვინახულეთ",colFollow:"გამოგვყევით",sign:"გაინტერესებთ? <span>მოდით საცდელ ვარჯიშზე.</span>"},
+ru:{wmS:"Клуб дзюдо",wmB:"Джорджия",trial:"Пробное занятие",trialL:"Записаться на пробное",trialMsg:"Хочу прийти на пробное занятие.",
+ eb:"Клуб дзюдо · Тбилиси · <b>с 2008 года</b>",sched:"Расписание",heroAlt:"Тренировка в зале клуба",heroCap:"Тренировка в клубе, Тбилиси",
+ trust:[["2008","год основания"],["Свой зал","Исани, Тбилиси",1],["6","тренировок в день, с 09:30"],["48K","Instagram @geojudoclub"],["110K","подписчиков в Facebook"],["15","медалей за один турнир, Болниси 2026"]],
+ parEb:"Родителям",parH:"Всё, что родители спрашивают до первой тренировки",parP:"Дзюдо с 4–5 лет в нашем зале в Исани. Вот чего ожидать.",
+ whyH:"Почему дзюдо",why:["Дисциплина и уважение: каждая тренировка начинается и заканчивается поклоном.","Координация, сила и уверенность — в младшем возрасте через игру.","Два принципа Кано: максимальная эффективность и взаимное процветание.","Грузия — одна из сильнейших стран в дзюдо: у детей есть настоящие примеры."],
+ safeH:"Безопасность на татами",safe:["Дети учатся правильно падать (укэми) вместе с первыми бросками.","Тренировки на татами в собственном зале клуба.","[размер группы и число тренеров — от клуба]","[ответственный за защиту детей и первая помощь — от клуба]"],
+ firstH:"Как проходит первое занятие",first:[["Напишите нам","WhatsApp, Viber, Messenger или звонок: +995 599 93 38 97."],["Подберём группу","По возрасту ребёнка. [какая группа когда занимается — от клуба]"],["Приходите в зал","пр. Бери Габриэла Салоси, 144а, Исани. Пн–Сб 09:30–22:00."],["Первое занятие","[условия пробного, цена и что взять с собой — от клуба]"]],
+ testi:"[отзывы родителей — с согласия, от клуба]",rev:"отзывов",rec:"рекомендуют",
+ grpEb:"Группы",grpH:"Группы и программы",grpP:"От первой тренировки в 4–5 лет до турниров в Грузии и за рубежом.",
+ comp:{name:"Соревнования",small:"результаты",d:"Спортсмены клуба выступают в Грузии и за рубежом: золото U15 во Франции, бронза Мастерса (2010–11 г.р.), октябрь 2026."},
+ allProg:"Все программы",coEb:"Тренера",coP:"Знакомьтесь — те, кто встретит вас на татами.",roleL:"Роль",gradeL:"Степень",licL:"Лицензия",licPh:"[лицензия — от клуба]",
+ schEb:"Расписание",schP:"Шесть ежедневных тренировок и вечерняя не-вадза, Пн–Сб 09:30–22:00.",hallMain:"Главный зал · Исани",hallTbc:"Филиал · уточняется",
+ brEb:"Филиалы",brH:"Наши залы",brP:"Главный зал — в Исани. Адреса филиалов добавим после подтверждения клубом.",mainTag:"Главный зал",
+ tbc:"[филиал — адрес уточняется]",tbcSub:"[группы, часы и адрес — от клуба]",
+ resEb:"Результаты",resH:"Осень 2026 на татами",resP:"Из постов клуба. Имена детей не публикуем.",
+ medals:"медалей",gold:"золото",silver:"серебро",bronze:"бронза",champ:"Чемпион",
+ bigT:"XVIII международный турнир памяти Сабы Дадвани",bigP:"Болниси, 10–11 октября 2026. Более 200 спортсменов из регионов Грузии.",
+ r:[["Первый региональный турнир сезона (U15), Франция"],["Мастерс среди юношей 2010–2011 г.р., −50 кг"],["Грузинская борьба, турнир ко дню Мцхетоба-Светицховлоба, 60 кг"]],
+ nwEb:"Новости",viEb:"Видео",faqEb:"Вопросы",ctEb:"Контакты",
+ rbH:"Приводите ребёнка на пробное занятие",colClub:"Клуб",colVisit:"Как нас найти",colFollow:"Мы в соцсетях",sign:"Интересно? <span>Приходите на пробное занятие.</span>"},
+en:{wmS:"Judo Club",wmB:"Georgia",trial:"Trial lesson",trialL:"Book a trial lesson",trialMsg:"I'd like to come to a trial lesson.",
+ eb:"Judo club · Tbilisi · <b>since 2008</b>",sched:"Schedule",heroAlt:"Training in the club's hall",heroCap:"Training at the club, Tbilisi",
+ trust:[["2008","founded"],["Own hall","Isani, Tbilisi",1],["6","sessions a day, from 09:30"],["48K","Instagram @geojudoclub"],["110K","Facebook followers"],["15","medals at one tournament, Bolnisi 2026"]],
+ parEb:"For parents",parH:"Everything parents ask before the first lesson",parP:"Judo from age 4–5 in our own hall in Isani. Here's what to expect.",
+ whyH:"Why judo",why:["Discipline and respect: every session starts and ends with a bow.","Coordination, strength and confidence, built through play at a young age.","Kano's two principles: maximum efficiency, mutual welfare and benefit.","Georgia is one of the strongest judo nations, so children grow up with real role models."],
+ safeH:"Safety on the tatami",safe:["Children learn safe falling (ukemi) along with their first throws.","Training on tatami in the club's own hall.","[Group size and coach-to-child ratio: from the club]","[Safeguarding contact and first aid: from the club]"],
+ firstH:"How the first lesson goes",first:[["Send us a message","WhatsApp, Viber, Messenger or a call: +995 599 93 38 97."],["We suggest a group","Based on your child's age. [Which group trains when: from the club]"],["Come to the hall","Beri Gabriel Salosi Ave 144a, Isani. Mon–Sat 09:30–22:00."],["The first lesson","[Trial terms, price and what to bring: from the club]"]],
+ testi:"[Parent testimonials: with consent, from the club]",rev:"reviews",rec:"recommend",
+ grpEb:"Groups",grpH:"Groups and programmes",grpP:"From a first judo class at 4–5 to tournaments in Georgia and abroad.",
+ comp:{name:"Competition",small:"results",d:"Club athletes compete in Georgia and abroad: U15 gold in France and a Masters bronze (born 2010–11), October 2026."},
+ allProg:"All programmes",coEb:"Coaches",coP:"Meet the people your child will see on the tatami.",roleL:"Role",gradeL:"Grade",licL:"Licence",licPh:"[licence: from the club]",
+ schEb:"Schedule",schP:"Six daily sessions plus evening ne-waza, Mon–Sat 09:30–22:00.",hallMain:"Main hall · Isani",hallTbc:"Branch · TBC",
+ brEb:"Branches",brH:"Our halls",brP:"The main hall is in Isani. Branch addresses will be added once the club confirms them.",mainTag:"Main hall",
+ tbc:"[branch — address to be confirmed]",tbcSub:"[Groups, hours and address: from the club]",
+ resEb:"Results",resH:"Autumn 2026 on the tatami",resP:"From the club's own posts. We don't publish children's names.",
+ medals:"medals",gold:"gold",silver:"silver",bronze:"bronze",champ:"Champion",
+ bigT:"XVIII International Judo Tournament in memory of Saba Dadvani",bigP:"Bolnisi, 10–11 October 2026. 200+ athletes from regions of Georgia.",
+ r:[["First regional tournament of the season (U15), France"],["Masters for boys born 2010–2011, −50 kg"],["Georgian wrestling (chidaoba), Mtskhetoba-Svetitskhovloba Day tournament, 60 kg"]],
+ nwEb:"News",viEb:"Videos",faqEb:"Questions",ctEb:"Contact",
+ rbH:"Bring your child to a trial lesson",colClub:"Club",colVisit:"Visit",colFollow:"Follow",sign:"Curious? <span>Come to a trial lesson.</span>"}
+};
+const x = () => X[lang];
+const RES = [["gold","2026-10-12","https://www.facebook.com/JudoClubGeorgia/posts/1488424940063584"],["bronze","2026-10-17","https://www.facebook.com/JudoClubGeorgia/posts/1493148186257926"],["champ","2026-10-14","https://www.facebook.com/JudoClubGeorgia/posts/1490477199858358"]];
+/* round 8 V1 "Noir": renderers for the dark-first layout */
+const Y = {
+ka:{famEb:"ოჯახი „ჯორჯია“",famA:"ოლიმპიური ჩემპიონების ქვეყანა.",famB:"კლუბი, სადაც ბავშვები იმავე გზას იწყებენ.",
+ famP:"საკუთარი დარბაზი ისანში, ვარჯიში ორშაბათიდან შაბათამდე 09:30–22:00, შიდა სარეიტინგო ტურნირები და შეჯიბრებები საქართველოში და საზღვარგარეთ — 2008 წლიდან.",
+ today:"დღეს",ses:"ვარჯიში",none:"ამ დღეს ამ ფილტრით ვარჯიში არ არის.",photoPh:"[ფოტო — კლუბისგან]"},
+ru:{famEb:"Семья «Джорджия»",famA:"Страна олимпийских чемпионов.",famB:"Клуб, где дети начинают тот же путь.",
+ famP:"Свой зал в Исани, тренировки с понедельника по субботу 09:30–22:00, внутренние рейтинговые турниры и соревнования в Грузии и за рубежом — с 2008 года.",
+ today:"Сегодня",ses:"трен.",none:"В этот день по этому фильтру тренировок нет.",photoPh:"[фото — от клуба]"},
+en:{famEb:"The Georgia family",famA:"A country of Olympic champions.",famB:"A club where children start the same road.",
+ famP:"Our own hall in Isani, training Monday to Saturday 09:30–22:00, internal rating tournaments and competitions in Georgia and abroad — since 2008.",
+ today:"Today",ses:"sessions",none:"No sessions match this filter on this day.",photoPh:"[photo: from the club]"}
+};
+const y = () => Y[lang];
+const POSTS = [{"id": "1493148186257926", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1493148186257926", "d": "2026-10-17", "ph": ["1493148186257926-1.jpg"], "tx": {"ka": "🥋🥉გიორგი ი. - ბრინჯაოს პრიზიორია -50 კგ წონით კატეგორიაში\n🏆🇬🇪2010-2011 წლებში დაბადებულ ვაჟთა მასტერსი", "ru": "🥋🥉Гиорги И. – бронзовый призёр в весовой категории -50 кг\n🏆🇬🇪Мастерс среди юношей 2010-2011 годов рождения", "en": "🥋🥉Giorgi I. – bronze medallist in the -50 kg weight category\n🏆🇬🇪Masters for boys born 2010-2011"}, "mn": true}, {"id": "1491431036429641", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1491431036429641", "d": "2026-10-15", "ph": ["1491431036429641-thumb.jpg"], "tx": {"ka": "🥋🇬🇪 20:00 ვარჯიშის დასასრულს #ძიუდო #judo #georgia #judotraining #judoclub", "ru": "🥋🇬🇪 20:00 в конце тренировки #ძიუდო #judo #georgia #judotraining #judoclub", "en": "🥋🇬🇪 20:00 at the end of training #ძიუდო #judo #georgia #judotraining #judoclub"}, "mn": false}, {"id": "1491351323104279", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1491351323104279", "d": "2026-10-15", "ph": ["1491351323104279-thumb.jpg"], "tx": {"ka": "🥋🇬🇪 ბავშვობის მოგონებები #judo #ძიუდო #enjoy #judolife #georgia", "ru": "🥋🇬🇪 воспоминания детства #judo #ძიუდო #enjoy #judolife #georgia", "en": "🥋🇬🇪 childhood memories #judo #ძიუდო #enjoy #judolife #georgia"}, "mn": false}, {"id": "DehQqrqoRxo", "pf": "instagram", "k": "reel", "url": "https://www.instagram.com/p/DehQqrqoRxo/", "d": "2026-10-15", "ph": ["ig-DehQqrqoRxo-1.jpg"], "tx": {"ka": "🥋\n#judo #fyp #georgianjudo #martialarts #fypage", "ru": "🥋\n#judo #fyp #georgianjudo #martialarts #fypage", "en": "🥋\n#judo #fyp #georgianjudo #martialarts #fypage"}, "mn": false}, {"id": "1491087129797365", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1491087129797365", "d": "2026-10-15", "ph": ["1491087129797365-thumb.jpg"], "tx": {"ka": "🥋🇬🇪 ძიუდოს დილა #judo #georgia #morningmood #ძიუდო #judotechnique", "ru": "🥋🇬🇪 утро дзюдо #judo #georgia #morningmood #ძიუდო #judotechnique", "en": "🥋🇬🇪 judo morning #judo #georgia #morningmood #ძიუდო #judotechnique"}, "mn": false}, {"id": "1490477199858358", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1490477199858358", "d": "2026-10-14", "ph": ["1490477199858358-1.jpg"], "tx": {"ka": "🏆🇬🇪🤼მცხეთობა-სვეტიცხოვლობის დღის აღსანიშნავ ტურნირზე ქართულ ჭიდაობაში - შაკო შ. ჩემპიონი გახდა 🥇(60კგ)\n✨გილოცავთ✨", "ru": "🏆🇬🇪🤼На турнире по грузинской борьбе, посвящённом дню Мцхетоба-Светицховлоба, Шако Ш. стал чемпионом 🥇(60кг)\n✨Поздравляем✨", "en": "🏆🇬🇪🤼At the Georgian wrestling (chidaoba) tournament marking Mtskhetoba-Svetitskhovloba Day, Shako Sh. became champion 🥇(60kg)\n✨Congratulations✨"}, "mn": true}, {"id": "1490445286528216", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1490445286528216", "d": "2026-10-14", "ph": ["1490445286528216-thumb.jpg"], "tx": {"ka": "🥋🇬🇪🔥 #judo #georgia #judotraining #judoclub #ძიუდო", "ru": "🥋🇬🇪🔥 #judo #georgia #judotraining #judoclub #ძიუდო", "en": "🥋🇬🇪🔥 #judo #georgia #judotraining #judoclub #ძიუდო"}, "mn": false}, {"id": "1490443083195103", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1490443083195103", "d": "2026-10-14", "ph": ["1490443083195103-thumb.jpg"], "tx": {"ka": "🥋🇬🇪🔥 ოთხშაბათი - ფიზიკური ფორმა #judo #georgia #judotraining #judoclub #ძიუდო", "ru": "🥋🇬🇪🔥 Среда – физическая форма #judo #georgia #judotraining #judoclub #ძიუდო", "en": "🥋🇬🇪🔥 Wednesday- physical condition #judo #georgia #judotraining #judoclub #ძიუდო"}, "mn": false}, {"id": "1490427769863301", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1490427769863301", "d": "2026-10-14", "ph": ["1490427769863301-thumb.jpg"], "tx": {"ka": "🔥🥋🇬🇪 თუ ადვილი გეჩვენებათ- სცადეთ😄 #judo #judotraining #ძიუდო #judoclubgeorgia #judolife", "ru": "🔥🥋🇬🇪 Если вам кажется, что это легко, – попробуйте😄 #judo #judotraining #ძიუდო #judoclubgeorgia #judolife", "en": "🔥🥋🇬🇪 If you think it's easy, try it😄 #judo #judotraining #ძიუდო #judoclubgeorgia #judolife"}, "mn": false}, {"id": "1490426066530138", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1490426066530138", "d": "2026-10-14", "ph": ["1490426066530138-thumb.jpg"], "tx": {"ka": "🥋🇬🇪🔥ტანვარჯიში + ჭიდაობა #ძიუდო #judotraining #georgia🇬🇪 #sports", "ru": "🥋🇬🇪🔥Гимнастика + борьба #ძიუდო #judotraining #georgia🇬🇪 #sports", "en": "🥋🇬🇪🔥Gymnastics +wrestling #ძიუდო #judotraining #georgia🇬🇪 #sports"}, "mn": false}, {"id": "1489413829964695", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1489413829964695", "d": "2026-10-13", "ph": ["1489413829964695-thumb.jpg"], "tx": {"ka": "🥋🇬🇪🔥 #ძიუდო #judotraining #judofamily", "ru": "🥋🇬🇪🔥 #ძიუდო #judotraining #judofamily", "en": "🥋🇬🇪🔥 #ძიუდო #judotraining #judofamily"}, "mn": false}, {"id": "1489376206635124", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1489376206635124", "d": "2026-10-13", "ph": ["1489376206635124-thumb.jpg"], "tx": {"ka": "🥋🇬🇪 ძიუდოს ხმები #judo #judotraining #judoclub", "ru": "🥋🇬🇪 звуки дзюдо #judo #judotraining #judoclub", "en": "🥋🇬🇪 judo sounds #judo #judotraining #judoclub"}, "mn": false}, {"id": "1489345466638198", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1489345466638198", "d": "2026-10-13", "ph": ["1489345466638198-thumb.jpg"], "tx": {"ka": "🥋🇬🇪 16:30 #judo #georgia #judotraining #ძიუდო #coaching", "ru": "🥋🇬🇪 16:30 #judo #georgia #judotraining #ძიუდო #coaching", "en": "🥋🇬🇪 16:30 #judo #georgia #judotraining #ძიუდო #coaching"}, "mn": false}, {"id": "1488502386722506", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1488502386722506", "d": "2026-10-12", "ph": ["1488502386722506-thumb.jpg"], "tx": {"ka": "🇬🇪 ძიუდოს დრო ყოველთვისაა!\n🌙21:30-22:30 საღამოს ვარჯიშები\n🥋ვარჯიშებს უძღვება - ბრაზილიელი მწვრთნელი, ნე ვაზის აღიარებული სპეციალისტი გაბრიელ  კიტობერი #nightmood #judo", "ru": "🇬🇪 Для дзюдо время есть всегда!\n🌙21:30-22:30 вечерние тренировки\n🥋Тренировки ведёт бразильский тренер, признанный специалист по не-вадза Габриэль Китобер #nightmood #judo", "en": "🇬🇪 It's always time for judo!\n🌙21:30-22:30 evening training sessions\n🥋Sessions are led by Brazilian coach and recognised ne-waza specialist Gabriel Kitober #nightmood #judo"}, "mn": false}, {"id": "1488424940063584", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1488424940063584", "d": "2026-10-12", "ph": ["1488424940063584-1.jpg"], "tx": {"ka": "🏆🥇ელლა ხ.- ჩემპიონი\n🇫🇷სეზონის პირველი რეგიონული ტურნირი (U15) — ფორჟ-ლე-ოს რეგიონში - საფრანგეთი\n✨გილოცავთ წარმატებები მთელი კლუვის სახელით✨", "ru": "🏆🥇Элла Х. – чемпионка\n🇫🇷Первый региональный турнир сезона (U15) — регион Форж-лез-О, Франция\n✨Поздравляем с успехом от имени всего клуба✨", "en": "🏆🥇Ella Kh. – champion\n🇫🇷First regional tournament of the season (U15) — Forges-les-Eaux region, France\n✨Congratulations on the success from the whole club✨"}, "mn": true}, {"id": "1488324456740299", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1488324456740299", "d": "2026-10-12", "ph": ["1488324456740299-thumb.jpg"], "tx": {"ka": "🥋🇬🇪 ელოდე, ევროპა #europe #georgia #judo #chanpions #sports", "ru": "🥋🇬🇪 Жди, Европа #europe #georgia #judo #chanpions #sports", "en": "🥋🇬🇪 Wait Europe #europe #georgia #judo #chanpions #sports"}, "mn": false}, {"id": "1487420886830656", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1487420886830656", "d": "2026-10-11", "ph": ["1487420886830656-1.jpg", "1487420886830656-2.jpg", "1487420886830656-3.jpg", "1487420886830656-4.jpg", "1487420886830656-5.jpg"], "tx": {"ka": "🏆საქართველოს ტერიტორიული მთლიანობისთვის ბრძოლაში დაღუპული საბა დადვანის ხსოვნისადმი მიძღვნილ ძიუდოში XVIII საერთაშორისო ტურნირი\n\n🏆ორდღიან ტურნირზე საქართველოს სხვადასხვა რეგიონიდან 200-ზე მეტი სპორტსმენი ასპარეზობს\n\n🇬🇪ძიუდოს კლუბი “ჯორჯია”-ს მეორე დღის შედეგები\n🥋🥇სანდრო ს.\n🥋🥈დავითი ძ.\n🥋🥈დემეტრე ჯ.\n🥋🥉გაბრიელ ო.\n🥋🥉იოანე გ.\n🥋🥉ირაკლი კ.\n🥋🥉ირაკლი ჭ.\n\n⭐️გილოცავთ⭐️", "ru": "🏆XVIII международный турнир по дзюдо, посвящённый памяти Сабы Дадвани, погибшего в борьбе за территориальную целостность Грузии\n\n🏆В двухдневном турнире участвуют более 200 спортсменов из разных регионов Грузии\n\n🇬🇪Результаты клуба дзюдо «Джорджия» во второй день\n🥋🥇Сандро С.\n🥋🥈Давити Д.\n🥋🥈Деметре Д.\n🥋🥉Габриэль О.\n🥋🥉Иоане Г.\n🥋🥉Иракли К.\n🥋🥉Иракли Ч.\n\n⭐️Поздравляем⭐️", "en": "🏆XVIII international judo tournament dedicated to the memory of Saba Dadvani, who died fighting for the territorial integrity of Georgia\n\n🏆More than 200 athletes from different regions of Georgia are competing in the two-day tournament\n\n🇬🇪Judo Club \"Georgia\" results, day two\n🥋🥇Sandro S.\n🥋🥈Daviti Dz.\n🥋🥈Demetre J.\n🥋🥉Gabriel O.\n🥋🥉Ioane G.\n🥋🥉Irakli K.\n🥋🥉Irakli Ch.\n\n⭐️Congratulations⭐️"}, "mn": true}, {"id": "1486655533573858", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1486655533573858", "d": "2026-10-11", "ph": ["1486655533573858-1.jpg", "1486655533573858-2.jpg", "1486655533573858-3.jpg", "1486655533573858-4.jpg"], "tx": {"ka": "🏆საქართველოს ტერიტორიული მთლიანობისთვის ბრძოლაში დაღუპული საბა დადვანის ხსოვნისადმი მიძღვნილ ძიუდოში XVIII საერთაშორისო ტურნირი\n\n🏆ორდღიან ტურნირზე საქართველოს სხვადასხვა რეგიონიდან 200-ზე მეტი სპორტსმენი ასპარეზობს\n\n🇬🇪ძიუდოს კლუბი “ჯორჯია”-ს პირველი დღის შედეგები\n🥋🥇გაბრიელ ი.\n🥋🥇ნიკოლოზი ჭ.\n🥋🥈ერეკლე ლ.\n🥋🥉ილაი კ.\n🥋🥉ლუკა პ.\n🥋🥉ცოტნე მ.\n🥋🥉დაჩი ს.\n🥋🥉ჩ.\n\n⭐️გილოცავთ⭐️", "ru": "🏆XVIII международный турнир по дзюдо, посвящённый памяти Сабы Дадвани, погибшего в борьбе за территориальную целостность Грузии\n\n🏆В двухдневном турнире участвуют более 200 спортсменов из разных регионов Грузии\n\n🇬🇪Результаты клуба дзюдо «Джорджия» в первый день\n🥋🥇Габриэль И.\n🥋🥇Николоз Ч.\n🥋🥈Эрекле Л.\n🥋🥉Илай К.\n🥋🥉Лука П.\n🥋🥉Цотне М.\n🥋🥉Дачи С.\n🥋🥉Ч.\n\n⭐️Поздравляем⭐️", "en": "🏆XVIII international judo tournament dedicated to the memory of Saba Dadvani, who died fighting for the territorial integrity of Georgia\n\n🏆More than 200 athletes from different regions of Georgia are competing in the two-day tournament\n\n🇬🇪Judo Club \"Georgia\" results, day one\n🥋🥇Gabriel I.\n🥋🥇Nikoloz Ch.\n🥋🥈Erekle L.\n🥋🥉Ilai K.\n🥋🥉Luka P.\n🥋🥉Tsotne M.\n🥋🥉Dachi S.\n🥋🥉Ch.\n\n⭐️Congratulations⭐️"}, "mn": true}, {"id": "1486398410266237", "pf": "facebook", "k": "reel", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1486398410266237", "d": "2026-10-10", "ph": ["1486398410266237-thumb.jpg"], "tx": {"ka": "🥋🇬🇪ძიუდოს კლუბი “ჯორჯია”-ს შიდა სარეიტინგო ტურნირი 2016-17; 2018-19 წელს დაბადებულთა შორის", "ru": "🥋🇬🇪Внутренний рейтинговый турнир клуба дзюдо «Джорджия» среди родившихся в 2016-17 и 2018-19 годах", "en": "🥋🇬🇪Judo Club \"Georgia\" internal rating tournament for those born in 2016-17 and 2018-19"}, "mn": false}, {"id": "1486396100266468", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1486396100266468", "d": "2026-10-10", "ph": ["1486396100266468-1.jpg"], "tx": {"ka": "🥋🇬🇪ძიუდოს კლუბი “ჯორჯია”-ს შიდა სარეიტინგო ტურნირი 2016-17; 2018-19 წელს დაბადებულთა შორის", "ru": "🥋🇬🇪Внутренний рейтинговый турнир клуба дзюдо «Джорджия» среди родившихся в 2016-17 и 2018-19 годах", "en": "🥋🇬🇪Judo Club \"Georgia\" internal rating tournament for those born in 2016-17 and 2018-19"}, "mn": false}, {"id": "1486391210266957", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1486391210266957", "d": "2026-10-10", "ph": ["1486391210266957-1.jpg"], "tx": {"ka": "🥋🇬🇪ძიუდოს კლუბი “ჯორჯია”-ს შიდა სარეიტინგო ტურნირი 2016-17; 2018-19 წელს დაბადებულთა შორის\n⭐️38 კგ⭐️", "ru": "🥋🇬🇪Внутренний рейтинговый турнир клуба дзюдо «Джорджия» среди родившихся в 2016-17 и 2018-19 годах\n⭐️38 кг⭐️", "en": "🥋🇬🇪Judo Club \"Georgia\" internal rating tournament for those born in 2016-17 and 2018-19\n⭐️38 kg⭐️"}, "mn": false}, {"id": "1486392156933529", "pf": "facebook", "k": "photo", "url": "https://www.facebook.com/JudoClubGeorgia/posts/1486392156933529", "d": "2026-10-10", "ph": ["1486392156933529-1.jpg"], "tx": {"ka": "🥋🇬🇪ძიუდოს კლუბი “ჯორჯია”-ს შიდა სარეიტინგო ტურნირი 2016-17; 2018-19 წელს დაბადებულთა შორის\n⭐️34 კგ⭐️", "ru": "🥋🇬🇪Внутренний рейтинговый турнир клуба дзюдо «Джорджия» среди родившихся в 2016-17 и 2018-19 годах\n⭐️34 кг⭐️", "en": "🥋🇬🇪Judo Club \"Georgia\" internal rating tournament for those born in 2016-17 and 2018-19\n⭐️34 kg⭐️"}, "mn": false}];
+const STILLS = ["0EHPu1BNDns_002p0_P", "0EHPu1BNDns_017p0_P", "14VLyp8s--k_015p0_P", "14VLyp8s--k_022p0_P", "2lGgm5RqHi0_004p0_L", "6SV5l31KBus_009p0_P", "6SV5l31KBus_012p0_P", "CLdYODt1gw0_001p0_P", "CLdYODt1gw0_006p0_P", "CLdYODt1gw0_011p0_P", "EZH4gb14YOQ_009p0_P", "EZH4gb14YOQ_034p0_P", "HJHZUE8y02Y_011p0_P", "HMiYnUjJ7Rg_014p0_P", "HMiYnUjJ7Rg_018p0_P", "UFNf9xnrM-w_015p0_L", "UFNf9xnrM-w_034p0_L", "VMtjVgoVfRo_009p0_P", "VMtjVgoVfRo_029p0_P", "VMtjVgoVfRo_065p0_P", "cpvFspnAOrE_011p0_P", "cpvFspnAOrE_014p0_P", "d8oC-x-c_NM_005p9_P", "gb4blqsuOlo_003p0_P", "gb4blqsuOlo_010p0_P", "gb4blqsuOlo_022p0_P", "ivJtWi70XzU_008p9_P", "ivJtWi70XzU_014p8_P", "wYE4DtxT2TM_002p0_P", "wYE4DtxT2TM_013p0_P"];
+
+/* round 9 "IPPON" */
+const Z = {
+ka:{heroEb:"ძიუდოს კლუბი · თბილისი · 2008 წლიდან",h1:["აქ","იზრდებიან","ჩემპიონები."],
+ strip:[["ნაგე-ვაზა","ილეთები"],["კუმი-კატა","ჩავლება"],["ნე-ვაზა","პარტერი"],["შიაი","შეჯიბრება"]],
+ mfEb:"მანიფესტი",mf:"2008 წლიდან ისნის დარბაზში ერთი წესია: მისალმება, *ყველაფერი* ტატამზე, მისალმება. ექვსი ვარჯიში დღეში. ბავშვები 4–5 წლიდან. მედლები საქართველოსა და *საფრანგეთში*. ცეცხლი ტატამზე, სიმშვიდე მის გარეთ. ეს *ქართული* ძიუდოა.",
+ numEb:"კლუბი ციფრებში",nums:["დაარსების წელი","Facebook-ის გამომწერი","Instagram-ის გამომწერი","მედალი ერთ ტურნირზე, ბოლნისი 2026","ვარჯიში დღეში, ორშ–შაბ"],
+ progH:"გზა ტატამზე",progP:"4–5 წლის ასაკში პირველი მისალმებიდან ტურნირებამდე საქართველოში და საზღვარგარეთ.",
+ seasonEb:"სეზონი 2026",seasonP:"შედეგები კლუბის პოსტებიდან. ბავშვების სახელები შემოკლებულია.",open:"სიახლე",
+ hallEb:"მთავარი დარბაზი",hallH:"საკუთარი დარბაზი ისანში",
+ stEb:"სიახლეები",stP:"სრული პოსტები კლუბის Facebook-იდან და Instagram-იდან.",
+ parH:"პირველი ვარჯიში ოთხ ნაბიჯში",
+ openFb:"გახსენი Facebook-ზე",openIg:"გახსენი Instagram-ზე",reelFb:"ნახე რილსი Facebook-ზე",reelIg:"ნახე რილსი Instagram-ზე",
+ reel:"რილსი",photo:"ფოტო",photos:"ფოტო",minors:"ბავშვების სახელები შემოკლებულია: სახელი და გვარის პირველი ასო.",postAlt:"ფოტო კლუბის პოსტიდან",reelAlt:"რილსის გარეკანი",
+ prev:"წინა",next:"შემდეგი",pause:"ვიდეოს შეჩერება",play:"ვიდეოს ჩართვა",isani:"ისანი · თბილისი",
+ mq:["15 მედალი · ბოლნისი 2026","U15 ოქრო · საფრანგეთი","მასტერსის ბრინჯაო · −50 კგ","ჭიდაობის ჩემპიონი · 60 კგ","2008 წლიდან","ისანი · თბილისი"],
+ coachIll:"საილუსტრაციო კადრი"},
+ru:{heroEb:"Клуб дзюдо · Тбилиси · с 2008 года",h1:["Здесь","растут","чемпионы."],
+ strip:[["Наге-вадза","Броски"],["Куми-ката","Захваты"],["Не-вадза","Партер"],["Сиай","Соревнования"]],
+ mfEb:"Манифест",mf:"С 2008 года в нашем зале в Исани одно правило: поклон, *всё* на татами, поклон. Шесть тренировок в день. Дети с 4–5 лет. Медали в Грузии и во *Франции*. Огонь на татами, спокойствие за его пределами. Это *грузинское* дзюдо.",
+ numEb:"Клуб в цифрах",nums:["год основания","подписчиков в Facebook","подписчиков в Instagram","медалей за один турнир, Болниси 2026","тренировок в день, Пн–Сб"],
+ progH:"Путь на татами",progP:"От первого поклона в 4–5 лет до турниров в Грузии и за рубежом.",
+ seasonEb:"Сезон 2026",seasonP:"Результаты из постов клуба. Имена детей сокращены.",open:"Новость",
+ hallEb:"Главный зал",hallH:"Свой зал в Исани",
+ stEb:"Новости",stP:"Полные посты из Facebook и Instagram клуба.",
+ parH:"Первая тренировка в четыре шага",
+ openFb:"Открыть в Facebook",openIg:"Открыть в Instagram",reelFb:"Смотреть рилс в Facebook",reelIg:"Смотреть рилс в Instagram",
+ reel:"Рилс",photo:"Фото",photos:"фото",minors:"Имена детей сокращены: имя и первая буква фамилии.",postAlt:"Фото из поста клуба",reelAlt:"Обложка рилса",
+ prev:"Назад",next:"Дальше",pause:"Пауза видео",play:"Включить видео",isani:"Исани · Тбилиси",
+ mq:["15 медалей · Болниси 2026","Золото U15 · Франция","Бронза Мастерса · −50 кг","Чемпион по чидаоба · 60 кг","С 2008 года","Исани · Тбилиси"],
+ coachIll:"Иллюстративный кадр"},
+en:{heroEb:"Judo club · Tbilisi · Since 2008",h1:["Champions","are made","here."],
+ strip:[["Nage-waza","Throws"],["Kumi-kata","Grips"],["Ne-waza","Groundwork"],["Shiai","Competition"]],
+ mfEb:"Manifesto",mf:"Since 2008 our hall in Isani has kept one rule: bow in, give *everything*, bow out. Six sessions a day. Children from 4–5. Medals in Georgia and in *France*. Fierce on the tatami, calm off it. This is *Georgian* judo.",
+ numEb:"The club in numbers",nums:["founded","Facebook followers","Instagram followers","medals at one tournament, Bolnisi 2026","sessions a day, Mon–Sat"],
+ progH:"The road to the tatami",progP:"From a first bow at 4–5 to tournaments in Georgia and abroad.",
+ seasonEb:"Season 2026",seasonP:"Results from the club’s own posts. Children’s names are shortened.",open:"Story",
+ hallEb:"Main hall",hallH:"Our own hall in Isani",
+ stEb:"Stories",stP:"Full posts from the club’s Facebook and Instagram.",
+ parH:"The first lesson in four steps",
+ openFb:"Open on Facebook",openIg:"Open on Instagram",reelFb:"Watch the reel on Facebook",reelIg:"Watch the reel on Instagram",
+ reel:"Reel",photo:"Photo",photos:"photos",minors:"Children’s names are shortened to first name and surname initial.",postAlt:"Photo from the club’s post",reelAlt:"Reel cover",
+ prev:"Previous",next:"Next",pause:"Pause video",play:"Play video",isani:"Isani · Tbilisi",
+ mq:["15 medals · Bolnisi 2026","U15 gold · France","Masters bronze · −50 kg","Chidaoba champion · 60 kg","Since 2008","Isani · Tbilisi"],
+ coachIll:"Illustrative frame"}
+};
+const z = () => Z[lang];
+const NAV = ROUTES.filter(r => r !== "home");
+const trialBtn = (cls, label) => jbtn(x().trialMsg, cls, label);
+const TODAY = (new Date().getDay() + 6) % 7;
+day = TODAY < 6 ? TODAY : 0;
+try { filt = localStorage.getItem("gj-filt") || "all"; } catch (e) {}
+const ARROW = ICON.arrow;
+const EXT = '<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const SMALL = () => matchMedia("(max-width: 699px)").matches;
+const st = n => `img/st/${n}.jpg`;
+const pimg = f => `img/posts/${f}`;
+const still = id => STILLS.find(s => s.startsWith(id + "_"));
+
+// autoplaying loop with poster; reduced motion or `img` gets the poster only
+function loop(name, cls, asImg) {
+  const p = `media/${name}.jpg`;
+  if (RM || asImg) return `<img class="${cls || ""}" src="${p}" alt="" loading="lazy">`;
+  return `<video class="${cls || ""}" src="media/${name}.mp4" poster="${p}" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>`;
+}
+const mk = (inner, cls) => `<div class="mk ${cls || ""}">${inner}<i class="cv" aria-hidden="true"></i></div>`;
+const up = s => `<span class="ln"><span>${esc(s)}</span></span>`;
+
+function setLang(l, fromHash) {
+  lang = l;
+  try { localStorage.setItem("gj-lang", l); } catch (e) {}
+  if (fromHash) history.replaceState(null, "", "#" + route);
+}
+
+/* round 10 "Ippon Motion" */
+Object.assign(VT, {
+ "2lGgm5RqHi0":{ka:"გუნდი ჩვენს დარბაზში",ru:"Команда в нашем зале",en:"The team in our hall"},
+ "UFNf9xnrM-w":{ka:"ფიზიკური მომზადება გარეთ",ru:"Физподготовка на улице",en:"Outdoor conditioning"},
+ "VMtjVgoVfRo":{ka:"ილეთები და პარტერი",ru:"Броски и партер",en:"Throws and groundwork"}});
+const W = {
+ka:{h1:["იპონი","აქ იწყება"],watch:"ნახე ვიდეო",vals:["პატივისცემა","შრომა","მეგობრობა","უკეთესი ადამიანები"],
+ progH:"ადგილი ყველა ასაკისთვის",progP:"პირველი მისალმებიდან 4–5 წლის ასაკში — რანდორამდე, ნე-ვაზამდე და ტურნირებამდე. ყველა ბავშვს ვეხმარებით ძიუდოთი გაიზარდოს.",
+ sess:"ვარჯიში",slotNote:"[რომელი ჯგუფი რომელ საათზე — კლუბისგან]",
+ coH:"მწვრთნელებზე მეტი",mono:"მონოგრამა · ფოტო კლუბისგან",
+ quote:"ძიუდოს დრო ყოველთვისაა!",cite:"ძიუდოს კლუბი „ჯორჯია“ · Facebook",
+ stH:"ნამდვილი ბავშვები. ნამდვილი პროგრესი.",viH:"ძიუდო მოძრაობაში",viP:"ვარჯიში, ილეთები და გუნდის წამები ჩვენი YouTube-იდან.",
+ numH:"ციფრებში",jH:"შემოგვიერთდით ძიუდოს კლუბ „ჯორჯიაში“",slogan:["ძლიერები ტატამზე.","კეთილები მის გარეთ."]},
+ru:{h1:["Иппон","начинается здесь"],watch:"Смотреть видео",vals:["Уважение","Усилие","Дружба","Становимся лучше"],
+ progH:"Место для каждого возраста",progP:"От первого поклона в 4–5 лет до рандори, не-вадзы и турниров. Помогаем каждому ребёнку расти через дзюдо.",
+ sess:"Тренировка",slotNote:"[какая группа в какое время — от клуба]",
+ coH:"Больше, чем тренеры",mono:"Монограмма · фото от клуба",
+ quote:"Для дзюдо время есть всегда!",cite:"Клуб дзюдо «Джорджия» · Facebook",
+ stH:"Настоящие дети. Настоящий прогресс.",viH:"Дзюдо в движении",viP:"Тренировки, броски и моменты команды с нашего YouTube.",
+ numH:"В цифрах",jH:"Вступайте в клуб «Джорджия»",slogan:["Сильные на татами.","Добрые за его пределами."]},
+en:{h1:["Ippon","starts here"],watch:"Watch video",vals:["Respect","Effort","Friendship","Better people"],
+ progH:"A place for every age",progP:"From a first bow at 4–5 to randori, ne-waza and tournaments, we help every child grow through judo.",
+ sess:"Training session",slotNote:"[which group trains when: from the club]",
+ coH:"More than coaches",mono:"Monogram · photo from the club",
+ quote:"It’s always time for judo!",cite:"Judo Club “Georgia” · Facebook",
+ stH:"Real kids. Real progress.",viH:"Judo in motion",viP:"Training, throws and team moments from our YouTube channel.",
+ numH:"By the numbers",jH:"Join Judo Club Georgia",slogan:["Strong on the tatami.","Kind off it."]}
+};
+const w = () => W[lang];
+const progOf = id => PROGS.find(p => p.id === id);
+
+/* owner schedule, 2026-10-18: supersedes content.json slots and the evening ne-waza */
+const CO = {
+ karen:{ka:"კარენ არუთინიანი",ru:"Карен Арутинян",en:"Karen Arutinian"},
+ davit:{ka:"დავით არუთინიანი",ru:"Давит Арутинян",en:"Davit Arutinian"},
+ eldari:{ka:"ელდარი მესხიშვილი",ru:"Эльдари Месхишвили",en:"Eldari Meskhishvili"},
+ arsen:{ka:"არსენ მაზმანიანი",ru:"Арсен Мазманян",en:"Arsen Mazmanian"},
+ kitober:{ka:"გაბრიელ კიტობერი",ru:"Габриэль Китобер",en:"Gabriel Kitober"},
+ kantaria:{ka:"გიორგი ქანთარია",ru:"Гиорги Кантария",en:"Giorgi Kantaria"},
+ luka:{ka:"ლუკა ცაგარეიშვილი",ru:"Лука Цагареишвили",en:"Luka Tsagareishvili"},
+ nika:{ka:"ნიკა აფშილაშვილი",ru:"Ника Апшилашвили",en:"Nika Apshilashvili"},
+ loladze:{ka:"ალექსანდრე ლოლაძე",ru:"Александре Лоладзе",en:"Aleksandre Loladze"},
+ paata:{ka:"პაატა ნოზაძე",ru:"Паата Нозадзе",en:"Paata Nozadze"}};
+const TY = {tech:{ka:"ტექნიკური ვარჯიში + რანდორი",ru:"Техника + рандори",en:"Technical training + Randori"},
+ ran:{ka:"რანდორი",ru:"Рандори",en:"Randori"},phys:{ka:"ფიზიკური მომზადება",ru:"ОФП",en:"Physical conditioning"},gym:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}};
+const SX = {
+ ka:{adult:"მხოლოდ მოზრდილებისთვის",sun:"კვირა",sunS:"კვი",rest:"დასვენების დღე",week:"მთელი კვირა",coach:"მწვრთნელი",
+  hours:"ორშ–პარ 09:30–21:30 · შაბ 09:30–12:30",schP:"ვარჯიშები ორშაბათიდან შაბათამდე. კვირა დასვენების დღეა. დააჭირე ვარჯიშს — შეტყობინება მზად იქნება.",
+  faq:"ორშ–პარ: 09:30, 11:00, 15:00, 16:30 (მოზრდილები), 18:30 და 20:00. შაბათი: 09:30 და 11:00. კვირა დასვენების დღეა.",
+  nw:"ბრაზილიელი მწვრთნელი, ნე-ვაზის აღიარებული სპეციალისტი.",nwD:"პარტერის ტექნიკა ბრაზილიელ მწვრთნელთან, გაბრიელ კიტობერთან.",
+  gymD:"ტანვარჯიში პაატა ნოზაძესთან: ოთხშაბათი 16:30 და შაბათი 11:00.",physD:"ფიზიკური მომზადება: ოთხშაბათი ყველა ვარჯიშზე, შაბათი 09:30.",
+  cf:{1:"შაბათის ტანვარჯიში: 11:00–12:30 თუ 11:00–12:00.",2:"ოთხშაბათი 16:30: ტანვარჯიში 16:30–17:30 თუ 16:30–18:30.",3:"11:00: ნე-ვაზა (კიტობერი) თუ დღის ტიპის ვარჯიში.",4:"გვარის მართლწერა: აფშილაშვილი თუ აფშინაშვილი.",5:"საღამოს ნე-ვაზა 21:30–22:30 (Facebook) ამ განრიგში არ არის — ამოღებულია."},cfH:"დასაზუსტებელია კლუბთან",dsc:"შეუსაბამობა — ზუსტდება",dscNote:"ზოგიერთი ვარჯიში ჯერ ზუსტდება კლუბთან.",q:{1:"11:00–12:30 თუ 11:00–12:00?",2:"16:30–17:30 თუ 16:30–18:30?",3:"ნე-ვაზა (კიტობერი) თუ ტექნიკა + რანდორი?",4:"აფშილაშვილი თუ აფშინაშვილი?",5:"21:30–22:30 საღამოს ნე-ვაზა (Facebook) განრიგში არ არის — ამოღებულია."},grpS:"განრიგი — „განრიგის“ გვერდზე."},
+ ru:{adult:"только взрослые",sun:"Воскресенье",sunS:"Вс",rest:"Выходной",week:"Вся неделя",coach:"Тренер",
+  hours:"Пн–Пт 09:30–21:30 · Сб 09:30–12:30",schP:"Тренировки с понедельника по субботу. Воскресенье — выходной. Нажмите на тренировку — сообщение будет готово.",
+  faq:"Пн–Пт: 09:30, 11:00, 15:00, 16:30 (взрослые), 18:30 и 20:00. Суббота: 09:30 и 11:00. Воскресенье — выходной.",
+  nw:"Бразильский тренер, признанный специалист по не-вадза.",nwD:"Борьба в партере с бразильским тренером Габриэлем Китобером.",
+  gymD:"Гимнастика с Паатой Нозадзе: среда 16:30 и суббота 11:00.",physD:"ОФП: по средам на всех тренировках, в субботу в 09:30.",
+  cf:{1:"Гимнастика в субботу: 11:00–12:30 или 11:00–12:00.",2:"Среда 16:30: гимнастика 16:30–17:30 или слот 16:30–18:30.",3:"11:00: не-вадза (Китобер) или тренировка по типу дня.",4:"Написание фамилии: Апшилашвили или Апшинашвили.",5:"Вечерней не-вадзы 21:30–22:30 (Facebook) нет в этом расписании — убрана."},cfH:"Уточняется с клубом",dsc:"расхождение — уточняется",dscNote:"Некоторые тренировки ещё уточняются с клубом.",q:{1:"11:00–12:30 или 11:00–12:00?",2:"16:30–17:30 или 16:30–18:30?",3:"Не-вадза (Китобер) или техника + рандори?",4:"Апшилашвили или Апшинашвили?",5:"Вечерней не-вадзы 21:30–22:30 (Facebook) нет в расписании — убрана."},grpS:"Время и тип тренировок — на странице «Расписание»."},
+ en:{adult:"adults only",sun:"Sunday",sunS:"Sun",rest:"Rest day",week:"Whole week",coach:"Coach",
+  hours:"Mon–Fri 09:30–21:30 · Sat 09:30–12:30",schP:"Training Monday to Saturday. Sunday is a rest day. Tap a session and the message is ready.",
+  faq:"Mon–Fri: 09:30, 11:00, 15:00, 16:30 (adults), 18:30 and 20:00. Saturday: 09:30 and 11:00. Sunday is a rest day.",
+  nw:"Brazilian coach and recognised ne-waza specialist.",nwD:"Ground work with Brazilian coach and ne-waza specialist Gabriel Kitober.",
+  gymD:"Gymnastics with Paata Nozadze: Wednesday 16:30 and Saturday 11:00.",physD:"Physical conditioning: every Wednesday session and Saturday 09:30.",
+  cf:{1:"Saturday gymnastics: 11:00–12:30 or 11:00–12:00.",2:"Wednesday 16:30: gymnastics 16:30–17:30 or the 16:30–18:30 slot.",3:"11:00: ne-waza (Kitober) or the day’s session type.",4:"Surname spelling: Apshilashvili or Apshinashvili.",5:"The 21:30–22:30 evening ne-waza (Facebook post) isn’t in this schedule, so it’s dropped."},cfH:"To confirm with the club",dsc:"discrepancy, to be confirmed",dscNote:"Some sessions are still being confirmed with the club.",q:{1:"11:00–12:30 or 11:00–12:00?",2:"16:30–17:30 or 16:30–18:30?",3:"Ne-waza (Kitober) or technical + randori?",4:"Apshilashvili or Apshinashvili?",5:"The 21:30–22:30 evening ne-waza (Facebook) isn’t in this schedule, so it’s dropped."},grpS:"Times and session types are on the Schedule page."}};
+const sx = () => SX[lang];
+// owner-flagged schedule discrepancy: badge plus both versions (tooltip and a visible question)
+const DB = n => `<span class="badge dsc" title="${esc(sx().cf[n])}">${esc(sx().dsc)}</span>`;
+const DQ = n => `<span class="dq">${esc(sx().q[n])}</span>`;
+const BASE = [["09:30","11:00",["eldari","davit","arsen","kitober"]],["11:00","12:30",["kitober"],0,3],["15:00","16:30",["kantaria","arsen"]],
+ ["16:30","18:30",["karen","davit","kantaria","kitober"],1],["18:30","20:00",["eldari","kantaria","davit","luka","nika"]],["20:00","21:30",["davit","luka","loladze","nika"]]];
+function sessions(i) {
+  if (i === 6) return [];
+  if (i === 5) return [{a:"09:30",b:"11:00",ty:"phys",co:["karen","davit","kantaria","eldari","luka","nika"]},{a:"11:00",b:"12:00",ty:"gym",co:["paata"],cf:1}];
+  const ty = ["tech","ran","phys","tech","ran"][i];
+  return BASE.map(([a, b, co, ad, cf]) => i === 2 && a === "16:30" ? {a, b:"17:30", ty:"gym", co:["paata"], cf:2} : {a, b, ty, co, ad, cf});
+}
+const dName = i => i === 6 ? sx().sun : t().days[i], dShort = i => i === 6 ? sx().sunS : t().dshort[i];
+const short = id => { const [f, ...r] = L(CO[id]).split(" "); return `${f[0]}. ${r.join(" ")}`; };
+const coList = s => s.co.map(short).join(", ");
+const sCtx = (s, i) => `${t().waSes} ${dName(i)} ${s.a}–${s.b}, ${L(TY[s.ty])}`;
+const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","nika","loladze","paata"];
+// a coach's slots grouped by identical day sets, e.g. "Mon–Fri 09:30, 18:30 · Sat 09:30"
+function coachSlots(id) {
+  const g = new Map();
+  for (let i = 0; i < 6; i++) sessions(i).filter(s => s.co.includes(id)).forEach(s => { const k = s.a; g.set(k, (g.get(k) || []).concat(i)); });
+  const by = new Map();
+  g.forEach((ds, a) => { const k = ds.join(); by.set(k, (by.get(k) || []).concat(a)); });
+  return [...by].map(([k, as]) => { const ds = k.split(",").map(Number); const lbl = ds.join() === "0,1,2,3,4" ? `${t().dshort[0]}–${t().dshort[4]}` : ds.join() === "0,1,2,3,4,5" ? `${t().dshort[0]}–${t().dshort[5]}` : ds.map(d => t().dshort[d]).join(", "); return `${lbl} ${as.join(", ")}`; }).join(" · ");
+}
+// on Sunday the widget opens on Monday rather than an empty rest day
+day = TODAY === 6 ? 0 : TODAY;
+let pday = -1;
+
+// keep design9/A strings in step with the owner schedule
+for (const l of ["ka","ru","en"]) {
+  Object.assign(T[l], {hours:SX[l].hours, schN:SX[l].hours, schP:SX[l].schP});
+  X[l].schP = SX[l].schP;
+  X[l].first[2][1] = X[l].first[2][1].replace(/(ორშ–შაბ|Пн–Сб|Mon–Sat) 09:30–22:00/, SX[l].hours);
+  FAQ[1][1][l] = SX[l].faq;
+  X[l].first[1][1] = X[l].first[1][1].replace(/\s*\[[^\]]*\]/, " " + SX[l].grpS);
+}
+COACHES.length = 0;
+ROSTER.forEach(id => COACHES.push({id, name:CO[id]}));
+Object.assign(progOf("ne-waza-evening"), {top:"11:00", name:{ka:"ნე-ვაზა",ru:"Не-вадза",en:"Ne-waza"}, small:{ka:"ორშ–პარ",ru:"Пн–Пт",en:"Mon–Fri"},
+ d:{ka:SX.ka.nwD,ru:SX.ru.nwD,en:SX.en.nwD}, facts:[["timeL",{ka:"ორშ–პარ 11:00–12:30",ru:"Пн–Пт 11:00–12:30",en:"Mon–Fri 11:00–12:30"},"d3"],["ledL",CO.kitober,"c"]]});
+Object.assign(progOf("gymnastics-wrestling"), {conf:"c", top:"16:30", name:TY.gym, small:{ka:"ოთხ",ru:"Ср",en:"Wed"}, d:{ka:SX.ka.gymD,ru:SX.ru.gymD,en:SX.en.gymD}, facts:[["ledL",CO.paata,"c"]]});
+Object.assign(progOf("physical-conditioning"), {conf:"c", d:{ka:SX.ka.physD,ru:SX.ru.physD,en:SX.en.physD}});
+
+/* posts */
+const EMO = /[\p{Extended_Pictographic}\p{Regional_Indicator}‍️]/gu;
+function ptitle_(p) {
+  const first = p.tx[lang].split("\n").map(s => s.replace(EMO, "").replace(/#\S+/g, "").trim()).find(Boolean);
+  return first ? first.replace(/^[-–—\s]+|[-–—\s]+$/g, "") : "";
+}
+const pTitle = p => ptitle_(p) || `${p.k === "reel" ? z().reel : z().photo} · ${fmtDate(p.d)}`;
+const kindLbl = p => p.k === "reel" ? z().reel : p.ph.length > 1 ? `${p.ph.length} ${z().photos}` : z().photo;
+const ptext = s => s.split(/\n{2,}/).map(par => `<p>${par.split("\n").map(l => esc(l).replace(/(#[^\s#]+)/g, '<span class="ht">$1</span>')).join("<br>")}</p>`).join("");
+const PP = id => POSTS.find(p => p.id === id);
+const arr = (o) => `<span class="arr${o ? " o" : ""}" aria-hidden="true">${ARROW}</span>`;
+function storyCard(p) {
+  return `<a class="st rv" href="#story-${p.id}"><div class="im"><img src="${pimg(p.ph[0])}" alt="" loading="lazy"></div><span class="kd${p.k === "reel" ? " r" : ""}">${esc(kindLbl(p))}</span>
+   <div class="ov"><div><time datetime="${p.d}">${fmtDate(p.d)}</time><h3>${esc(pTitle(p))}</h3></div>${arr(1)}</div></a>`;
+}
+
+/* shared bits */
+const kk = s => `<p class="kk">${esc(s)}</p>`;
+function shd(eb, h, p, link, id) {
+  return `<div class="shd rv">${kk(eb)}<h2 class="d h2" id="${id}">${esc(h)}</h2>${p ? `<p class="lead2">${P(p)}</p>` : ""}${link || ""}</div>`;
+}
+const lnk = (href, label) => `<a class="lk" href="${href}">${esc(label)} ${ARROW}</a>`;
+function wm() { return `<a class="wm" href="#home" aria-label="${esc(t().brand)}"><img src="img/logo.png" alt="" width="64" height="64"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>`; }
+function header() {
+  const n = t().nav;
+  return `<header class="hdr" id="hdr"><div class="bar wrap">${wm()}
+   <nav class="nav" id="nav" aria-label="Main">${NAV.map(r => `<a href="#${r}"${route === r || (r === "stories" && route.startsWith("story-")) ? ' aria-current="page"' : ""}>${esc(n[r])}</a>`).join("")}</nav>
+   <div class="langs" role="group" aria-label="Language">${["ka","ru","en"].map(l => `<button type="button" data-lang="${l}" aria-pressed="${l === lang}" lang="${l}">${l.toUpperCase()}</button>`).join("")}</div>
+   ${trialBtn("btn b-red trial mag", esc(t().join))}
+   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-menu>${t().menu}</button>
+  </div></header>${trialBtn("btn b-red fab", esc(x().trial) + " " + ARROW)}`;
+}
+function marquee(items, cls) {
+  const one = items.map(s => `<span>${esc(s)}<i aria-hidden="true"></i></span>`).join("");
+  return `<div class="mq ${cls || ""}"><p class="sr">${esc(items.join(" · "))}</p><div class="mq-t" aria-hidden="true">${one}${one}</div></div>`;
+}
+function sJoin() {
+  const m = encodeURIComponent(msg(x().trialMsg));
+  const bg = RM || SMALL() ? `<img class="bgv" src="media/loop2_pullups_L.jpg" alt="">` : loop("loop2_pullups_L");
+  return `<section class="jb" aria-labelledby="jb-h">${bg}<div class="wrap jb-g"><div class="rv"><h2 class="d h2" id="jb-h">${esc(w().jH)}</h2><p class="sub">${esc(t().bandP)}</p>
+    <div class="act">${trialBtn("btn b-w mag", esc(x().trialL) + " " + ARROW)}</div></div>
+   <div class="ich rv"><a class="ic wa" href="https://wa.me/${PHONE_RAW}?text=${m}" target="_blank" rel="noopener"><i>${ICON.wa}</i>WhatsApp</a>
+    <a class="ic vb" href="viber://chat?number=%2B${PHONE_RAW}"><i>${ICON.vb}</i>Viber</a>
+    <a class="ic ms" href="https://m.me/JudoClubGeorgia" target="_blank" rel="noopener"><i>${ICON.ms}</i>Messenger</a><span class="sep" aria-hidden="true"></span>
+    <a class="ic tel" href="tel:+${PHONE_RAW}"><i>${ICON.tel}</i><b>${PHONE}</b></a></div></div></section>`;
+}
+function footer() {
+  const n = t().nav;
+  return `<footer class="ftr"><div class="wrap"><div class="top">
+   <a class="lg" href="#home"><img src="img/logo.png" alt="${esc(t().brand)}" width="120" height="120"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>
+   <nav aria-label="Footer">${NAV.map(r => `<a href="#${r}">${esc(n[r])}</a>`).join("")}</nav>
+   <div class="soc">${SOC.map(([u, nm, ic]) => `<a href="${u}" target="_blank" rel="noopener" aria-label="${nm}">${ICON[ic]}</a>`).join("")}</div>
+   <p class="slg"><span>${esc(w().slogan[0])}<br>${esc(w().slogan[1])}</span><span class="plus" aria-hidden="true"></span></p>
+  </div><div class="fine"><span>© 2008–2026 ${esc(t().foot)}${lang === "ru" ? B("i") : ""}</span><span>${esc(ADDR[lang])} · <a href="tel:+${PHONE_RAW}">${PHONE}</a></span><span>${esc(t().draftSite)}</span></div></div></footer>`;
+}
+
+/* home */
+function sHero() {
+  const h = w().h1;
+  return `<section class="hero nv" aria-labelledby="h1"><div class="wrap hero-g">
+   <div class="hero-t">${kk(z().heroEb)}
+    <h1 id="h1" class="d h1"><span class="ln l1"><span>${esc(h[0])}</span></span><span class="ln l2"><span>${esc(h[1])}</span></span></h1>
+    <p class="lead">${esc(t().lead)}</p>
+    <div class="cta">${trialBtn("btn b-red mag", esc(t().joinClub) + " " + ARROW)}<a class="btn b-o mag" href="#videos">${esc(w().watch)} <span class="pc-i">${ICON.play}</span></a></div></div>
+   <div class="hero-a" aria-hidden="true"><div class="sun-w"><span class="streak"></span><span class="sun"></span><img class="throw" src="img/throw.png" alt="" width="640" height="519"></div></div>
+   <div class="hero-r"><p class="kanji" lang="ja" aria-hidden="true">柔道</p><ul class="vals">${w().vals.map(v => `<li>${esc(v)}</li>`).join("")}</ul><span class="plus" aria-hidden="true"></span></div>
+  </div>${marquee(z().mq)}</section>`;
+}
+const PIMG = {"judo-kids":"wYE4DtxT2TM_013p0_P","summer-camp-2026":"HMiYnUjJ7Rg_018p0_P","ne-waza-evening":"VMtjVgoVfRo_029p0_P","internal-rating":"cpvFspnAOrE_011p0_P","gymnastics-wrestling":"ivJtWi70XzU_014p8_P","physical-conditioning":"UFNf9xnrM-w_034p0_L","venue-other":"d8oC-x-c_NM_005p9_P"};
+function progCard(p) {
+  return `<a class="pc rv" href="#programs"><div class="im"><img src="${st(PIMG[p.id])}" alt="" loading="lazy"></div>
+   <div class="bd"><h3>${esc(L(p.name))}</h3><span class="ag">${p.small ? esc(L(p.small)) + " " : ""}${esc(p.top)}</span>${arr()}<p>${P(L(p.d))}</p></div></a>`;
+}
+function widget() {
+  return `<h3><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2"/></svg>${esc(t().schH)}</h3>
+   <div class="sw-d"><span aria-live="polite">${esc(dName(day))}${day === TODAY ? `<span class="tt">${esc(y().today)}</span>` : ""}</span>
+    <span class="sw-n"><button type="button" data-wd="-1" aria-label="${esc(z().prev)}">‹</button><button type="button" data-wd="1" aria-label="${esc(z().next)}">›</button></span></div>
+   <ul>${sessions(day).map(s => `<li><a href="#" class="wr" data-join="${esc(sCtx(s, day))}"><b>${s.a}</b><span><i>${esc(L(TY[s.ty]))}${s.ad ? ` · ${esc(sx().adult)}` : ""}</i>${s.cf ? DB(s.cf) + DQ(s.cf) : ""}<small>${esc(coList(s))}</small></span></a></li>`).join("") || `<li class="rest">${esc(sx().rest)}</li>`}</ul>
+   <a class="btn b-red mag" href="#schedule">${esc(t().fullSch)} ${ARROW}</a>`;
+}
+function sPrograms() {
+  const ps = ["judo-kids", "gymnastics-wrestling", "internal-rating"].map(progOf);
+  return `<section class="sec" aria-labelledby="pg-h"><div class="wrap pg"><div>
+    <div class="pg-h">${shd(t().nav.programs, w().progH, "", "", "pg-h")}<div class="rv"><p class="mu">${esc(w().progP)}</p>${lnk("#programs", x().allProg)}</div></div>
+    <div class="pcs">${ps.map(progCard).join("")}</div></div>
+   <aside class="sw rv" data-widget aria-label="${esc(t().schH)}">${widget()}</aside></div></section>`;
+}
+const COACH_FACT = {karen:() => [L({ka:"კლუბის დირექტორი",ru:"Директор клуба",en:"Club director"}), "c"], kitober:() => [sx().nw, "c"]};
+const coachRole = id => id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
+function coachCard(c) {
+  const ini = c.name.en.split(" ").map(s => s[0]).join(""), f = COACH_FACT[c.id];
+  return `<button type="button" class="cc rv" data-coach="${c.id}"><span class="mono-p"><span class="ini f" aria-hidden="true">${esc(ini)}</span></span>
+   <span class="bd"><span class="nm">${esc(L(c.name))}${c.id === "nika" ? DB(4) : ""}</span><span class="role">${esc(coachRole(c.id))}</span>
+   <span class="rk">${esc(coachSlots(c.id))}</span>${f ? `<span class="fx">${esc(f()[0])}${B(f()[1])}</span>` : ""}</span></button>`;
+}
+function openCoach(id) {
+  const c = COACHES.find(k => k.id === id), f = COACH_FACT[id];
+  openDlg(`<div class="dlg-h"><h2 id="dlg-title" class="d">${esc(L(c.name))}</h2><button type="button" class="x" data-close aria-label="${esc(t().close)}">×</button></div>
+   <p class="role">${esc(coachRole(id))}</p>${id === "nika" ? `<p>${DB(4)} ${DQ(4)}</p>` : ""}<p>${esc(coachSlots(id))}</p>${f ? `<p>${esc(f()[0])}${B(f()[1])}</p>` : ""}<p class="muted">${P(t().bioPh)}</p>
+   <div>${jbtn(`${t().waCoach} ${L(c.name)}`, "btn btn-red", esc(t().write) + " " + ARROW)}</div>`);
+}
+function sCoaches(full) {
+  return `<section class="sec nv" aria-labelledby="co-h"><div class="wrap cb">
+   ${full ? `<h2 class="sr" id="co-h">${esc(t().coT)}</h2>` : shd(x().coEb, w().coH, x().coP, lnk("#coaches", t().allCoaches), "co-h")}
+   ${full ? "" : `<figure class="qt rv"><span class="qm" aria-hidden="true">“</span><blockquote>${esc(w().quote)}</blockquote>
+    <cite class="kk"><a href="https://www.facebook.com/JudoClubGeorgia/posts/1488502386722506" target="_blank" rel="noopener">${esc(w().cite)} · ${fmtDate("2026-10-12")}</a></cite></figure>`}
+   <div class="cgs">${COACHES.map(coachCard).join("")}</div></div></section>`;
+}
+function sStories() {
+  const ps = ["1487420886830656", "1488424940063584", "1493148186257926"].map(PP);
+  return `<section class="sec" aria-labelledby="sto-h"><div class="wrap split">${shd(z().stEb, w().stH, z().stP, lnk("#stories", t().allStories), "sto-h")}
+   <div class="row3">${ps.map(storyCard).join("")}</div></div></section>`;
+}
+function vcard(v, wide) {
+  const s = still(v.id);
+  return `<a class="vc rv" href="${v.url}" target="_blank" rel="noopener"><div class="im">${s ? `<img src="${st(s)}" alt="" loading="lazy">` : `<span class="ds" aria-hidden="true"></span>`}</div>
+   <span class="pl" aria-hidden="true">${ICON.play}</span><span class="cap"><b>${esc(vTitle(v))}</b><span>${dur(v.s)}</span></span>${wide ? "" : `<span class="sr">YouTube</span>`}</a>`;
+}
+function sVideos() {
+  const vs = ["2lGgm5RqHi0", "UFNf9xnrM-w", "VMtjVgoVfRo"].map(V);
+  return `<section class="sec nv" aria-labelledby="vi-h"><div class="wrap split">${shd(x().viEb, w().viH, w().viP, lnk("#videos", t().allVideos), "vi-h")}
+   <div class="row3">${vs.map(v => vcard(v)).join("")}</div></div></section>`;
+}
+function sNumbers() {
+  const N = [[2008, "", 1990], [6, "", 0], [15, "", 0], [48, "K", 0], [110, "K", 0]];
+  const lb = [z().nums[0], z().nums[4], z().nums[3], z().nums[2], z().nums[1]];
+  return `<section class="sec sf" aria-labelledby="num-h"><div class="wrap split">${shd(z().numEb, w().numH, "", "", "num-h")}
+   <ul class="nums">${N.map(([v, s, f], i) => `<li class="rv"><b class="n"><span class="cnt" data-to="${v}" data-from="${f}">${v}</span><span class="s">${s}</span></b><span>${esc(lb[i])}</span></li>`).join("")}</ul></div></section>`;
+}
+function sHall() {
+  const q = encodeURIComponent(ADDR.en);
+  return `<section class="nv" aria-labelledby="hall-h"><div class="hall"><img src="${st("2lGgm5RqHi0_004p0_L")}" alt="${esc(x().heroAlt)}" loading="lazy">
+   <div class="wrap">${kk(z().hallEb + " · " + z().isani)}<h2 class="d" id="hall-h">${esc(z().hallH)}</h2></div></div>
+   <div class="brs"><div class="rv">${kk(x().mainTag)}<h3 class="d">${esc(t().brand)}</h3><p>${esc(ADDR[lang])}${lang === "ru" ? B("i") : ""}</p>
+     <dl><dt>${esc(t().hoursL)}</dt><dd>${esc(t().hours)}</dd><dt>${esc(t().phoneL)}</dt><dd><a href="tel:+${PHONE_RAW}">${PHONE}</a></dd></dl>
+     <a class="lk" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">${esc(t().maps)} ${EXT}</a></div>
+    ${[1, 2].map(() => `<div class="rv">${kk(x().hallTbc)}<h3 class="d">${P(x().tbc)}</h3>${B("u")}<p style="margin-top:10px">${P(x().tbcSub)}</p></div>`).join("")}</div></section>`;
+}
+const slotA = (s, i) => `<a href="#" class="slot ${s.ty}" data-join="${esc(sCtx(s, i))}"><b>${s.a}–${s.b}</b><span class="ty">${esc(L(TY[s.ty]))}</span>${s.cf ? DB(s.cf) + DQ(s.cf) : ""}${s.ad ? `<span class="ad">${esc(sx().adult)}</span>` : ""}<span class="co">${esc(coList(s))}</span></a>`;
+function dayChips() {
+  return `<div class="chips" role="group" aria-label="${esc(t().schH)}">${[-1, 0, 1, 2, 3, 4, 5, 6].map(i => `<button type="button" data-pd="${i}" aria-pressed="${pday === i}">${esc(i < 0 ? sx().week : dShort(i))}</button>`).join("")}</div>`;
+}
+function weekView() {
+  const ds = pday < 0 ? [0, 1, 2, 3, 4, 5, 6] : [pday];
+  return `${dayChips()}<div class="week${pday < 0 ? "" : " one"}">${ds.map(i => `<div class="wday${i === TODAY ? " today" : ""}${i === 6 ? " off" : ""}"><h3 class="d">${esc(dName(i))}${i === TODAY ? ` · ${esc(y().today)}` : ""}</h3>
+   <ul>${sessions(i).map(s => `<li>${slotA(s, i)}</li>`).join("") || `<li class="rest">${esc(sx().rest)}</li>`}</ul></div>`).join("")}</div>
+   <div class="note dsn"><p><b>${esc(sx().dscNote)}</b></p><ul>${[1, 2, 3, 4, 5].map(n => `<li>${DB(n)} ${esc(sx().cf[n] || sx().q[n])}</li>`).join("")}</ul></div>`;
+}
+function sSchedule() {
+  return `<section class="sec sf" aria-labelledby="sc-h"><div class="wrap">${shd(x().schEb, t().schH, x().schP, "", "sc-h")}
+   <div data-sched class="rv">${weekView()}</div></div></section>`;
+}
+function sParents(full) {
+  return `<section class="sec sf" aria-labelledby="pa-h"><div class="wrap">${shd(x().parEb, z().parH, x().parP, "", "pa-h")}
+   <ol class="steps rv">${x().first.map(([b, s]) => `<li><b>${esc(b)}</b>${P(s)}</li>`).join("")}</ol>
+   ${full ? `<div class="pc3 rv"><div><h3 class="d">${esc(x().whyH)}</h3><ul>${x().why.map(s => `<li>${P(s)}</li>`).join("")}</ul></div>
+    <div><h3 class="d">${esc(x().safeH)}</h3><ul>${x().safe.map(s => `<li>${P(s)}</li>`).join("")}</ul></div>
+    <div><h3 class="d">${esc(t().rateL)}</h3><ul><li><b>9.3/10</b> · Fitpass · 14 ${esc(x().rev)}</li><li><b>100%</b> · Facebook · ${esc(x().rec)} · 19 ${esc(x().rev)}</li><li>${P(x().testi)}</li></ul></div></div>` : ""}
+   <div class="faq rv">${FAQ.map(([q, a]) => `<details><summary>${esc(L(q))}</summary><p>${esc(L(a))}</p></details>`).join("")}</div></div></section>`;
+}
+function sContact() {
+  const q = encodeURIComponent(ADDR.en);
+  return `<section class="sec" aria-labelledby="ct-h"><div class="wrap"><h2 class="sr" id="ct-h">${esc(t().ctT)}</h2><div class="ct rv">
+   <div><h3>${esc(t().addrL)}</h3><p class="big">${esc(ADDR[lang])}${lang === "ru" ? B("i") : ""}</p><p style="margin:-14px 0 28px"><a class="lk" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">${esc(t().maps)} ${EXT}</a></p>
+    <h3>${esc(t().hoursL)}</h3><p class="big">${esc(t().hours)}</p><p class="mu" style="font-size:14px">${esc(sx().sun)}: ${esc(sx().rest)}</p></div>
+   <div><h3>${esc(t().phoneL)}</h3><p class="big"><a href="tel:+${PHONE_RAW}">${PHONE}</a></p><h3>${esc(t().mailL)}</h3><p class="big"><a href="mailto:geojudoclub@gmail.com">geojudoclub@gmail.com</a></p><div class="chans">${channels(msg(""))}</div></div>
+   <div><h3>${esc(t().socL)}</h3><div class="chans">${SOC.map(([u, nm, ic]) => `<a class="chan" href="${u}" target="_blank" rel="noopener">${ICON[ic]}${nm}</a>`).join("")}<a class="chan" href="https://www.tiktok.com/@georgia.club" target="_blank" rel="noopener">${ICON.tt}TikTok</a></div><p class="mu" style="font-size:13px;margin-top:10px">TikTok @georgia.club${B("u")}</p>
+    <h3 style="margin-top:28px">${esc(t().rateL)}</h3>${t().rates.map(r => `<p>${esc(r)}</p>`).join("")}</div>
+  </div></div></section>`;
+}
+
+/* pages */
+function ptitleH(h, p, eb) { return `<div class="pt"><div class="wrap">${kk(eb)}<h1 class="d${h.length > 24 ? " long" : ""}">${esc(h)}</h1>${p ? `<p class="sub">${P(p)}</p>` : ""}</div></div>`; }
+function pHome() { return sHero() + sPrograms() + sCoaches() + sStories() + sVideos() + sNumbers() + sJoin(); }
+function pPrograms() {
+  return ptitleH(t().progT, t().progP, x().grpEb) + `<section class="sec"><div class="wrap">${PROGS.map(p => `<article class="prow rv">${PIMG[p.id] ? `<div class="im"><img src="${st(PIMG[p.id])}" alt="${esc(t().illus)}" loading="lazy"></div>` : "<div></div>"}
+   <div><h2 class="d">${esc(L(p.name))}${B(p.conf)}</h2><p>${P(L(p.d))}</p>
+   ${p.facts.length ? `<dl>${p.facts.map(([k, v, c]) => `<dt>${esc(t()[k])}</dt><dd>${P(L(v))}${c[0] === "d" ? DB(+c[1]) + DQ(+c[1]) : B(c)}</dd>`).join("")}</dl>` : ""}
+   ${jbtn(`${t().waProg} ${L(p.name)}`, "btn b-red mag", esc(t().join) + " " + ARROW)}</div></article>`).join("")}</div></section>` + sJoin();
+}
+function pSchedule() {
+  return ptitleH(t().schT, t().schP, x().schEb) + `<section class="sec sf"><div class="wrap" data-sched>${weekView()}</div></section>` + sJoin();
+}
+function pCoaches() { return ptitleH(t().coT, t().coP, x().coEb) + sCoaches(1) + sJoin(); }
+function pStories() { return ptitleH(t().stT, z().stP + " " + z().minors, z().stEb) + `<section class="sec"><div class="wrap"><div class="sg">${POSTS.map(storyCard).join("")}</div></div></section>` + sJoin(); }
+function pVideos() { return ptitleH(t().viT, t().viP, x().viEb) + `<section class="sec nv"><div class="wrap"><div class="vg">${DATA.videos.map(v => vcard(v, 1).replace("</a>", `<span class="meta">${vmeta(v)}</span></a>`)).join("")}</div></div></section>` + sJoin(); }
+function pParents() { return ptitleH(x().parH, x().parP, x().parEb) + sParents(1) + sJoin(); }
+function pBranches() { return ptitleH(x().brH, x().brP, x().brEb) + sHall() + sSchedule() + sJoin(); }
+function pContact() { return ptitleH(t().ctT, "", x().ctEb) + sContact() + sHall() + sJoin(); }
+function pStory(id) {
+  const i = POSTS.findIndex(p => p.id === id), p = POSTS[i];
+  if (!p) return pStories();
+  const ig = p.pf === "instagram", reel = p.k === "reel";
+  const lbl = reel ? (ig ? z().reelIg : z().reelFb) : (ig ? z().openIg : z().openFb);
+  const gal = p.ph.map((f, j) => `<a href="${reel ? esc(p.url) : pimg(f)}" target="_blank" rel="noopener"><img src="${pimg(f)}" alt="${esc(reel ? z().reelAlt : z().postAlt)} ${j + 1}" loading="${j ? "lazy" : "eager"}">${reel ? `<span class="pl">${ICON.play} ${esc(lbl)}</span>` : ""}</a>`).join("");
+  const pr = POSTS[i - 1], nx = POSTS[i + 1];
+  return `<article><header class="pt"><div class="wrap"><a class="lk" href="#stories" style="color:#fff">← ${esc(t().back)}</a>
+    <h1 class="d${pTitle(p).length > 90 ? " long xl" : pTitle(p).length > 40 ? " long" : ""}">${esc(pTitle(p))}</h1>
+    <div class="sp-meta"><time datetime="${p.d}">${fmtDate(p.d)}</time><span>${ig ? "Instagram" : "Facebook"} · ${esc(kindLbl(p))}</span></div></div></header>
+   <div class="wrap sp-g"><div class="sp-t"><div class="txt">${ptext(p.tx[lang])}</div>${p.mn ? `<p class="note">${esc(z().minors)}</p>` : ""}
+     <a class="btn b-red mag" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(lbl)} ${EXT}</a></div>
+    <div class="gal${p.ph.length === 1 ? " one" : ""}">${gal}</div></div>
+   <nav class="wrap pn" aria-label="${esc(t().stT)}">${pr ? `<a class="lk" href="#story-${pr.id}">← ${esc(z().prev)}</a>` : "<span></span>"}${nx ? `<a class="lk" href="#story-${nx.id}">${esc(z().next)} →</a>` : ""}</nav></article>` + sJoin();
+}
+function page() {
+  if (route.startsWith("story-")) return pStory(route.slice(6));
+  return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact})[route]();
+}
+function parseHash() {
+  const h = location.hash.slice(1);
+  if (T[h]) { setLang(h, true); return; }
+  route = ROUTES.includes(h) || /^story-[\w-]+$/.test(h) ? h : "home";
+}
+
+/* motion: everything is visible by default; GSAP only adds entrances when allowed */
+const MO = !RM && window.gsap && window.ScrollTrigger;
+let lenis = null, mm = null;
+if (MO) {
+  gsap.registerPlugin(ScrollTrigger);
+  if (window.Lenis) {
+    lenis = new Lenis({lerp: .1});
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(tm => lenis.raf(tm * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+}
+function motion() {
+  if (!MO) return;
+  if (mm) mm.revert();
+  ScrollTrigger.getAll().forEach(s => s.kill());
+  mm = gsap.matchMedia();
+  mm.add("all", () => {
+    if (document.querySelector(".hero")) {
+      gsap.from(".h1 .ln>span", {yPercent:110, duration:1.2, stagger:.1, ease:"expo.out", delay:.1});
+      gsap.from(".hero-t .kk, .hero .lead, .hero .cta", {y:24, opacity:0, duration:1, stagger:.1, ease:"expo.out", delay:.35});
+      gsap.from(".sun", {scale:.5, opacity:0, duration:1.5, ease:"expo.out"});
+      gsap.from(".streak", {xPercent:-30, opacity:0, duration:1.6, ease:"expo.out", delay:.2});
+      gsap.from(".throw", {x:80, rotate:8, opacity:0, duration:1.4, ease:"expo.out", delay:.25});
+      gsap.from(".hero-r > *", {y:30, opacity:0, duration:1, stagger:.1, ease:"expo.out", delay:.5});
+      // the sun breathes slowly; scroll adds a gentle parallax split between sun and throw
+      gsap.to(".sun", {scale:1.035, duration:3.6, ease:"sine.inOut", yoyo:true, repeat:-1, delay:1.5});
+      gsap.to(".sun-w", {yPercent:-10, ease:"none", scrollTrigger:{trigger:".hero", start:"top top", end:"bottom top", scrub:true}});
+      gsap.to(".throw", {yPercent:-12, xPercent:4, ease:"none", scrollTrigger:{trigger:".hero", start:"top top", end:"bottom top", scrub:true}});
+      gsap.to(".kanji", {yPercent:30, ease:"none", scrollTrigger:{trigger:".hero", start:"top top", end:"bottom top", scrub:true}});
+    }
+    document.querySelectorAll(".pt h1, .pt .kk, .pt .sub").forEach((el, i) => gsap.from(el, {y:30, opacity:0, duration:1, delay:.08 * i, ease:"expo.out"}));
+    ScrollTrigger.batch(".rv", {start:"top 90%", once:true, onEnter:els => {
+      // CSS transform transitions on cards fight the tween and leave them offset
+      gsap.set(els, {transition:"none"});
+      gsap.from(els, {y:46, opacity:0, duration:1, stagger:.09, ease:"expo.out", onComplete:() => gsap.set(els, {clearProps:"transition,transform,opacity"})});
+    }});
+    document.querySelectorAll(".cnt").forEach(el => {
+      const o = {v:+el.dataset.from};
+      gsap.to(o, {v:+el.dataset.to, duration:2, ease:"power3.out", snap:{v:1}, onUpdate:() => { el.textContent = o.v; }, scrollTrigger:{trigger:el, start:"top 92%", once:true}});
+    });
+  });
+  ScrollTrigger.refresh();
+}
+// magnetic CTAs on fine pointers only
+if (MO && matchMedia("(pointer: fine)").matches) {
+  document.addEventListener("pointermove", e => {
+    const m = e.target.closest && e.target.closest(".mag");
+    document.querySelectorAll(".mag.pull").forEach(el => { if (el !== m) { el.classList.remove("pull"); gsap.to(el, {x:0, y:0, duration:.6, ease:"elastic.out(1,.4)"}); } });
+    if (!m) return;
+    const r = m.getBoundingClientRect();
+    m.classList.add("pull");
+    gsap.to(m, {x:(e.clientX - r.left - r.width / 2) * .3, y:(e.clientY - r.top - r.height / 2) * .4, duration:.4, ease:"power3.out"});
+  });
+}
+// pause loops that are off-screen
+const vio = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause(); }), {threshold:.15}) : null;
+function videos() { if (vio) document.querySelectorAll("video").forEach(v => vio.observe(v)); }
+
+/* render + events */
+function hdrState() {
+  const h = document.getElementById("hdr"), n = document.getElementById("nav");
+  if (!h) return;
+  h.classList.toggle("solid", scrollY > 20);
+  h.classList.remove("compact");
+  const bar = h.querySelector(".bar");
+  if (n.scrollWidth > n.clientWidth + 1 || bar.scrollWidth > bar.clientWidth + 1) h.classList.add("compact");
+}
+function render(keepFocus) {
+  document.documentElement.lang = lang;
+  if (vio) vio.disconnect();
+  document.getElementById("app").innerHTML = header() + `<main id="main">${page()}</main>` + footer();
+  hdrState(); videos(); motion();
+  if (keepFocus) { const el = document.querySelector(keepFocus); if (el) el.focus(); }
+}
+function toTop() { lenis ? lenis.scrollTo(0, {immediate:true}) : scrollTo(0, 0); }
+
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-lang],[data-join],[data-coach],[data-wd],[data-pd],[data-menu],[data-close],[data-copy]");
+  if (!el) { if (e.target.closest(".nav.open a")) document.getElementById("nav").classList.remove("open"); return; }
+  if (el.dataset.lang) { setLang(el.dataset.lang); render(`[data-lang="${lang}"]`); return; }
+  if (el.dataset.join !== undefined) { e.preventDefault(); openJoin(el.dataset.join); return; }
+  if (el.dataset.coach) { openCoach(el.dataset.coach); return; }
+  if (el.dataset.wd) { day = (day + +el.dataset.wd + 7) % 7; const wg = document.querySelector("[data-widget]"); wg.innerHTML = widget(); wg.querySelector(`[data-wd="${el.dataset.wd}"]`).focus(); return; }
+  if (el.dataset.pd) { pday = +el.dataset.pd; const sc = document.querySelector("[data-sched]"); sc.innerHTML = weekView(); sc.querySelector(`[data-pd="${pday}"]`).focus(); return; }
+  if (el.hasAttribute("data-menu")) { const n = document.getElementById("nav"), o = n.classList.toggle("open"); el.setAttribute("aria-expanded", o); return; }
+  if (el.hasAttribute("data-close")) { dlg.close(); return; }
+  if (el.hasAttribute("data-copy")) {
+    const ta = document.getElementById("jmsg"), stt = document.getElementById("cst");
+    const done = () => { stt.textContent = t().copied; };
+    try { navigator.clipboard.writeText(ta.value).then(done, () => { ta.select(); try { document.execCommand("copy"); done(); } catch (x_) {} }); }
+    catch (x_) { ta.select(); }
+  }
+});
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+addEventListener("hashchange", () => { parseHash(); render(); toTop(); });
+addEventListener("scroll", () => { const h = document.getElementById("hdr"); if (h) h.classList.toggle("solid", scrollY > 20); }, {passive:true});
+addEventListener("resize", hdrState);
+if (document.fonts) document.fonts.ready.then(() => { hdrState(); if (MO) ScrollTrigger.refresh(); });
+addEventListener("load", () => { if (MO) ScrollTrigger.refresh(); });
+addEventListener("keydown", e => {
+  const n = document.getElementById("nav");
+  if (e.key === "Escape" && n && n.classList.contains("open")) { n.classList.remove("open"); const b = document.querySelector("[data-menu]"); b.setAttribute("aria-expanded", "false"); b.focus(); }
+});
+
+parseHash(); render();
+</script>
+
+</html>
