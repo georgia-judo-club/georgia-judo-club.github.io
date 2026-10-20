@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# a repo hooksPath replaces the global one, so run the global checks first
+if [ -x "$HOME/.githooks/pre-commit" ]; then
+    "$HOME/.githooks/pre-commit"
+else
+    gitleaks git --pre-commit --staged --redact --no-banner .
+fi
+node scripts/check-assets.mjs --staged
