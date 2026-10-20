@@ -1,0 +1,17 @@
+{
+  "name": "georgia-judo-club",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "build": "astro build",
+    "test": "node --test",
+    "check:links": "lychee --offline --no-progress --index-files index.html --root-dir \"$PWD/dist\" dist",
+    "images": "python3 scripts/images.py"
+  },
+  "dependencies": {
+    "astro": "7.3.7"
+  }
+}
