@@ -713,7 +713,7 @@ const VT = {fJhFjVSGQQs:{ka:"ძიუდოს საზაფხულო ს�
 
 let lang = "ka", route = "home", day = 0, filt = "all";
 try { lang = localStorage.getItem("gj-lang") || "ka"; } catch (e) {}
-if (!T[lang]) lang = "ka";
+if (!Object.hasOwn(T, lang)) lang = "ka";
 
 const t = () => T[lang];
 const L = o => o == null ? "" : typeof o === "string" ? o : (o[lang] ?? o.en);
@@ -1257,7 +1257,7 @@ function page() {
 }
 function parseHash() {
   const h = location.hash.slice(1);
-  if (T[h]) { setLang(h, true); return; }
+  if (Object.hasOwn(T, h)) { setLang(h, true); return; }
   route = ROUTES.includes(h) || /^story-[\w-]+$/.test(h) ? h : "home";
 }
 
