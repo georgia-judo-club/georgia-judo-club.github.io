@@ -1,0 +1,35 @@
+---
+name: Build and test
+
+"on":
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          # full history so gitleaks scans every commit
+          fetch-depth: 0
+      # binary, not gitleaks-action: the action needs a license for orgs
+      - name: gitleaks
+        env:
+          V: 8.30.1
+          SHA: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+        run: |
+          f=gitleaks_${V}_linux_x64.tar.gz
+          curl -sSfLO "https://github.com/gitleaks/gitleaks/releases/download/v${V}/$f"
+          echo "$SHA  $f" | sha256sum -c -
+          tar -xzf "$f" gitleaks
+          ./gitleaks git --redact --no-banner -v .
+      - uses: withastro/action@3eafd002e65cc31b4f0eae0bb05450d521562247  # v6.1.3
+        with:
+          node-version: 24.21.0
+          build-cmd: npm run build && npm test
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8  # v2.9.0
+        with:
+          lycheeVersion: v0.24.2
+          args: >-
+            --offline --no-progress --index-files index.html
+            --root-dir ${{ github.workspace }}/dist dist
