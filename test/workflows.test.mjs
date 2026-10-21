@@ -45,6 +45,13 @@ test('build.yml runs gitleaks, build + tests and lychee', () => {
   assert.match(t, /--root-dir \$\{\{ github\.workspace \}\}\/dist/);
 });
 
+test('build.yml installs Chromium before the build runs the browser tests', () => {
+  const t = wf('build.yml');
+  const i = t.indexOf('run: npx --yes playwright@1.64.0 install --with-deps chromium');
+  assert.ok(i > 0, 'playwright install step missing');
+  assert.ok(i < t.indexOf('uses: withastro/action@'), 'install must come before withastro/action');
+});
+
 test('every third-party action is pinned to a full SHA with a version comment', () => {
   for (const f of files) {
     const uses = wf(f).match(/uses: \S+.*$/gm) ?? [];
