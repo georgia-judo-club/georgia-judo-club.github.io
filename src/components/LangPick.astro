@@ -1,0 +1,33 @@
+---
+interface Props {
+  mode: 'redirect' | 'reveal';
+}
+const { mode } = Astro.props;
+
+// ES5: runs first on old phones. Only the 404 trusts the URL's language segment.
+const pick = `
+var L = ['ka', 'ru', 'en'], pick = null, hash = location.hash;
+${mode === 'reveal'
+  ? `var seg = location.pathname.split('/')[1];
+if (L.indexOf(seg) >= 0) pick = seg;`
+  : `if (L.indexOf(hash.slice(1)) >= 0) { pick = hash.slice(1); hash = ''; }`}
+if (!pick) try { var s = localStorage.getItem('gj-lang'); if (L.indexOf(s) >= 0) pick = s; } catch (e) {}
+if (!pick) {
+  var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+  for (var i = 0; i < prefs.length && !pick; i++) {
+    var p = String(prefs[i]).toLowerCase().split('-')[0];
+    if (L.indexOf(p) >= 0) pick = p;
+  }
+}
+pick = pick || 'ka';`;
+
+const tail =
+  mode === 'redirect'
+    ? `location.replace('/' + pick + '/' + location.search + hash);`
+    : `var els = document.querySelectorAll('[data-404]');
+for (var j = 0; j < els.length; j++) els[j].hidden = els[j].getAttribute('data-404') !== pick;
+document.documentElement.lang = pick;`;
+
+const code = `(function () {${pick}\n${tail}\n})();`;
+---
+<script is:inline set:html={code} />

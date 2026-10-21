@@ -1,0 +1,31 @@
+---
+import raw from '../../preview/index.html?raw';
+import '../../styles/fonts.css';
+import geo from '@fontsource-variable/noto-sans-georgian/files/noto-sans-georgian-georgian-wght-normal.woff2?url';
+import interLat from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import interCyr from '@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2?url';
+import montLat from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url';
+import montCyr from '@fontsource-variable/montserrat/files/montserrat-cyrillic-wght-normal.woff2?url';
+import Head from '../../components/Head.astro';
+import { LANGS, type Lang } from '../../i18n/ui';
+
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+// the preview's own head (Google Fonts, title, icon) is replaced by <Head>
+const cut = raw.indexOf('<div id="app">');
+const styles = [...raw.slice(0, cut).matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
+const body = raw.slice(cut).replace('</html>', '');
+// first-screen faces only: the page script plus latin (digits live in latin)
+const preload = { ka: [geo, interLat], ru: [montCyr, interCyr, interLat], en: [montLat, interLat] }[lang];
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <Head lang={lang} />
+  {preload.map((u) => <link rel="preload" href={u} as="font" type="font/woff2" crossorigin />)}
+  {styles.map((s) => <style is:inline set:html={s} />)}
+</head>
+<body>
+  <Fragment set:html={body} />
+</body>
+</html>

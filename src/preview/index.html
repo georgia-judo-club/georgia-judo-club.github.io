@@ -6,7 +6,7 @@
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Judo Club Georgia</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="icon" href="img/logo.png">
+<link rel="icon" href="/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap">
@@ -712,7 +712,7 @@ const VT = {fJhFjVSGQQs:{ka:"ძიუდოს საზაფხულო ს�
  GFKY7QXTcro:{ka:"გელა ზაალიშვილი",ru:"Гела Заалишвили",en:"Gela Zaalishvili"}};
 
 let lang = "ka", route = "home", day = 0, filt = "all";
-try { lang = localStorage.getItem("gj-lang") || "ka"; } catch (e) {}
+lang = document.documentElement.lang;
 if (!Object.hasOwn(T, lang)) lang = "ka";
 
 const t = () => T[lang];
@@ -728,7 +728,7 @@ const MON = {ka:["იანვარი","თებერვალი","მა�
 const fmtDate = d => { const [y, m, dd] = d.split("-").map(Number), n = MON[lang][m - 1]; return lang === "en" ? `${dd} ${n} ${y}` : lang === "ru" ? `${dd} ${n} ${y} г.` : `${dd} ${n}, ${y}`; };
 const dur = s => s == null ? "" : Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
 const vTitle = v => VT[v.id] ? L(VT[v.id]) : v.t ? L(v.t) : t().clubVideo;
-const img = id => `img/${id}.jpg`;
+const img = id => `/img/${id}.jpg`;
 
 const ICON = {
  arrow:'<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
@@ -920,15 +920,15 @@ const ARROW = ICON.arrow;
 const EXT = '<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
 const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const SMALL = () => matchMedia("(max-width: 699px)").matches;
-const st = n => `img/st/${n}.jpg`;
-const pimg = f => `img/posts/${f}`;
+const st = n => `/img/st/${n}.jpg`;
+const pimg = f => `/img/posts/${f}`;
 const still = id => STILLS.find(s => s.startsWith(id + "_"));
 
 // autoplaying loop with poster; reduced motion or `img` gets the poster only
 function loop(name, cls, asImg) {
-  const p = `media/${name}.jpg`;
+  const p = `/media/${name}.jpg`;
   if (RM || asImg) return `<img class="${cls || ""}" src="${p}" alt="" loading="lazy">`;
-  return `<video class="${cls || ""}" src="media/${name}.mp4" poster="${p}" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>`;
+  return `<video class="${cls || ""}" src="/media/${name}.mp4" poster="${p}" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>`;
 }
 const mk = (inner, cls) => `<div class="mk ${cls || ""}">${inner}<i class="cv" aria-hidden="true"></i></div>`;
 const up = s => `<span class="ln"><span>${esc(s)}</span></span>`;
@@ -1069,7 +1069,7 @@ function shd(eb, h, p, link, id) {
   return `<div class="shd rv">${kk(eb)}<h2 class="d h2" id="${id}">${esc(h)}</h2>${p ? `<p class="lead2">${P(p)}</p>` : ""}${link || ""}</div>`;
 }
 const lnk = (href, label) => `<a class="lk" href="${href}">${esc(label)} ${ARROW}</a>`;
-function wm() { return `<a class="wm" href="#home" aria-label="${esc(t().brand)}"><img src="img/logo.png" alt="" width="64" height="64"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>`; }
+function wm() { return `<a class="wm" href="#home" aria-label="${esc(t().brand)}"><img src="/img/logo.png" alt="" width="64" height="64"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>`; }
 function header() {
   const n = t().nav;
   return `<header class="hdr" id="hdr"><div class="bar wrap">${wm()}
@@ -1085,7 +1085,7 @@ function marquee(items, cls) {
 }
 function sJoin() {
   const m = encodeURIComponent(msg(x().trialMsg));
-  const bg = RM || SMALL() ? `<img class="bgv" src="media/loop2_pullups_L.jpg" alt="">` : loop("loop2_pullups_L");
+  const bg = RM || SMALL() ? `<img class="bgv" src="/media/loop2_pullups_L.jpg" alt="">` : loop("loop2_pullups_L");
   return `<section class="jb" aria-labelledby="jb-h">${bg}<div class="wrap jb-g"><div class="rv"><h2 class="d h2" id="jb-h">${esc(w().jH)}</h2><p class="sub">${esc(t().bandP)}</p>
     <div class="act">${trialBtn("btn b-w mag", esc(x().trialL) + " " + ARROW)}</div></div>
    <div class="ich rv"><a class="ic wa" href="https://wa.me/${PHONE_RAW}?text=${m}" target="_blank" rel="noopener"><i>${ICON.wa}</i>WhatsApp</a>
@@ -1096,7 +1096,7 @@ function sJoin() {
 function footer() {
   const n = t().nav;
   return `<footer class="ftr"><div class="wrap"><div class="top">
-   <a class="lg" href="#home"><img src="img/logo.png" alt="${esc(t().brand)}" width="120" height="120"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>
+   <a class="lg" href="#home"><img src="/img/logo.png" alt="${esc(t().brand)}" width="120" height="120"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>
    <nav aria-label="Footer">${NAV.map(r => `<a href="#${r}">${esc(n[r])}</a>`).join("")}</nav>
    <div class="soc">${SOC.map(([u, nm, ic]) => `<a href="${u}" target="_blank" rel="noopener" aria-label="${nm}">${ICON[ic]}</a>`).join("")}</div>
    <p class="slg"><span>${esc(w().slogan[0])}<br>${esc(w().slogan[1])}</span><span class="plus" aria-hidden="true"></span></p>
@@ -1111,7 +1111,7 @@ function sHero() {
     <h1 id="h1" class="d h1"><span class="ln l1"><span>${esc(h[0])}</span></span><span class="ln l2"><span>${esc(h[1])}</span></span></h1>
     <p class="lead">${esc(t().lead)}</p>
     <div class="cta">${trialBtn("btn b-red mag", esc(t().joinClub) + " " + ARROW)}<a class="btn b-o mag" href="#videos">${esc(w().watch)} <span class="pc-i">${ICON.play}</span></a></div></div>
-   <div class="hero-a" aria-hidden="true"><div class="sun-w"><span class="streak"></span><span class="sun"></span><img class="throw" src="img/throw.png" alt="" width="640" height="519"></div></div>
+   <div class="hero-a" aria-hidden="true"><div class="sun-w"><span class="streak"></span><span class="sun"></span><img class="throw" src="/img/throw.png" alt="" width="640" height="519"></div></div>
    <div class="hero-r"><p class="kanji" lang="ja" aria-hidden="true">柔道</p><ul class="vals">${w().vals.map(v => `<li>${esc(v)}</li>`).join("")}</ul><span class="plus" aria-hidden="true"></span></div>
   </div>${marquee(z().mq)}</section>`;
 }
@@ -1257,7 +1257,7 @@ function page() {
 }
 function parseHash() {
   const h = location.hash.slice(1);
-  if (Object.hasOwn(T, h)) { setLang(h, true); return; }
+  if (Object.hasOwn(T, h)) { location.replace("/" + h + "/"); return; }
   route = ROUTES.includes(h) || /^story-[\w-]+$/.test(h) ? h : "home";
 }
 

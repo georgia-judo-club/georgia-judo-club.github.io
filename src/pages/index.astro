@@ -1,0 +1,17 @@
+---
+import Head from '../components/Head.astro';
+import LangPick from '../components/LangPick.astro';
+import { LANGS, NAMES, TITLE } from '../i18n/ui';
+---
+<!doctype html>
+<html lang="ka">
+<head>
+  <Head title={TITLE.ka} />
+  <LangPick mode="redirect" />
+</head>
+<body>
+  <ul>
+    {LANGS.map((l) => <li><a href={`/${l}/`} hreflang={l} lang={l}>{NAMES[l]}</a></li>)}
+  </ul>
+</body>
+</html>
