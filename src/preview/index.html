@@ -721,11 +721,7 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">"
 const B = c => c && c !== "c" ? `<span class="badge">${t().draft}</span>` : "";
 // [bracketed] copy renders as a visible placeholder
 const P = s => esc(s).replace(/\[([^\]]+)\]/g, '<em class="ph">[$1]</em>');
-// manual month names: some Chromium builds ship without Georgian ICU data
-const MON = {ka:["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"],
- ru:["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"],
- en:["January","February","March","April","May","June","July","August","September","October","November","December"]};
-const fmtDate = d => { const [y, m, dd] = d.split("-").map(Number), n = MON[lang][m - 1]; return lang === "en" ? `${dd} ${n} ${y}` : lang === "ru" ? `${dd} ${n} ${y} г.` : `${dd} ${n}, ${y}`; };
+const fmtDate = d => DATES[d] ?? d;
 const dur = s => s == null ? "" : Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
 const vTitle = v => VT[v.id] ? L(VT[v.id]) : v.t ? L(v.t) : t().clubVideo;
 const img = id => `/img/${id}.jpg`;
@@ -913,7 +909,8 @@ en:{heroEb:"Judo club · Tbilisi · Since 2008",h1:["Champions","are made","here
 const z = () => Z[lang];
 const NAV = ROUTES.filter(r => r !== "home");
 const trialBtn = (cls, label) => jbtn(x().trialMsg, cls, label);
-const TODAY = (new Date().getDay() + 6) % 7;
+// Tbilisi weekday, Monday = 0, whatever the visitor's zone
+const TODAY = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].indexOf(new Intl.DateTimeFormat("en-US",{weekday:"short",timeZone:"Asia/Tbilisi"}).format(new Date()));
 day = TODAY < 6 ? TODAY : 0;
 try { filt = localStorage.getItem("gj-filt") || "all"; } catch (e) {}
 const ARROW = ICON.arrow;

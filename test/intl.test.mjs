@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { LOCALE, fmtDate, fmtTime, fmtNumber } from '../src/lib/intl.mjs';
 
 test('LOCALE maps site codes to BCP 47 tags', () => {
@@ -21,4 +22,18 @@ test('fmtNumber formats GEL per locale', () => {
   const gel = { style: 'currency', currency: 'GEL' };
   assert.match(fmtNumber(1234.5, 'ka', gel), /^1\s?234,50\s₾$/);
   assert.match(fmtNumber(1234.5, 'en', gel), /^GEL\s1,234\.50$/);
+});
+
+test('every preview date is formatted at build time per language', () => {
+  const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
+  const preview = read('src/preview/index.html');
+  assert.ok(!preview.includes('const MON'), 'hand-typed month names are back');
+  const iso = [...new Set([...preview.matchAll(/"(\d{4}-\d{2}-\d{2})"/g)].map((m) => m[1]))];
+  assert.ok(iso.length >= 10);
+  for (const lang of ['ka', 'ru', 'en']) {
+    const m = read(`dist/${lang}/index.html`).match(/const DATES=(\{.*?\});/);
+    assert.ok(m, `${lang}: DATES missing`);
+    const dates = JSON.parse(m[1]);
+    for (const d of iso) assert.equal(dates[d], fmtDate(d, lang), `${lang} ${d}`);
+  }
 });
