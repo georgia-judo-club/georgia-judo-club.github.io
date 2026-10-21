@@ -96,9 +96,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .nav a::after{content:"";position:absolute;left:.55rem;right:.55rem;bottom:.2rem;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--e)}
 .nav a:hover::after,.nav a[aria-current]::after{transform:none}
 .langs{display:flex;flex:none;gap:.1rem}
-.langs button{background:none;border:0;padding:.5rem .45rem;font:600 .75rem/1 var(--fb);letter-spacing:.08em;color:var(--muD);position:relative}
-.langs button[aria-pressed=true]{color:#fff}
-.langs button[aria-pressed=true]::after{content:"";position:absolute;left:.45rem;right:.45rem;bottom:1px;height:2px;background:var(--red)}
+.langs a{background:none;border:0;padding:.5rem .45rem;font:600 .75rem/1 var(--fb);letter-spacing:.08em;color:var(--muD);position:relative;text-decoration:none}
+.langs a[aria-current]{color:#fff}
+.langs a[aria-current]::after{content:"";position:absolute;left:.45rem;right:.45rem;bottom:1px;height:2px;background:var(--red)}
 .trial{flex:none;min-height:2.75rem;padding:0 1.4rem;font-size:.9rem}
 .menu-btn{display:none;flex:none;background:none;border:1px solid var(--lnD);border-radius:99px;height:44px;padding:0 16px;font-weight:700;font-size:13px;color:#fff}
 .hdr.compact .nav{display:none;position:absolute;top:var(--hh);left:0;right:0;flex-direction:column;padding:8px var(--g) 24px;background:var(--navy);border-bottom:1px solid var(--lnD)}
@@ -503,7 +503,7 @@ dialog::backdrop{background:rgba(10,19,38,.75);backdrop-filter:blur(4px)}
 @media (max-width:620px){
  .hdr .trial{display:none}
  .wm small{display:none}
- .langs button{padding:8px 6px}
+ .langs a{padding:8px 6px}
  .fab{display:inline-flex;position:fixed;z-index:40;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));box-shadow:0 10px 30px rgba(221,35,36,.4)}
  .hero .cta .btn{flex:1 1 auto}
  .pcs{grid-template-columns:1fr}.pc{display:grid;grid-template-columns:40% minmax(0,1fr)}.pc .im{aspect-ratio:auto;height:100%}.pc p{display:none}
@@ -930,12 +930,6 @@ function loop(name, cls, asImg) {
 const mk = (inner, cls) => `<div class="mk ${cls || ""}">${inner}<i class="cv" aria-hidden="true"></i></div>`;
 const up = s => `<span class="ln"><span>${esc(s)}</span></span>`;
 
-function setLang(l, fromHash) {
-  lang = l;
-  try { localStorage.setItem("gj-lang", l); } catch (e) {}
-  if (fromHash) history.replaceState(null, "", "#" + route);
-}
-
 /* round 10 "Ippon Motion" */
 Object.assign(VT, {
  "2lGgm5RqHi0":{ka:"გუნდი ჩვენს დარბაზში",ru:"Команда в нашем зале",en:"The team in our hall"},
@@ -1067,11 +1061,12 @@ function shd(eb, h, p, link, id) {
 }
 const lnk = (href, label) => `<a class="lk" href="${href}">${esc(label)} ${ARROW}</a>`;
 function wm() { return `<a class="wm" href="#home" aria-label="${esc(t().brand)}"><img src="/img/logo.png" alt="" width="64" height="64"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>`; }
+const NAMES = {ka:"ქართული",ru:"Русский",en:"English"};
 function header() {
   const n = t().nav;
   return `<header class="hdr" id="hdr"><div class="bar wrap">${wm()}
    <nav class="nav" id="nav" aria-label="Main">${NAV.map(r => `<a href="#${r}"${route === r || (r === "stories" && route.startsWith("story-")) ? ' aria-current="page"' : ""}>${esc(n[r])}</a>`).join("")}</nav>
-   <div class="langs" role="group" aria-label="Language">${["ka","ru","en"].map(l => `<button type="button" data-lang="${l}" aria-pressed="${l === lang}" lang="${l}">${l.toUpperCase()}</button>`).join("")}</div>
+   <div class="langs" role="group" aria-label="${{ka:"ენა",ru:"Язык",en:"Language"}[lang]}">${["ka","ru","en"].map(l => `<a href="/${l}/#${route}" hreflang="${l}" lang="${l}" data-set-lang="${l}" aria-label="${NAMES[l]}" title="${NAMES[l]}"${l === lang ? ' aria-current="true"' : ""}>${l.toUpperCase()}</a>`).join("")}</div>
    ${trialBtn("btn b-red trial mag", esc(t().join))}
    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-menu>${t().menu}</button>
   </div></header>${trialBtn("btn b-red fab", esc(x().trial) + " " + ARROW)}`;
@@ -1336,9 +1331,10 @@ function render(keepFocus) {
 function toTop() { lenis ? lenis.scrollTo(0, {immediate:true}) : scrollTo(0, 0); }
 
 document.addEventListener("click", e => {
-  const el = e.target.closest("[data-lang],[data-join],[data-coach],[data-wd],[data-pd],[data-menu],[data-close],[data-copy]");
+  const el = e.target.closest("[data-set-lang],[data-join],[data-coach],[data-wd],[data-pd],[data-menu],[data-close],[data-copy]");
   if (!el) { if (e.target.closest(".nav.open a")) document.getElementById("nav").classList.remove("open"); return; }
-  if (el.dataset.lang) { setLang(el.dataset.lang); render(`[data-lang="${lang}"]`); return; }
+  // only an explicit switch is remembered; the link itself navigates
+  if (el.dataset.setLang) { try { localStorage.setItem("gj-lang", el.dataset.setLang); } catch (x_) {} return; }
   if (el.dataset.join !== undefined) { e.preventDefault(); openJoin(el.dataset.join); return; }
   if (el.dataset.coach) { openCoach(el.dataset.coach); return; }
   if (el.dataset.wd) { day = (day + +el.dataset.wd + 7) % 7; const wg = document.querySelector("[data-widget]"); wg.innerHTML = widget(); wg.querySelector(`[data-wd="${el.dataset.wd}"]`).focus(); return; }
