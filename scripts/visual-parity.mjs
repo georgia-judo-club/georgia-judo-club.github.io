@@ -1,9 +1,9 @@
 // Manual gate (needs network for the CDN scripts): node scripts/visual-parity.mjs <base-ref> [--widths=1440,390] [--langs=ka,ru,en]
-// Screenshots <base-ref>'s public/ at /#<lang> and dist/ at /<lang>/, and fails on any byte difference.
+// Screenshots <base-ref> (its public/ at /#<lang>, or its build at /<lang>/) against dist/, failing on any byte difference.
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, renameSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { chromium } from 'playwright';
 import { serve } from './serve.mjs';
 
@@ -15,8 +15,23 @@ const widths = opt('widths', '1440,390').map(Number);
 const langs = opt('langs', 'ka,ru,en');
 
 const tmp = mkdtempSync(join(tmpdir(), 'parity-'));
-execFileSync('tar', ['-x', '-C', tmp], { input: execFileSync('git', ['archive', base, 'public'], { maxBuffer: 1 << 30 }) });
-const [old, cur] = await Promise.all([serve(join(tmp, 'public')), serve('dist')]);
+const git = (...a) => execFileSync('git', a, { maxBuffer: 1 << 30 });
+// refs from before the move to /<lang>/ serve the raw preview from public/ with a #<lang> hash
+let legacy = true;
+try { execFileSync('git', ['cat-file', '-e', `${base}:public/index.html`], { stdio: 'ignore' }); } catch { legacy = false; }
+let baseDir = join(tmp, 'public');
+if (legacy) {
+  execFileSync('tar', ['-x', '-C', tmp], { input: git('archive', base, 'public') });
+} else {
+  const wt = join(tmp, 'wt');
+  git('worktree', 'add', '--detach', wt, base);
+  symlinkSync(resolve('node_modules'), join(wt, 'node_modules'));
+  execFileSync('npx', ['astro', 'build'], { cwd: wt, stdio: 'ignore' });
+  baseDir = join(tmp, 'dist');
+  renameSync(join(wt, 'dist'), baseDir);
+  git('worktree', 'remove', '--force', wt);
+}
+const [old, cur] = await Promise.all([serve(baseDir), serve('dist')]);
 const browser = await chromium.launch();
 
 async function shot(url, width) {
@@ -37,7 +52,7 @@ async function shot(url, width) {
 let bad = 0;
 for (const lang of langs) {
   for (const w of widths) {
-    const a = await shot(`${old.url}#${lang}`, w);
+    const a = await shot(legacy ? `${old.url}#${lang}` : `${old.url}${lang}/`, w);
     const b = await shot(`${cur.url}${lang}/`, w);
     if (a.equals(b)) {
       console.log(`${lang} ${w} IDENTICAL`);
