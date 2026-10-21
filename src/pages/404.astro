@@ -1,0 +1,31 @@
+---
+import Head from '../components/Head.astro';
+import LangPick from '../components/LangPick.astro';
+import { BRAND, LANGS, NOT_FOUND } from '../i18n/ui';
+import '../styles/fonts.css';
+---
+<!doctype html>
+<html lang="ka">
+<head>
+  <Head title={`404 · ${BRAND.ka}`} />
+  <style is:inline>
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0F1B33;color:#fff;font:400 1rem/1.6 "Inter","Noto Sans Georgian",system-ui,sans-serif}
+    section{padding:2rem;text-align:center}
+    h1{font:900 2rem/1.15 "Montserrat","Noto Sans Georgian",system-ui,sans-serif;margin:0 0 .5rem}
+    a{color:#FF6B6C}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <main>
+    {LANGS.map((l) => (
+      <section data-404={l} lang={l} hidden={l !== 'ka'}>
+        <h1>{NOT_FOUND[l].title}</h1>
+        <p>{NOT_FOUND[l].text}</p>
+        <p><a href={`/${l}/`}>{NOT_FOUND[l].home}</a></p>
+      </section>
+    ))}
+  </main>
+  <LangPick mode="reveal" />
+</body>
+</html>
