@@ -680,8 +680,8 @@ const PROGS = [
 
 const COACHES = [
  {id:"karen",name:{ka:"კარენ არუთინიანი",ru:"Карен Арутинян",en:"Karen Arutinian"},nameConf:{ka:"c",ru:"i",en:"i"},
-  role:{ka:"კლუბის დირექტორი",ru:"Директор клуба",en:"Club director"},
-  lines:[[{ka:"კლუბის იურიდიული პირის დირექტორი (ს/კ 206337374).",ru:"Директор юридического лица клуба (ИК 206337374).",en:"Director of the club’s legal entity (ID 206337374)."},"c"],
+  role:{ka:"კლუბის პრეზიდენტი",ru:"Президент клуба",en:"Club president"},
+  lines:[[{ka:"კლუბის პრეზიდენტი.",ru:"Президент клуба.",en:"President of the club."},"c"],
    [{ka:"მწვრთნელი: Facebook-ის კომენტარებში მას „coach Karen“-ს ეძახიან.",ru:"Тренер: в комментариях в Facebook его называют «coach Karen».",en:"Coach: commenters on the club’s posts call him “coach Karen”."},"i"]]},
  {id:"kitober",name:{ka:"გაბრიელ კიტობერი",ru:"Габриэль Китобер",en:"Gabriel Kitober"},nameConf:{ka:"c",ru:"i",en:"i"},
   role:{ka:"საღამოს ნე-ვაზა",ru:"Вечерняя не-вадза",en:"Evening ne-waza"},
@@ -1135,7 +1135,7 @@ function sPrograms() {
     <div class="pcs">${ps.map(progCard).join("")}</div></div>
    <aside class="sw rv" data-widget aria-label="${esc(t().schH)}">${widget()}</aside></div></section>`;
 }
-const COACH_FACT = {karen:() => [L({ka:"კლუბის დირექტორი",ru:"Директор клуба",en:"Club director"}), "c"], kitober:() => [sx().nw, "c"]};
+const COACH_FACT = {karen:() => [L({ka:"კლუბის პრეზიდენტი",ru:"Президент клуба",en:"Club president"}), "c"], kitober:() => [sx().nw, "c"]};
 const RUSTAVI = ["baratashvili", "zanguri"];
 const coachRole = id => RUSTAVI.includes(id) ? `${sx().coach} · ${L({ka:"რუსთავი",ru:"Рустави",en:"Rustavi"})}` : id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
 const COACH_PH = {davit:"davit-1fc13994", eldari:"eldari-0324f864", arsen:"arsen-62d0d086", kantaria:"kantaria-cbbcd495",
