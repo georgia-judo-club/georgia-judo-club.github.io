@@ -21,7 +21,7 @@ out += `@font-face {
   font-display: swap;
   font-weight: 600;
   src: url(../fonts/noto-serif-jp-judo-600.woff2) format('woff2');
-  unicode-range: U+67D4,U+9053;
+  unicode-range: U+4E00,U+4E03,U+4E09,U+4E8C,U+4E94,U+5100,U+516B,U+516D,U+5236,U+52C7,U+52D5,U+53CB,U+540D,U+56DB,U+5834,U+5B9F,U+5C0A,U+5FC3,U+60C5,U+656C,U+67D4,U+6C17,U+793C,U+7BC4,U+81EA,U+865A,U+884C,U+898F,U+8A89,U+8AA0,U+8B19,U+9053;
 }
 `;
 writeFileSync('src/styles/fonts.css', out);
