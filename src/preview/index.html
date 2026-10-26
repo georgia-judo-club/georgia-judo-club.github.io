@@ -335,6 +335,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pt p.sub{margin-top:1.1rem;max-width:56ch;color:#D8DEE9;font-size:1rem}
 
 /* boxing */
+.dir-bx{display:block;text-decoration:none;color:inherit;overflow:hidden;transition:transform .5s var(--e),box-shadow .5s var(--e)}
+.dir-bx:hover{transform:translateY(-4px);box-shadow:0 1.2rem 2.4rem rgba(15,27,51,.14)}
+.dir-bx img{display:block;width:calc(100% + 2.4rem);max-width:none;margin:-1.3rem -1.2rem 1rem;aspect-ratio:4/3;object-fit:cover}
+.dir-bx .lk{margin-top:1rem}
 .bx-h{background:linear-gradient(160deg,#122242,#0B1429 70%);color:#fff;padding-block:3rem;overflow:hidden}
 .bx-g{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:3rem;align-items:center}
 .bx-h h1{margin-top:.9rem;font-size:5rem}
@@ -356,6 +360,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .bx2 .cgs{grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
 .bxg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin-top:2rem}
 .bxg img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);display:block}
+.bxg.tall{grid-template-columns:repeat(6,minmax(0,1fr))}.bxg.tall img{aspect-ratio:3/4}
+.dir.wide ul{display:block;columns:3 16rem;column-gap:2rem}.dir.wide li{margin-bottom:.45rem;break-inside:avoid}.bx-tbc{max-width:60ch;margin-top:1rem}
+@media (max-width:899px){.bxg.tall{grid-template-columns:repeat(3,minmax(0,1fr))}.bxg.tall img:first-child{grid-column:auto}}
+@media (max-width:479px){.bxg.tall{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:899px){.bx-g,.bx2{grid-template-columns:minmax(0,1fr)}.bx-h h1{font-size:3.4rem}.bxs{grid-template-columns:minmax(0,1fr)}.bxg{grid-template-columns:repeat(2,minmax(0,1fr))}.bxg img:first-child{grid-column:1/-1}}
 
 /* programme rows */
@@ -798,9 +806,9 @@ const SILH = '<svg viewBox="0 0 120 110" aria-hidden="true"><circle cx="60" cy="
 
 const SOC = [["https://www.instagram.com/geojudoclub/","Instagram","ig"],["https://www.youtube.com/@judoclubgeorgia","YouTube","yt"],["https://www.facebook.com/JudoClubGeorgia/","Facebook","fb"]];
 const CODE_NAV = {ka:"ქცევის კოდექსი",ru:"Кодекс поведения",en:"Code of conduct"};
-const ROUTES = ["home","parents","programs","schedule","coaches","branches","stories","videos","contact","boxing","code"];
+const ROUTES = ["home","parents","programs","boxing","trampoline","schedule","coaches","branches","stories","videos","contact","code"];
 
-function msg(ctx) { return ctx && ctx.startsWith(BXW[lang]) ? ctx : t().wa + (ctx ? " " + ctx : ""); }
+function msg(ctx) { return ctx && Object.values(SPT).some(s => ctx.startsWith(s.w[lang])) ? ctx : t().wa + (ctx ? " " + ctx : ""); }
 const BXW = {ka:"გამარჯობა! მინდა კრივზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на бокс.",en:"Hello! I would like to join boxing."};
 function jbtn(ctx, cls, label) { return `<button type="button" class="${cls}" data-join="${esc(ctx || "")}">${label}</button>`; }
 function vmeta(v) { return `${v.sh ? t().short_ : t().video_} · ${dur(v.s)} · ${fmtDate(v.d)}`; }
@@ -836,7 +844,7 @@ function openCoach(id) {
 Object.assign(T.ka.nav, {parents:"მშობლებს", branches:"ფილიალები"});
 Object.assign(T.ru.nav, {parents:"Родителям", branches:"Филиалы"});
 Object.assign(T.en.nav, {parents:"Parents", branches:"Branches", stories:"News"});
-for (const l of ["ka","ru","en"]) Object.assign(T[l].nav, {code:CODE_NAV[l], boxing:{ka:"კრივი",ru:"Бокс",en:"Boxing"}[l]});
+for (const l of ["ka","ru","en"]) Object.assign(T[l].nav, {code:CODE_NAV[l], boxing:{ka:"კრივი",ru:"Бокс",en:"Boxing"}[l], trampoline:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"}[l]});
 const X = {
 ka:{wmS:"ძიუდოს კლუბი",wmB:"ჯორჯია",trial:"საცდელი ვარჯიში",trialL:"ჩაეწერეთ საცდელ ვარჯიშზე",trialMsg:"მინდა საცდელ ვარჯიშზე მოსვლა.",
  eb:"ძიუდოს კლუბი · თბილისი · <b>2008 წლიდან</b>",sched:"განრიგი",heroAlt:"ვარჯიში კლუბის დარბაზში",heroCap:"ვარჯიში კლუბში, თბილისი",
@@ -963,7 +971,7 @@ en:{heroEb:"Judo club · Tbilisi · Since 2008",h1:["Champions","are made","here
  coachIll:"Illustrative frame"}
 };
 const z = () => Z[lang];
-const FNAV = ROUTES.filter(r => r !== "home"), NAV = FNAV.filter(r => r !== "code" && r !== "boxing");
+const FNAV = ROUTES.filter(r => r !== "home"), NAV = FNAV.filter(r => r !== "code");
 const trialBtn = (cls, label) => jbtn(x().trialMsg, cls, label);
 // Tbilisi weekday, Monday = 0, whatever the visitor's zone
 const TODAY = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].indexOf(new Intl.DateTimeFormat("en-US",{weekday:"short",timeZone:"Asia/Tbilisi"}).format(new Date()));
@@ -1191,7 +1199,7 @@ const COACH_FACT = {karen:() => [L({ka:"კლუბის პრეზიდე
  loladze:() => [L({ka:"მსოფლიოს ვიცე-ჩემპიონი ძიუდოში",ru:"Вице-чемпион мира по дзюдо",en:"World judo silver medallist"}), "c"],
  davit:() => [L({ka:"ევროპის ვერცხლის პრიზიორი სამბოში",ru:"Серебряный призёр Европы по самбо",en:"European sambo silver medallist"}), "c"]};
 const RUSTAVI = ["baratashvili", "zanguri"];
-const coachRole = id => BXC.includes(id) ? L(BXH.h) : RUSTAVI.includes(id) ? `${sx().coach} · ${L({ka:"რუსთავი",ru:"Рустави",en:"Rustavi"})}` : id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
+const coachRole = id => BXC.includes(id) ? L(SPT.boxing.h) : RUSTAVI.includes(id) ? `${sx().coach} · ${L({ka:"რუსთავი",ru:"Рустави",en:"Rustavi"})}` : id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
 const COACH_PH = {davit:"1fc13994", eldari:"0324f864", arsen:"62d0d086", kantaria:"cbbcd495",
  kitober:"0abdd77c", baratashvili:"84436125", zanguri:"9c5b7584",
  katamadze:"08bd7dd2", chapidze:"6b7d41ef"};
@@ -1257,7 +1265,9 @@ const DIRH = {ka:["მიმართულებები","სპორტუ�
 function sDirs() {
   const [eb, h, p] = DIRH[lang];
   return `<section class="sec sf" aria-labelledby="dir-h"><div class="wrap">${shd(eb, h, p, "", "dir-h")}
-   <div class="dirs">${DIRS.map(d => { const [n, ...it] = d[lang]; return `<article class="dir rv"><h3>${esc(n)}</h3><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul>${d === DIRS[1] ? lnk("#boxing", BXH.more[lang]) : ""}</article>`; }).join("")}</div></div></section>`;
+   <div class="dirs">${DIRS.map(d => { const [n, ...it] = d[lang]; const body = `<h3>${esc(n)}</h3><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
+    const sp = Object.keys(SPT).find(k => DIRS[SPT[k].dir] === d);
+    return sp ? `<a class="dir dir-bx rv" href="#${sp}"><img src="${SPT[sp].ph[0]}" alt="" loading="lazy">${body}<span class="lk">${esc(SPL.more[lang])} ${ARROW}</span></a>` : `<article class="dir rv">${body}</article>`; }).join("")}</div></div></section>`;
 }
 const SP = {judo:{ka:"ძიუდო",ru:"Дзюдо",en:"Judo"}, sambo:{ka:"სამბო",ru:"Самбо",en:"Sambo"}, para:{ka:"პარაძიუდო",ru:"Параджудо",en:"Para judo"}, tramp:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"}};
 // Nini K.: surname held back until the club confirms she is an adult or parents agree
@@ -1492,29 +1502,37 @@ function pCode() {
 const BXC = ["katamadze", "chapidze"];
 const BOX = [{d:[0,2,4], ts:["10:30"], co:["chapidze"], k:"mo"}, {d:[0,1,2,3,4], ts:["17:00","18:30","19:30"], ad:"19:30", co:BXC, k:"ev"}];
 const bxDays = d => d.length === 5 ? `${t().dshort[0]}–${t().dshort[4]}` : d.map(i => t().dshort[i]).join(", ");
-const BXH = {h:{ka:"კრივი",ru:"Бокс",en:"Boxing"}, more:{ka:"დაწვრილებით",ru:"Подробнее",en:"More"},
- ka:{eb:"მიმართულება",p:"კრივი კლუბში „ჯორჯია“: საკუთარი რინგი, გამოცდილი მწვრთნელები და ვარჯიშები ყოველ სამუშაო დღეს — დილით და საღამოს. ბავშვებისთვის და მოზრდილებისთვის.",
-  sEb:"განრიგი",sH:"როდის ვვარჯიშობთ",mo:"დილის ცვლა",ev:"საღამოს ვარჯიშები",off:"შაბათი და კვირა დასვენების დღეებია. დააჭირე დროს — შეტყობინება მზად იქნება.",
-  tH:"რას ვასწავლით",cH:"კრივის მწვრთნელები",gH:"დარბაზიდან",sch:"განრიგი"},
- ru:{eb:"Направление",p:"Бокс в клубе «Джорджия»: свой ринг, опытные тренеры и тренировки каждый будний день — утром и вечером. Для детей и взрослых.",
-  sEb:"Расписание",sH:"Когда тренируемся",mo:"Утренняя смена",ev:"Вечерние тренировки",off:"Суббота и воскресенье — выходные. Нажмите на время — сообщение будет готово.",
-  tH:"Чему учим",cH:"Тренеры по боксу",gH:"Из зала",sch:"Расписание"},
- en:{eb:"Our sports",p:"Boxing at Judo Club Georgia: our own ring, experienced coaches and sessions every weekday, morning and evening. For children and adults.",
-  sEb:"Schedule",sH:"When we train",mo:"Morning sessions",ev:"Evening sessions",off:"Saturday and Sunday are rest days. Tap a time and the message is ready.",
-  tH:"What we teach",cH:"Boxing coaches",gH:"From the gym",sch:"Schedule"}};
-const BXPH = ["boxing-01-3b5c87b3","boxing-02-6e59a679","boxing-03-65b7b800","boxing-04-edd619f1"].map(n => `/photos/boxing/${n}.jpg`);
-function pBoxing() {
-  const c = BXH[lang], h = L(BXH.h), [, ...it] = DIRS[1][lang];
+const SPL = {more:{ka:"დაწვრილებით",ru:"Подробнее",en:"More"},
+ ka:{eb:"მიმართულება",sEb:"განრიგი",sH:"როდის ვვარჯიშობთ",mo:"დილის ცვლა",ev:"საღამოს ვარჯიშები",tH:"რას ვასწავლით",gH:"დარბაზიდან",sch:"განრიგი",tbc:"განრიგს კლუბი აზუსტებს. მოგვწერეთ — გეტყვით ჯგუფს და დროს."},
+ ru:{eb:"Направление",sEb:"Расписание",sH:"Когда тренируемся",mo:"Утренняя смена",ev:"Вечерние тренировки",tH:"Чему учим",gH:"Из зала",sch:"Расписание",tbc:"Расписание уточняется с клубом. Напишите нам — подскажем группу и время."},
+ en:{eb:"Our sports",sEb:"Schedule",sH:"When we train",mo:"Morning sessions",ev:"Evening sessions",tH:"What we teach",gH:"From the gym",sch:"Schedule",tbc:"The club is confirming the schedule. Message us and we’ll suggest a group and time."}};
+// sport pages; dir is the DIRS card that links to the page
+const SPT = {
+ boxing:{dir:1, h:{ka:"კრივი",ru:"Бокс",en:"Boxing"}, w:BXW, slots:BOX, co:BXC,
+  ph:["boxing-01-3b5c87b3","boxing-02-6e59a679","boxing-03-65b7b800","boxing-04-edd619f1"].map(n => `/photos/boxing/${n}.jpg`),
+  p:{ka:"კრივი კლუბში „ჯორჯია“: საკუთარი რინგი, გამოცდილი მწვრთნელები და ვარჯიშები ყოველ სამუშაო დღეს — დილით და საღამოს. ბავშვებისთვის და მოზრდილებისთვის.",
+   ru:"Бокс в клубе «Джорджия»: свой ринг, опытные тренеры и тренировки каждый будний день — утром и вечером. Для детей и взрослых.",
+   en:"Boxing at Judo Club Georgia: our own ring, experienced coaches and sessions every weekday, morning and evening. For children and adults."},
+  off:{ka:"შაბათი და კვირა დასვენების დღეებია. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Суббота и воскресенье — выходные. Нажмите на время — сообщение будет готово.",en:"Saturday and Sunday are rest days. Tap a time and the message is ready."},
+  cH:{ka:"კრივის მწვრთნელები",ru:"Тренеры по боксу",en:"Boxing coaches"}},
+ trampoline:{dir:3, h:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"}, eb:{ka:"სპორტული ტანვარჯიში",ru:"Спортивная гимнастика",en:"Gymnastics"}, slots:[], co:[], tall:1,
+  w:{ka:"გამარჯობა! მინდა ბატუტზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на батут.",en:"Hello! I would like to join trampoline."},
+  ph:["trampoline-01-f65bc203","trampoline-02-0d42fd59","trampoline-03-9506e620","trampoline-04-45ec2fa4","trampoline-05-889b9f72","trampoline-06-571e5332","trampoline-07-8216f2f3"].map(n => `/photos/trampoline/${n}.jpg`),
+  p:{ka:"სპორტული ტანვარჯიში და ბატუტი კლუბში „ჯორჯია“: ხტომები, აკრობატიკა, მოქნილობა და სხეულის კონტროლი. ჩვენთან გაიზარდა ბატუტზე ხტომის მსოფლიო ჩემპიონი.",
+   ru:"Спортивная гимнастика и батут в клубе «Джорджия»: прыжки, акробатика, гибкость и контроль тела. У нас выросла чемпионка мира по прыжкам на батуте.",
+   en:"Gymnastics and trampoline at Judo Club Georgia: jumps, acrobatics, flexibility and body control. A trampoline world champion grew up here."}}};
+function pSport(k) {
+  const s = SPT[k], c = SPL[lang], h = L(s.h), [, ...it] = DIRS[s.dir][lang], w = s.w[lang];
   const card = b => `<article class="dir rv"><h3>${esc(c[b.k])}<small>${esc(bxDays(b.d))}</small></h3>
-   <div class="bxt">${b.ts.map(a => jbtn(`${BXW[lang]} ${t().waSes} ${bxDays(b.d)} ${a}`, "", `${a}${a === b.ad ? `<small>${esc(sx().adult)}</small>` : ""}`)).join("")}</div>
+   <div class="bxt">${b.ts.map(a => jbtn(`${w} ${t().waSes} ${bxDays(b.d)} ${a}`, "", `${a}${a === b.ad ? `<small>${esc(sx().adult)}</small>` : ""}`)).join("")}</div>
    <p>${esc(sx().coach)}: ${esc(b.co.map(id => L(CO[id])).join(", "))}</p></article>`;
-  return `<section class="bx-h nv" aria-labelledby="bx-h1"><div class="wrap bx-g"><div>${kk(c.eb)}<h1 class="d" id="bx-h1">${esc(h)}</h1><p class="sub">${esc(c.p)}</p>
-    <div class="act">${jbtn(BXW[lang], "btn b-red mag", esc(t().join) + " " + ARROW)}<a class="btn b-w" href="#bx-s">${esc(c.sch)}</a></div></div>
-    <div class="bx-ph rv"><img src="${BXPH[0]}" alt="" fetchpriority="high"></div></div></section>
-   <section class="sec" aria-labelledby="bx-s"><div class="wrap">${shd(c.sEb, c.sH, c.off, "", "bx-s")}<div class="bxs">${BOX.map(card).join("")}</div></div></section>
-   <section class="sec sf" aria-labelledby="bx-c"><div class="wrap"><div class="bx2"><div class="rv">${shd(h, c.tH, "", "", "bx-t")}<article class="dir"><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul></article></div>
-    <div>${shd(h, c.cH, "", "", "bx-c")}<div class="cgs">${BXC.map(id => coachCard(COACHES.find(k => k.id === id))).join("")}</div></div></div></div></section>
-   <section class="sec" aria-labelledby="bx-g"><div class="wrap">${shd(h, c.gH, "", "", "bx-g")}<div class="bxg">${BXPH.slice(1).map(u => `<img class="rv" src="${u}" alt="" loading="lazy">`).join("")}</div></div></section>` + sJoin();
+  const teach = `<div class="rv">${shd(h, c.tH, "", "", "sp-t")}<article class="dir${s.co.length ? "" : " wide"}"><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul></article></div>`;
+  return `<section class="bx-h nv" aria-labelledby="sp-h1"><div class="wrap bx-g"><div>${kk(s.eb ? L(s.eb) : c.eb)}<h1 class="d" id="sp-h1">${esc(h)}</h1><p class="sub">${esc(L(s.p))}</p>
+    <div class="act">${jbtn(w, "btn b-red mag", esc(t().join) + " " + ARROW)}<a class="btn b-w" href="#sp-s">${esc(c.sch)}</a></div></div>
+    <div class="bx-ph rv"><img src="${s.ph[0]}" alt="" fetchpriority="high"></div></div></section>
+   <section class="sec" aria-labelledby="sp-s"><div class="wrap">${shd(c.sEb, c.sH, s.slots.length ? L(s.off) : "", "", "sp-s")}${s.slots.length ? `<div class="bxs">${s.slots.map(card).join("")}</div>` : `<p class="sub rv bx-tbc">${esc(c.tbc)}${B("i")}</p>`}</div></section>
+   <section class="sec sf" aria-labelledby="sp-t"><div class="wrap">${s.co.length ? `<div class="bx2">${teach}<div>${shd(h, L(s.cH), "", "", "sp-c")}<div class="cgs">${s.co.map(id => coachCard(COACHES.find(x => x.id === id))).join("")}</div></div></div>` : teach}</div></section>
+   <section class="sec" aria-labelledby="sp-g"><div class="wrap">${shd(h, c.gH, "", "", "sp-g")}<div class="bxg${s.tall ? " tall" : ""}">${s.ph.slice(1).map(u => `<img class="rv" src="${u}" alt="" loading="lazy">`).join("")}</div></div></section>` + sJoin();
 }
 function ptitleH(h, p, eb) { return `<div class="pt"><div class="wrap">${kk(eb)}<h1 class="d${h.length > 24 ? " long" : ""}">${esc(h)}</h1>${p ? `<p class="sub">${P(p)}</p>` : ""}</div></div>`; }
 function pHome() { return sHero() + sTrust() + sChamps() + sPrograms() + sDirs() + sCoaches() + sStories() + sVideos() + sAbout() + sNumbers() + sJoin(); }
@@ -1550,7 +1568,7 @@ function pStory(id) {
 }
 function page() {
   if (route.startsWith("story-")) return pStory(route.slice(6));
-  return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode,boxing:pBoxing})[route]();
+  return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode,boxing:() => pSport("boxing"),trampoline:() => pSport("trampoline")})[route]();
 }
 function parseHash() {
   const h = location.hash.slice(1);
