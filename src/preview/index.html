@@ -334,6 +334,30 @@ button{font:inherit;color:inherit;cursor:pointer}
 :lang(ka) .pt h1.xl{font-size:1.7rem}
 .pt p.sub{margin-top:1.1rem;max-width:56ch;color:#D8DEE9;font-size:1rem}
 
+/* boxing */
+.bx-h{background:linear-gradient(160deg,#122242,#0B1429 70%);color:#fff;padding-block:3rem;overflow:hidden}
+.bx-g{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:3rem;align-items:center}
+.bx-h h1{margin-top:.9rem;font-size:5rem}
+:lang(ka) .bx-h h1{font-size:3.4rem}
+.bx-h .sub{margin-top:1.1rem;max-width:52ch;color:#D8DEE9}
+.bx-h .act{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
+.bx-ph{position:relative;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;max-width:100%}
+.bx-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.bx-ph::after{content:"";position:absolute;inset:auto 0 0;height:6px;background:linear-gradient(90deg,var(--red) 0 50%,#2F55D4 50%)}
+.bxs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;margin-top:2rem}
+.bxs .dir h3{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.bxs .dir h3 small{font:600 .8rem/1.6 var(--fb);color:var(--mu)}
+.bxt{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.1rem 0 .9rem}
+.bxt button{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;padding:.7rem 1rem;border:1px solid var(--ln);border-radius:var(--r);background:var(--w);cursor:pointer;font:800 1.5rem/1 var(--fd);color:var(--ink);transition:border-color .3s}
+.bxt button:hover{border-color:var(--red)}
+.bxt button small{font:600 .7rem/1.2 var(--fb);color:var(--red)}
+.bxs .dir p{margin:0;font-size:.88rem;color:var(--mu)}
+.bx2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:2.5rem;margin-top:2rem;align-items:start}
+.bx2 .cgs{grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
+.bxg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin-top:2rem}
+.bxg img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);display:block}
+@media (max-width:899px){.bx-g,.bx2{grid-template-columns:minmax(0,1fr)}.bx-h h1{font-size:3.4rem}.bxs{grid-template-columns:minmax(0,1fr)}.bxg{grid-template-columns:repeat(2,minmax(0,1fr))}.bxg img:first-child{grid-column:1/-1}}
+
 /* programme rows */
 .prow{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:3.5rem;padding-block:2.5rem;border-top:1px solid var(--ln);align-items:start}
 .prow:first-child{border-top:0}
@@ -774,9 +798,10 @@ const SILH = '<svg viewBox="0 0 120 110" aria-hidden="true"><circle cx="60" cy="
 
 const SOC = [["https://www.instagram.com/geojudoclub/","Instagram","ig"],["https://www.youtube.com/@judoclubgeorgia","YouTube","yt"],["https://www.facebook.com/JudoClubGeorgia/","Facebook","fb"]];
 const CODE_NAV = {ka:"ქცევის კოდექსი",ru:"Кодекс поведения",en:"Code of conduct"};
-const ROUTES = ["home","parents","programs","schedule","coaches","branches","stories","videos","contact","code"];
+const ROUTES = ["home","parents","programs","schedule","coaches","branches","stories","videos","contact","boxing","code"];
 
-function msg(ctx) { return t().wa + (ctx ? " " + ctx : ""); }
+function msg(ctx) { return ctx && ctx.startsWith(BXW[lang]) ? ctx : t().wa + (ctx ? " " + ctx : ""); }
+const BXW = {ka:"გამარჯობა! მინდა კრივზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на бокс.",en:"Hello! I would like to join boxing."};
 function jbtn(ctx, cls, label) { return `<button type="button" class="${cls}" data-join="${esc(ctx || "")}">${label}</button>`; }
 function vmeta(v) { return `${v.sh ? t().short_ : t().video_} · ${dur(v.s)} · ${fmtDate(v.d)}`; }
 const V = id => DATA.videos.find(v => v.id === id);
@@ -811,7 +836,7 @@ function openCoach(id) {
 Object.assign(T.ka.nav, {parents:"მშობლებს", branches:"ფილიალები"});
 Object.assign(T.ru.nav, {parents:"Родителям", branches:"Филиалы"});
 Object.assign(T.en.nav, {parents:"Parents", branches:"Branches", stories:"News"});
-for (const l of ["ka","ru","en"]) T[l].nav.code = CODE_NAV[l];
+for (const l of ["ka","ru","en"]) Object.assign(T[l].nav, {code:CODE_NAV[l], boxing:{ka:"კრივი",ru:"Бокс",en:"Boxing"}[l]});
 const X = {
 ka:{wmS:"ძიუდოს კლუბი",wmB:"ჯორჯია",trial:"საცდელი ვარჯიში",trialL:"ჩაეწერეთ საცდელ ვარჯიშზე",trialMsg:"მინდა საცდელ ვარჯიშზე მოსვლა.",
  eb:"ძიუდოს კლუბი · თბილისი · <b>2008 წლიდან</b>",sched:"განრიგი",heroAlt:"ვარჯიში კლუბის დარბაზში",heroCap:"ვარჯიში კლუბში, თბილისი",
@@ -938,7 +963,7 @@ en:{heroEb:"Judo club · Tbilisi · Since 2008",h1:["Champions","are made","here
  coachIll:"Illustrative frame"}
 };
 const z = () => Z[lang];
-const FNAV = ROUTES.filter(r => r !== "home"), NAV = FNAV.filter(r => r !== "code");
+const FNAV = ROUTES.filter(r => r !== "home"), NAV = FNAV.filter(r => r !== "code" && r !== "boxing");
 const trialBtn = (cls, label) => jbtn(x().trialMsg, cls, label);
 // Tbilisi weekday, Monday = 0, whatever the visitor's zone
 const TODAY = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].indexOf(new Intl.DateTimeFormat("en-US",{weekday:"short",timeZone:"Asia/Tbilisi"}).format(new Date()));
@@ -1005,7 +1030,9 @@ const CO = {
  loladze:{ka:"ალექსანდრე ლოლაძე",ru:"Александре Лоладзе",en:"Aleksandre Loladze"},
  paata:{ka:"პაატა ნოზაძე",ru:"Паата Нозадзе",en:"Paata Nozadze"},
  baratashvili:{ka:"გელა ბარათაშვილი",ru:"Гела Бараташвили",en:"Gela Baratashvili"},
- zanguri:{ka:"თენგიზ ზანგური",ru:"Тенгиз Зангури",en:"Tengiz Zanguri"}};
+ zanguri:{ka:"თენგიზ ზანგური",ru:"Тенгиз Зангури",en:"Tengiz Zanguri"},
+ katamadze:{ka:"გია ქათამაძე",ru:"Гия Катамадзе",en:"Gia Katamadze"},
+ chapidze:{ka:"პაატა ჩაფიძე",ru:"Паата Чапидзе",en:"Paata Chapidze"}};
 const TY = {tech:{ka:"ტექნიკური ვარჯიში + რანდორი",ru:"Техника + рандори",en:"Technical training + Randori"},
  ran:{ka:"რანდორი",ru:"Рандори",en:"Randori"},phys:{ka:"ფიზიკური მომზადება",ru:"ОФП",en:"Physical conditioning"},gym:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}};
 const SX = {
@@ -1043,9 +1070,10 @@ const dName = i => i === 6 ? sx().sun : t().days[i], dShort = i => i === 6 ? sx(
 const short = id => { const [f, ...r] = L(CO[id]).split(" "); return `${f[0]}. ${r.join(" ")}`; };
 const coList = s => s.co.map(short).join(", ");
 const sCtx = (s, i) => `${t().waSes} ${dName(i)} ${s.a}–${s.b}, ${L(TY[s.ty])}`;
-const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","nika","loladze","paata","baratashvili","zanguri"];
+const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","nika","loladze","paata","baratashvili","zanguri","katamadze","chapidze"];
 // a coach's slots grouped by identical day sets, e.g. "Mon–Fri 09:30, 18:30 · Sat 09:30"
 function coachSlots(id) {
+  if (BXC.includes(id)) return BOX.filter(b => b.co.includes(id)).map(b => `${bxDays(b.d)} ${b.ts.join(", ")}`).join(" · ");
   const g = new Map();
   for (let i = 0; i < 6; i++) sessions(i).filter(s => s.co.includes(id)).forEach(s => { const k = s.a; g.set(k, (g.get(k) || []).concat(i)); });
   const by = new Map();
@@ -1163,12 +1191,13 @@ const COACH_FACT = {karen:() => [L({ka:"კლუბის პრეზიდე
  loladze:() => [L({ka:"მსოფლიოს ვიცე-ჩემპიონი ძიუდოში",ru:"Вице-чемпион мира по дзюдо",en:"World judo silver medallist"}), "c"],
  davit:() => [L({ka:"ევროპის ვერცხლის პრიზიორი სამბოში",ru:"Серебряный призёр Европы по самбо",en:"European sambo silver medallist"}), "c"]};
 const RUSTAVI = ["baratashvili", "zanguri"];
-const coachRole = id => RUSTAVI.includes(id) ? `${sx().coach} · ${L({ka:"რუსთავი",ru:"Рустави",en:"Rustavi"})}` : id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
-const COACH_PH = {davit:"davit-1fc13994", eldari:"eldari-0324f864", arsen:"arsen-62d0d086", kantaria:"kantaria-cbbcd495",
- kitober:"kitober-0abdd77c", baratashvili:"baratashvili-84436125", zanguri:"zanguri-9c5b7584"};
+const coachRole = id => BXC.includes(id) ? L(BXH.h) : RUSTAVI.includes(id) ? `${sx().coach} · ${L({ka:"რუსთავი",ru:"Рустави",en:"Rustavi"})}` : id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
+const COACH_PH = {davit:"1fc13994", eldari:"0324f864", arsen:"62d0d086", kantaria:"cbbcd495",
+ kitober:"0abdd77c", baratashvili:"84436125", zanguri:"9c5b7584",
+ katamadze:"08bd7dd2", chapidze:"6b7d41ef"};
 function coachCard(c) {
   const ini = c.name.en.split(" ").map(s => s[0]).join(""), f = COACH_FACT[c.id], ph = COACH_PH[c.id];
-  return `<button type="button" class="cc rv" data-coach="${c.id}"><span class="mono-p">${ph ? `<img src="/photos/coaches/${ph}.jpg" alt="" loading="lazy">` : `<span class="ini f" aria-hidden="true">${esc(ini)}</span>`}</span>
+  return `<button type="button" class="cc rv" data-coach="${c.id}"><span class="mono-p">${ph ? `<img src="/photos/coaches/${c.id}-${ph}.jpg" alt="" loading="lazy">` : `<span class="ini f" aria-hidden="true">${esc(ini)}</span>`}</span>
    <span class="bd"><span class="nm">${esc(L(c.name))}${c.id === "nika" ? DB(4) : ""}</span><span class="role">${esc(coachRole(c.id))}</span>
    <span class="rk">${esc(coachSlots(c.id))}</span>${f ? `<span class="fx">${esc(f()[0])}${B(f()[1])}</span>` : ""}</span></button>`;
 }
@@ -1228,7 +1257,7 @@ const DIRH = {ka:["მიმართულებები","სპორტუ�
 function sDirs() {
   const [eb, h, p] = DIRH[lang];
   return `<section class="sec sf" aria-labelledby="dir-h"><div class="wrap">${shd(eb, h, p, "", "dir-h")}
-   <div class="dirs">${DIRS.map(d => { const [n, ...it] = d[lang]; return `<article class="dir rv"><h3>${esc(n)}</h3><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul></article>`; }).join("")}</div></div></section>`;
+   <div class="dirs">${DIRS.map(d => { const [n, ...it] = d[lang]; return `<article class="dir rv"><h3>${esc(n)}</h3><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul>${d === DIRS[1] ? lnk("#boxing", BXH.more[lang]) : ""}</article>`; }).join("")}</div></div></section>`;
 }
 const SP = {judo:{ka:"ძიუდო",ru:"Дзюдо",en:"Judo"}, sambo:{ka:"სამბო",ru:"Самбо",en:"Sambo"}, para:{ka:"პარაძიუდო",ru:"Параджудо",en:"Para judo"}, tramp:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"}};
 // Nini K.: surname held back until the club confirms she is an adult or parents agree
@@ -1459,6 +1488,34 @@ function pCode() {
 }
 
 /* pages */
+/* boxing, club post 2026-10-26: Mon–Fri evenings, Mon/Wed/Fri mornings */
+const BXC = ["katamadze", "chapidze"];
+const BOX = [{d:[0,2,4], ts:["10:30"], co:["chapidze"], k:"mo"}, {d:[0,1,2,3,4], ts:["17:00","18:30","19:30"], ad:"19:30", co:BXC, k:"ev"}];
+const bxDays = d => d.length === 5 ? `${t().dshort[0]}–${t().dshort[4]}` : d.map(i => t().dshort[i]).join(", ");
+const BXH = {h:{ka:"კრივი",ru:"Бокс",en:"Boxing"}, more:{ka:"დაწვრილებით",ru:"Подробнее",en:"More"},
+ ka:{eb:"მიმართულება",p:"კრივი კლუბში „ჯორჯია“: საკუთარი რინგი, გამოცდილი მწვრთნელები და ვარჯიშები ყოველ სამუშაო დღეს — დილით და საღამოს. ბავშვებისთვის და მოზრდილებისთვის.",
+  sEb:"განრიგი",sH:"როდის ვვარჯიშობთ",mo:"დილის ცვლა",ev:"საღამოს ვარჯიშები",off:"შაბათი და კვირა დასვენების დღეებია. დააჭირე დროს — შეტყობინება მზად იქნება.",
+  tH:"რას ვასწავლით",cH:"კრივის მწვრთნელები",gH:"დარბაზიდან",sch:"განრიგი"},
+ ru:{eb:"Направление",p:"Бокс в клубе «Джорджия»: свой ринг, опытные тренеры и тренировки каждый будний день — утром и вечером. Для детей и взрослых.",
+  sEb:"Расписание",sH:"Когда тренируемся",mo:"Утренняя смена",ev:"Вечерние тренировки",off:"Суббота и воскресенье — выходные. Нажмите на время — сообщение будет готово.",
+  tH:"Чему учим",cH:"Тренеры по боксу",gH:"Из зала",sch:"Расписание"},
+ en:{eb:"Our sports",p:"Boxing at Judo Club Georgia: our own ring, experienced coaches and sessions every weekday, morning and evening. For children and adults.",
+  sEb:"Schedule",sH:"When we train",mo:"Morning sessions",ev:"Evening sessions",off:"Saturday and Sunday are rest days. Tap a time and the message is ready.",
+  tH:"What we teach",cH:"Boxing coaches",gH:"From the gym",sch:"Schedule"}};
+const BXPH = ["boxing-01-3b5c87b3","boxing-02-6e59a679","boxing-03-65b7b800","boxing-04-edd619f1"].map(n => `/photos/boxing/${n}.jpg`);
+function pBoxing() {
+  const c = BXH[lang], h = L(BXH.h), [, ...it] = DIRS[1][lang];
+  const card = b => `<article class="dir rv"><h3>${esc(c[b.k])}<small>${esc(bxDays(b.d))}</small></h3>
+   <div class="bxt">${b.ts.map(a => jbtn(`${BXW[lang]} ${t().waSes} ${bxDays(b.d)} ${a}`, "", `${a}${a === b.ad ? `<small>${esc(sx().adult)}</small>` : ""}`)).join("")}</div>
+   <p>${esc(sx().coach)}: ${esc(b.co.map(id => L(CO[id])).join(", "))}</p></article>`;
+  return `<section class="bx-h nv" aria-labelledby="bx-h1"><div class="wrap bx-g"><div>${kk(c.eb)}<h1 class="d" id="bx-h1">${esc(h)}</h1><p class="sub">${esc(c.p)}</p>
+    <div class="act">${jbtn(BXW[lang], "btn b-red mag", esc(t().join) + " " + ARROW)}<a class="btn b-w" href="#bx-s">${esc(c.sch)}</a></div></div>
+    <div class="bx-ph rv"><img src="${BXPH[0]}" alt="" fetchpriority="high"></div></div></section>
+   <section class="sec" aria-labelledby="bx-s"><div class="wrap">${shd(c.sEb, c.sH, c.off, "", "bx-s")}<div class="bxs">${BOX.map(card).join("")}</div></div></section>
+   <section class="sec sf" aria-labelledby="bx-c"><div class="wrap"><div class="bx2"><div class="rv">${shd(h, c.tH, "", "", "bx-t")}<article class="dir"><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul></article></div>
+    <div>${shd(h, c.cH, "", "", "bx-c")}<div class="cgs">${BXC.map(id => coachCard(COACHES.find(k => k.id === id))).join("")}</div></div></div></div></section>
+   <section class="sec" aria-labelledby="bx-g"><div class="wrap">${shd(h, c.gH, "", "", "bx-g")}<div class="bxg">${BXPH.slice(1).map(u => `<img class="rv" src="${u}" alt="" loading="lazy">`).join("")}</div></div></section>` + sJoin();
+}
 function ptitleH(h, p, eb) { return `<div class="pt"><div class="wrap">${kk(eb)}<h1 class="d${h.length > 24 ? " long" : ""}">${esc(h)}</h1>${p ? `<p class="sub">${P(p)}</p>` : ""}</div></div>`; }
 function pHome() { return sHero() + sTrust() + sChamps() + sPrograms() + sDirs() + sCoaches() + sStories() + sVideos() + sAbout() + sNumbers() + sJoin(); }
 function pPrograms() {
@@ -1493,7 +1550,7 @@ function pStory(id) {
 }
 function page() {
   if (route.startsWith("story-")) return pStory(route.slice(6));
-  return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode})[route]();
+  return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode,boxing:pBoxing})[route]();
 }
 function parseHash() {
   const h = location.hash.slice(1);
