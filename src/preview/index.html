@@ -1078,7 +1078,8 @@ const CO = {
  baratashvili:{ka:"გელა ბარათაშვილი",ru:"Гела Бараташвили",en:"Gela Baratashvili"},
  zanguri:{ka:"თენგიზ ზანგური",ru:"Тенгиз Зангури",en:"Tengiz Zanguri"},
  katamadze:{ka:"გია ქათამაძე",ru:"Гия Катамадзе",en:"Gia Katamadze"},
- chapidze:{ka:"პაატა ჩაფიძე",ru:"Паата Чапидзе",en:"Paata Chapidze"}};
+ chapidze:{ka:"პაატა ჩაფიძე",ru:"Паата Чапидзе",en:"Paata Chapidze"},
+ menteshashvili:{ka:"ინგა მენთეშაშვილი",ru:"Инга Ментешашвили",en:"Inga Menteshashvili"}};
 const TY = {tech:{ka:"ტექნიკური ვარჯიში + რანდორი",ru:"Техника + рандори",en:"Technical training + Randori"},
  ran:{ka:"რანდორი",ru:"Рандори",en:"Randori"},phys:{ka:"ფიზიკური მომზადება",ru:"ОФП",en:"Physical conditioning"},gym:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}};
 const SX = {
@@ -1116,7 +1117,7 @@ const dName = i => i === 6 ? sx().sun : t().days[i], dShort = i => i === 6 ? sx(
 const short = id => { const [f, ...r] = L(CO[id]).split(" "); return `${f[0]}. ${r.join(" ")}`; };
 const coList = s => s.co.map(short).join(", ");
 const sCtx = (s, i) => `${t().waSes} ${dName(i)} ${s.a}–${s.b}, ${L(TY[s.ty])}`;
-const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","nika","loladze","paata","baratashvili","zanguri","katamadze","chapidze"];
+const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","nika","loladze","paata","baratashvili","zanguri","katamadze","chapidze","menteshashvili"];
 // a coach's slots grouped by identical day sets, e.g. "Mon–Fri 09:30, 18:30 · Sat 09:30"
 function coachSlots(id) {
   if (BXC.includes(id)) return BOX.filter(b => b.co.includes(id)).map(b => `${bxDays(b.d)} ${b.ts.join(", ")}`).join(" · ");
@@ -1238,10 +1239,10 @@ const COACH_FACT = {karen:() => [L({ka:"კლუბის პრეზიდე
  loladze:() => [L({ka:"მსოფლიოს ვიცე-ჩემპიონი ძიუდოში",ru:"Вице-чемпион мира по дзюдо",en:"World judo silver medallist"}), "c"],
  davit:() => [L({ka:"ევროპის ვერცხლის პრიზიორი სამბოში",ru:"Серебряный призёр Европы по самбо",en:"European sambo silver medallist"}), "c"]};
 const RUSTAVI = ["baratashvili", "zanguri"];
-const coachRole = id => BXC.includes(id) ? L(SPT.boxing.h) : RUSTAVI.includes(id) ? `${sx().coach} · ${L({ka:"რუსთავი",ru:"Рустави",en:"Rustavi"})}` : id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
+const coachRole = id => BXC.includes(id) ? L(SPT.boxing.h) : TRC.includes(id) ? L(SPN.trampoline) : RUSTAVI.includes(id) ? `${sx().coach} · ${L({ka:"რუსთავი",ru:"Рустави",en:"Rustavi"})}` : id === "paata" ? L(TY.gym) : id === "kitober" ? L(progOf("ne-waza-evening").name) : sx().coach;
 const COACH_PH = {davit:"1fc13994", eldari:"0324f864", arsen:"62d0d086", kantaria:"cbbcd495",
  kitober:"0abdd77c", baratashvili:"84436125", zanguri:"9c5b7584",
- katamadze:"08bd7dd2", chapidze:"6b7d41ef"};
+ katamadze:"08bd7dd2", chapidze:"6b7d41ef", menteshashvili:"36671f34"};
 function coachCard(c) {
   const ini = c.name.en.split(" ").map(s => s[0]).join(""), f = COACH_FACT[c.id], ph = COACH_PH[c.id];
   return `<button type="button" class="cc rv" data-coach="${c.id}"><span class="mono-p">${ph ? `<img src="/photos/coaches/${c.id}-${ph}.jpg" alt="" loading="lazy">` : `<span class="ini f" aria-hidden="true">${esc(ini)}</span>`}</span>
@@ -1547,7 +1548,7 @@ function pCode() {
 
 /* pages */
 /* boxing, club post 2026-10-26: Mon–Fri evenings, Mon/Wed/Fri mornings */
-const BXC = ["katamadze", "chapidze"];
+const BXC = ["katamadze", "chapidze"], TRC = ["menteshashvili"];
 const BOX = [{d:[0,2,4], ts:["10:30"], co:["chapidze"], k:"mo"}, {d:[0,1,2,3,4], ts:["17:00","18:30","19:30"], ad:"19:30", co:BXC, k:"ev"}];
 const bxDays = d => d.length === 5 ? `${t().dshort[0]}–${t().dshort[4]}` : d.map(i => t().dshort[i]).join(", ");
 const SPL = {more:{ka:"დაწვრილებით",ru:"Подробнее",en:"More"},
@@ -1604,7 +1605,7 @@ function sResults(wins) {
 }
 // sport pages, in SPORTS order; DIRS[i] holds what each one teaches
 const SPT = {
- judo:{h:SPN.judo, wk:1, co:ROSTER.filter(id => !BXC.includes(id)), slots:[], res:sJudoRes,
+ judo:{h:SPN.judo, wk:1, co:ROSTER.filter(id => !BXC.includes(id) && !TRC.includes(id)), slots:[], res:sJudoRes,
   w:{ka:"გამარჯობა! მინდა ძიუდოზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на дзюдо.",en:"Hello! I would like to join judo."},
   tg:{ka:"კლუბის საფუძველი 2008 წლიდან",ru:"Основа клуба с 2008 года",en:"The heart of the club since 2008"},
   pf:{ka:"მსოფლიოს ჩემპიონი · მსოფლიოს ვიცე-ჩემპიონი · ევროპის პრიზიორები",ru:"Чемпион мира · вице-чемпион мира · призёры Европы",en:"World champion · world silver · European medallists"},
@@ -1623,7 +1624,7 @@ const SPT = {
    en:"Boxing at Judo Club Georgia: our own ring, experienced coaches and sessions every weekday, morning and evening. For children and adults."},
   off:{ka:"შაბათი და კვირა დასვენების დღეებია. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Суббота и воскресенье — выходные. Нажмите на время — сообщение будет готово.",en:"Saturday and Sunday are rest days. Tap a time and the message is ready."},
   cH:{ka:"კრივის მწვრთნელები",ru:"Тренеры по боксу",en:"Boxing coaches"}},
- trampoline:{h:SPN.trampoline, slots:[], co:[], tall:1, res:() => sResults(SPT.trampoline.wins),
+ trampoline:{h:SPN.trampoline, slots:[], co:TRC, tall:1, cH:{ka:"ბატუტის მწვრთნელი",ru:"Тренер по батуту",en:"Trampoline coach"}, res:() => sResults(SPT.trampoline.wins),
   w:{ka:"გამარჯობა! მინდა ბატუტზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на батут.",en:"Hello! I would like to join trampoline."},
   tg:{ka:"აქ გაიზარდნენ მსოფლიოს ჩემპიონები",ru:"Здесь выросли чемпионки мира",en:"Home of world champions"},
   pf:() => { const n = TRA.flatMap(a => a.r).filter(r => r[0] !== "top").length;
