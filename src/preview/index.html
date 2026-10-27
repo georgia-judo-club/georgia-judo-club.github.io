@@ -259,7 +259,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .dir ul{margin:.9rem 0 0;padding:0;list-style:none;display:grid;gap:.45rem}
 .dir li{position:relative;padding-left:1rem;font-size:.86rem;line-height:1.45;color:var(--mu)}
 .dir li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:2px;background:var(--red)}.nums.n4{grid-template-columns:repeat(4,minmax(0,1fr))}.nums b.w{font-size:1.6rem;min-height:2.5rem;align-items:center;overflow-wrap:anywhere}
-.chs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.9rem;margin-top:2rem}@media (max-width:1399px){.chs{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:899px){.chs{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:479px){.chs{grid-template-columns:minmax(0,1fr)}}
+.chs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:.9rem;margin-top:2rem}@media (max-width:1399px){.chs{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:899px){.chs{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:479px){.chs{grid-template-columns:minmax(0,1fr)}}
 .chs .dir p{margin:.5rem 0 0;font-size:.9rem;line-height:1.45;color:var(--mu)}.chs .dir .kk{margin:0 0 .6rem}.chs a.dir{display:block;text-decoration:none}.chs .badge{display:table;margin:.4rem 0 0;white-space:normal}
 .ab2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem;margin-top:1.5rem;max-width:72rem}.ab2 p{margin:0;line-height:1.65;color:var(--mu)}@media (max-width:899px){.ab2{grid-template-columns:minmax(0,1fr);gap:1rem}}
 .jp{--paper:#F6F1E6;--sumi:#14161C;background:var(--paper) radial-gradient(rgba(20,22,28,.035) 1px,transparent 1.2px) 0 0/7px 7px}
@@ -360,10 +360,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 .bx2 .cgs{grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
 .bxg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin-top:2rem}
 .bxg img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);display:block}
-.bxg.tall{grid-template-columns:repeat(6,minmax(0,1fr))}.bxg.tall img{aspect-ratio:3/4}
+.bxg.tall{grid-template-columns:repeat(4,minmax(0,1fr))}.bxg.tall img{aspect-ratio:3/4}
 .dir.wide ul{display:block;columns:3 16rem;column-gap:2rem}.dir.wide li{margin-bottom:.45rem;break-inside:avoid}.bx-tbc{max-width:60ch;margin-top:1rem}
-@media (max-width:899px){.bxg.tall{grid-template-columns:repeat(3,minmax(0,1fr))}.bxg.tall img:first-child{grid-column:auto}}
-@media (max-width:479px){.bxg.tall{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:899px){.bxg.tall img:first-child{grid-column:auto}}
+.tra-n{display:flex;flex-wrap:wrap;gap:2.5rem;margin-top:1.6rem}.tra-n b{display:block;font:800 3rem/1 var(--fd)}.tra-n span{display:flex;align-items:center;gap:.4rem;margin-top:.3rem;font-size:.85rem;color:var(--mu)}
+.md{display:inline-block;flex:none;width:.75rem;height:.75rem;border-radius:50%}.md.gold{background:#D4A72C}.md.silver{background:#A9B1BD}.md.bronze{background:#B8733E}.md.top{background:none;box-shadow:inset 0 0 0 2px #A9B1BD}
+.tra-w{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:.6rem;margin-top:2rem}
+.tra-w img{width:100%;height:100%;object-fit:cover;border-radius:var(--r);display:block}.tra-w img:not(:nth-child(2)){aspect-ratio:3/4}
+.tra{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin-top:.9rem}
+.dir.tra-f{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);padding:0;overflow:hidden}.tra-f:nth-child(even) .tra-fm{order:2}
+.tra-fm{position:relative;min-height:26rem}.tra-fm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}.tra-fb{padding:1.8rem 2rem}.tra-f h3{font-size:1.9rem}.tra-f .tra-r li{font-size:1rem}
+.tra-th{display:grid;grid-template-columns:repeat(auto-fill,minmax(6.5rem,1fr));gap:.45rem;margin-top:1.4rem}.tra-th img{display:block;width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 25%;border-radius:var(--r)}
+.tra-r{list-style:none;margin:.9rem 0 0;padding:0;display:grid;gap:.6rem}.tra-r li::before{content:none}.dir .tra-r li{padding-left:0;display:flex;gap:.6rem;font-size:.9rem;line-height:1.45}.tra-r .md{margin-top:.3rem}
+@media (max-width:899px){.dir.tra-f{grid-template-columns:minmax(0,1fr)}.tra-f:nth-child(even) .tra-fm{order:0}.tra-fm{min-height:0;aspect-ratio:3/2}.tra-fb{padding:1.3rem 1.2rem}}
+@media (max-width:899px){.tra-w{grid-template-columns:repeat(2,minmax(0,1fr))}.tra-w img:nth-child(2){grid-column:1/-1;aspect-ratio:3/2}}
+@media (max-width:899px){.tra{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:899px){.bx-g,.bx2{grid-template-columns:minmax(0,1fr)}.bx-h h1{font-size:3.4rem}.bxs{grid-template-columns:minmax(0,1fr)}.bxg{grid-template-columns:repeat(2,minmax(0,1fr))}.bxg img:first-child{grid-column:1/-1}}
 
 /* programme rows */
@@ -806,7 +817,7 @@ const SILH = '<svg viewBox="0 0 120 110" aria-hidden="true"><circle cx="60" cy="
 
 const SOC = [["https://www.instagram.com/geojudoclub/","Instagram","ig"],["https://www.youtube.com/@judoclubgeorgia","YouTube","yt"],["https://www.facebook.com/JudoClubGeorgia/","Facebook","fb"]];
 const CODE_NAV = {ka:"ქცევის კოდექსი",ru:"Кодекс поведения",en:"Code of conduct"};
-const ROUTES = ["home","parents","programs","boxing","trampoline","schedule","coaches","branches","stories","videos","contact","code"];
+const ROUTES = ["home","parents","programs","boxing","gymnastics","schedule","coaches","branches","stories","videos","contact","code"];
 
 function msg(ctx) { return ctx && Object.values(SPT).some(s => ctx.startsWith(s.w[lang])) ? ctx : t().wa + (ctx ? " " + ctx : ""); }
 const BXW = {ka:"გამარჯობა! მინდა კრივზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на бокс.",en:"Hello! I would like to join boxing."};
@@ -844,7 +855,7 @@ function openCoach(id) {
 Object.assign(T.ka.nav, {parents:"მშობლებს", branches:"ფილიალები"});
 Object.assign(T.ru.nav, {parents:"Родителям", branches:"Филиалы"});
 Object.assign(T.en.nav, {parents:"Parents", branches:"Branches", stories:"News"});
-for (const l of ["ka","ru","en"]) Object.assign(T[l].nav, {code:CODE_NAV[l], boxing:{ka:"კრივი",ru:"Бокс",en:"Boxing"}[l], trampoline:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"}[l]});
+for (const l of ["ka","ru","en"]) Object.assign(T[l].nav, {code:CODE_NAV[l], boxing:{ka:"კრივი",ru:"Бокс",en:"Boxing"}[l], gymnastics:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}[l]});
 const X = {
 ka:{wmS:"ძიუდოს კლუბი",wmB:"ჯორჯია",trial:"საცდელი ვარჯიში",trialL:"ჩაეწერეთ საცდელ ვარჯიშზე",trialMsg:"მინდა საცდელ ვარჯიშზე მოსვლა.",
  eb:"ძიუდოს კლუბი · თბილისი · <b>2008 წლიდან</b>",sched:"განრიგი",heroAlt:"ვარჯიში კლუბის დარბაზში",heroCap:"ვარჯიში კლუბში, თბილისი",
@@ -1277,6 +1288,7 @@ const CHAMPS = [
  {n:{ka:"გიორგი ქალდანი",ru:"Гиорги Калдани",en:"Giorgi Kaldani"}, sp:"para", t:{ka:"ევროპის ორგზის ჩემპიონი",ru:"Двукратный чемпион Европы",en:"Two-time European champion"}},
  {n:{ka:"ინა ქალდანი",ru:"Ина Калдани",en:"Ina Kaldani"}, sp:"para", c:"i", t:{ka:"ორგზის პარალიმპიური ვიცე-ჩემპიონი",ru:"Двукратная вице-чемпионка Паралимпийских игр",en:"Two-time Paralympic silver medallist"}},
  {n:{ka:"ნინი ქ.",ru:"Нини К.",en:"Nini K."}, sp:"tramp", t:{ka:"მსოფლიოს ჩემპიონი",ru:"Чемпионка мира",en:"World champion"}},
+ {n:{ka:"ელენე კ.",ru:"Элене К.",en:"Elene K."}, sp:"tramp", t:{ka:"მსოფლიოს ჩემპიონი სინქრონულ ხტომებში",ru:"Чемпионка мира в синхронных прыжках",en:"World champion, synchronised"}},
  {n:{ka:"დავით არუთინიანი",ru:"Давит Арутинян",en:"Davit Arutinian"}, sp:"sambo", t:{ka:"ევროპის ვერცხლის პრიზიორი",ru:"Серебряный призёр Европы",en:"European silver medallist"}},
  {n:{ka:"ლაშა აბულაძე",ru:"Лаша Абуладзе",en:"Lasha Abuladze"}, sp:"sambo", t:{ka:"ევროპის თასის ბრინჯაოს პრიზიორი",ru:"Бронзовый призёр Кубка Европы",en:"European Cup bronze medallist"}}];
 const CHH = {ka:["ჩვენი სიამაყე","კლუბის ჩემპიონები","ჩვენს ტატამზე გაზრდილი სპორტსმენები და უამრავი სხვა."],
@@ -1286,6 +1298,7 @@ function sChamps() {
   const [eb, h, p] = CHH[lang];
   return `<section class="sec" aria-labelledby="ch-h"><div class="wrap">${shd(eb, h, p, "", "ch-h")}
    <div class="chs">${CHAMPS.map(c => { const v = c.v && V(c.v), in_ = `${kk(L(SP[c.sp]))}<h3>${esc(L(c.n))}</h3><p>${esc(L(c.t))}${B(c.c)}</p>`;
+    if (c.sp === "tramp") return `<a class="dir rv" href="#gymnastics">${in_}</a>`;
     return v ? `<a class="dir rv" href="${v.url}" target="_blank" rel="noopener">${in_}</a>` : `<article class="dir rv">${in_}</article>`; }).join("")}</div></div></section>`;
 }
 const ABOUT = {ka:["კლუბის შესახებ","ძიუდოს კლუბი „ჯორჯია“",
@@ -1506,6 +1519,45 @@ const SPL = {more:{ka:"დაწვრილებით",ru:"Подробнее
  ka:{eb:"მიმართულება",sEb:"განრიგი",sH:"როდის ვვარჯიშობთ",mo:"დილის ცვლა",ev:"საღამოს ვარჯიშები",tH:"რას ვასწავლით",gH:"დარბაზიდან",sch:"განრიგი",tbc:"განრიგს კლუბი აზუსტებს. მოგვწერეთ — გეტყვით ჯგუფს და დროს."},
  ru:{eb:"Направление",sEb:"Расписание",sH:"Когда тренируемся",mo:"Утренняя смена",ev:"Вечерние тренировки",tH:"Чему учим",gH:"Из зала",sch:"Расписание",tbc:"Расписание уточняется с клубом. Напишите нам — подскажем группу и время."},
  en:{eb:"Our sports",sEb:"Schedule",sH:"When we train",mo:"Morning sessions",ev:"Evening sessions",tH:"What we teach",gH:"From the gym",sch:"Schedule",tbc:"The club is confirming the schedule. Message us and we’ll suggest a group and time."}};
+// gymnastics results, club list 2026-10-27; minors as first name + initial. an entry with ph[] gets the wide photo card
+const EPT = {ka:"ევროპის ჩემპიონატი · პორტიმაო, 2026 · ახალგაზრდული ნაკრები",ru:"Чемпионат Европы · Портимао, 2026 · юниорская команда",en:"European Championships · Portimão, 2026 · junior team"};
+const TRA = [
+ {n:{ka:"ნინი ქ.",ru:"Нини К.",en:"Nini K."}, ph:["nini-01-14c5fb07","nini-02-7f37b9c4","nini-03-743d2701","nini-04-f9d95fa3","nini-05-8709ea0a","nini-06-cc3dc654","nini-07-b6b09f8e"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["gold",{ka:"მსოფლიო ჩემპიონატი ახალგაზრდებში · სოფია, 2022 · ინდივიდუალური",ru:"Молодёжный чемпионат мира · София, 2022 · личный зачёт",en:"Youth World Championships · Sofia, 2022 · individual"}],
+  ["bronze",{ka:"ევროპის ჩემპიონატი · პორტიმაო, 2026 · ახალგაზრდები, ინდივიდუალური, 53.050",ru:"Чемпионат Европы · Портимао, 2026 · юниоры, личный зачёт, 53.050",en:"European Championships · Portimão, 2026 · juniors, individual, 53.050"}],
+  ["silver",EPT],
+  ["silver",{ka:"საქართველოს ჩემპიონატი · 2026 · ოსტატები",ru:"Чемпионат Грузии · 2026 · категория мастеров",en:"Georgian Championships · 2026 · masters"}]]},
+ {n:{ka:"ანანო ქ.",ru:"Анано К.",en:"Anano K."}, ph:["anano-01-fb88c3d0","anano-02-46290975","anano-03-0789201a","anano-04-8fbbe3f7","anano-05-d014cd22"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["gold",{ka:"AERE მსოფლიო თასი · იტალია, 2026 · სინქრონი მარიამ ბ.-სთან, 11–12 წელი",ru:"Кубок мира AERE · Италия, 2026 · синхрон с Мариам Б., девочки 11–12 лет",en:"AERE World Cup · Italy, 2026 · synchro with Mariam B., girls 11–12"}],
+  ["silver",{ka:"AERE მსოფლიო თასი · იტალია, 2026 · ინდივიდუალური, 11–12 წელი",ru:"Кубок мира AERE · Италия, 2026 · личный зачёт, девочки 11–12 лет",en:"AERE World Cup · Italy, 2026 · individual, girls 11–12"}],
+  ["bronze",{ka:"საქართველოს ჩემპიონატი · 2026 · 11–12 წელი",ru:"Чемпионат Грузии · 2026 · девочки 11–12 лет",en:"Georgian Championships · 2026 · girls 11–12"},"i"]]},
+ {n:{ka:"ელენე კ.",ru:"Элене К.",en:"Elene K."}, ph:["elene-01-d764d141","elene-02-6a6f38dc","elene-03-bd01cbc1","elene-04-0f68bd32","elene-05-4c9c0bac"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["gold",{ka:"მსოფლიო ჩემპიონატი · სინქრონული ხტომები",ru:"Чемпионат мира · синхронные прыжки",en:"World Championships · synchronised"},"i"],
+  ["silver",EPT],
+  ["silver",{ka:"საერთაშორისო ტურნირი · კოიმბრა, 2025 · გუნდური, 13–14 წელი",ru:"Международный турнир · Коимбра, 2025 · команда, девочки 13–14 лет",en:"International tournament · Coimbra, 2025 · team, girls 13–14"}]]},
+ {n:{ka:"მარიამ ბ.",ru:"Мариам Б.",en:"Mariam B."}, ph:["mariam-01-dd694188","mariam-02-f129bce6"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["gold",{ka:"AERE მსოფლიო თასი · იტალია, 2026 · სინქრონი ანანო ქ.-სთან, 11–12 წელი",ru:"Кубок мира AERE · Италия, 2026 · синхрон с Анано К., девочки 11–12 лет",en:"AERE World Cup · Italy, 2026 · synchro with Anano K., girls 11–12"}]]},
+ {n:{ka:"გიორგი კ.",ru:"Гиорги К.",en:"Giorgi K."}, ph:["giorgi-01-7b50cc29","giorgi-02-62f0dd57"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["silver",{ka:"საერთაშორისო ტურნირი · პორტუგალია, 2026",ru:"Международный турнир · Португалия, 2026",en:"International tournament · Portugal, 2026"}]]},
+ {n:{ka:"მოსე კ.",ru:"Мосе К.",en:"Mose K."}, ph:["mose-01-bd452377","mose-02-d285987f","mose-03-7f553ca5","mose-04-4d81f3af","mose-05-173ebbce"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["bronze",{ka:"საქართველოს ჩემპიონატი · 2026 · 2015–2016 წ. დაბადებულები",ru:"Чемпионат Грузии · 2026 · 2015–2016 г. р.",en:"Georgian Championships · 2026 · born 2015–2016"}],
+  ["bronze",{ka:"სპორტის ოსტატობის კანდიდატის პროგრამა · 2021 · პირველი თანრიგი",ru:"Программа КМС · 2021 · первый разряд",en:"Candidate Master of Sport programme · 2021 · first category"}]]},
+ {n:{ka:"ლილე ფ.",ru:"Лиле Ф.",en:"Lile F."}, ph:["lile-01-5d0de9ea","lile-02-b1957143","lile-03-76e3f633","lile-04-f8fbcdf6"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["silver",{ka:"საქართველოს ეროვნული ჩემპიონატი · ინდივიდუალური პროგრამა",ru:"Национальный чемпионат Грузии · индивидуальная программа",en:"Georgian National Championships · individual"},"i"],
+  ["gold",{ka:"საერთაშორისო ახალგაზრდული ტურნირი „Golden Jump“",ru:"Международный юношеский турнир «Golden Jump»",en:"Golden Jump international youth tournament"},"i"],
+  ["top",{ka:"საქართველოს ასაკობრივი პირველობები · ტოპ-3, ინდივიდუალური და სინქრონული ხტომები",ru:"Первенства Грузии по возрастам · регулярно в тройке, личные и синхронные прыжки",en:"Georgian age-group championships · regularly top 3, individual and synchro"}]]}];
+const TRH = {ka:["შედეგები","ჩვენი ტანმოვარჯიშეების მედლები","სია ივსება ყოველი ტურნირის შემდეგ."],
+ ru:["Результаты","Медали наших гимнастов","Список пополняется после каждого турнира."],
+ en:["Results","Our gymnasts’ medals","Updated after every competition."]};
+function sResults(wins) {
+  const [eb, h, p] = TRH[lang], all = TRA.flatMap(a => a.r);
+  return `<section class="sec" aria-labelledby="sp-a"><div class="wrap">${shd(eb, h, p, "", "sp-a")}
+   <div class="tra-n rv">${["gold","silver","bronze"].map(m => `<div><b>${all.filter(r => r[0] === m).length}</b><span><i class="md ${m}"></i>${esc(x()[m])}</span></div>`).join("")}</div>
+   <div class="tra-w">${wins.map(u => `<img class="rv" src="${u}" alt="" loading="lazy">`).join("")}</div>
+   <div class="tra">${TRA.map(a => { const body = `<h3>${esc(L(a.n))}</h3><ul class="tra-r">${a.r.map(([m, d, c]) => `<li><i class="md ${m}" title="${esc(x()[m] || "")}"></i><span>${esc(L(d))}${B(c)}</span></li>`).join("")}</ul>`;
+    return a.ph ? `<article class="dir rv tra-f"><div class="tra-fm"><img src="${a.ph[0]}" alt="${esc(L(a.n))}" loading="lazy"></div><div class="tra-fb">${body}<div class="tra-th">${a.ph.slice(1).map(u => `<img src="${u}" alt="" loading="lazy">`).join("")}</div></div></article>`
+     : `<article class="dir rv">${body}</article>`; }).join("")}</div></div></section>`;
+}
 // sport pages; dir is the DIRS card that links to the page
 const SPT = {
  boxing:{dir:1, h:{ka:"კრივი",ru:"Бокс",en:"Boxing"}, w:BXW, slots:BOX, co:BXC,
@@ -1515,12 +1567,13 @@ const SPT = {
    en:"Boxing at Judo Club Georgia: our own ring, experienced coaches and sessions every weekday, morning and evening. For children and adults."},
   off:{ka:"შაბათი და კვირა დასვენების დღეებია. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Суббота и воскресенье — выходные. Нажмите на время — сообщение будет готово.",en:"Saturday and Sunday are rest days. Tap a time and the message is ready."},
   cH:{ka:"კრივის მწვრთნელები",ru:"Тренеры по боксу",en:"Boxing coaches"}},
- trampoline:{dir:3, h:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"}, eb:{ka:"სპორტული ტანვარჯიში",ru:"Спортивная гимнастика",en:"Gymnastics"}, slots:[], co:[], tall:1,
-  w:{ka:"გამარჯობა! მინდა ბატუტზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на батут.",en:"Hello! I would like to join trampoline."},
-  ph:["trampoline-01-f65bc203","trampoline-02-0d42fd59","trampoline-03-9506e620","trampoline-04-45ec2fa4","trampoline-05-889b9f72","trampoline-06-571e5332","trampoline-07-8216f2f3"].map(n => `/photos/trampoline/${n}.jpg`),
-  p:{ka:"სპორტული ტანვარჯიში და ბატუტი კლუბში „ჯორჯია“: ხტომები, აკრობატიკა, მოქნილობა და სხეულის კონტროლი. ჩვენთან გაიზარდა ბატუტზე ხტომის მსოფლიო ჩემპიონი.",
-   ru:"Спортивная гимнастика и батут в клубе «Джорджия»: прыжки, акробатика, гибкость и контроль тела. У нас выросла чемпионка мира по прыжкам на батуте.",
-   en:"Gymnastics and trampoline at Judo Club Georgia: jumps, acrobatics, flexibility and body control. A trampoline world champion grew up here."}}};
+ gymnastics:{dir:3, h:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}, eb:{ka:"სპორტული ტანვარჯიში · ბატუტი",ru:"Спортивная гимнастика · батут",en:"Gymnastics · trampoline"}, slots:[], co:[], tall:1,
+  w:{ka:"გამარჯობა! მინდა ტანვარჯიშზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на гимнастику.",en:"Hello! I would like to join gymnastics."},
+  ph:["trampoline-01-f65bc203","trampoline-02-0d42fd59","trampoline-03-9506e620","trampoline-04-45ec2fa4","trampoline-05-889b9f72","trampoline-06-571e5332","trampoline-07-8216f2f3","trampoline-12-ebb83693","trampoline-13-730bb891"].map(n => `/photos/trampoline/${n}.jpg`),
+  wins:["trampoline-08-7f137330","trampoline-09-2b4c536b","trampoline-10-26dee148","trampoline-11-ddbb2693"].map(n => `/photos/trampoline/${n}.jpg`),
+  p:{ka:"სპორტული ტანვარჯიში და ბატუტი კლუბში „ჯორჯია“: ხტომები, აკრობატიკა, მოქნილობა და სხეულის კონტროლი. ჩვენთან გაიზარდნენ ბატუტზე ხტომის მსოფლიო ჩემპიონები.",
+   ru:"Спортивная гимнастика и батут в клубе «Джорджия»: прыжки, акробатика, гибкость и контроль тела. У нас выросли чемпионки мира по прыжкам на батуте.",
+   en:"Gymnastics and trampoline at Judo Club Georgia: jumps, acrobatics, flexibility and body control. Trampoline world champions grew up here."}}};
 function pSport(k) {
   const s = SPT[k], c = SPL[lang], h = L(s.h), [, ...it] = DIRS[s.dir][lang], w = s.w[lang];
   const card = b => `<article class="dir rv"><h3>${esc(c[b.k])}<small>${esc(bxDays(b.d))}</small></h3>
@@ -1529,7 +1582,7 @@ function pSport(k) {
   const teach = `<div class="rv">${shd(h, c.tH, "", "", "sp-t")}<article class="dir${s.co.length ? "" : " wide"}"><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul></article></div>`;
   return `<section class="bx-h nv" aria-labelledby="sp-h1"><div class="wrap bx-g"><div>${kk(s.eb ? L(s.eb) : c.eb)}<h1 class="d" id="sp-h1">${esc(h)}</h1><p class="sub">${esc(L(s.p))}</p>
     <div class="act">${jbtn(w, "btn b-red mag", esc(t().join) + " " + ARROW)}<a class="btn b-w" href="#sp-s">${esc(c.sch)}</a></div></div>
-    <div class="bx-ph rv"><img src="${s.ph[0]}" alt="" fetchpriority="high"></div></div></section>
+    <div class="bx-ph rv"><img src="${s.ph[0]}" alt="" fetchpriority="high"></div></div></section>${s.wins ? sResults(s.wins) : ""}
    <section class="sec" aria-labelledby="sp-s"><div class="wrap">${shd(c.sEb, c.sH, s.slots.length ? L(s.off) : "", "", "sp-s")}${s.slots.length ? `<div class="bxs">${s.slots.map(card).join("")}</div>` : `<p class="sub rv bx-tbc">${esc(c.tbc)}${B("i")}</p>`}</div></section>
    <section class="sec sf" aria-labelledby="sp-t"><div class="wrap">${s.co.length ? `<div class="bx2">${teach}<div>${shd(h, L(s.cH), "", "", "sp-c")}<div class="cgs">${s.co.map(id => coachCard(COACHES.find(x => x.id === id))).join("")}</div></div></div>` : teach}</div></section>
    <section class="sec" aria-labelledby="sp-g"><div class="wrap">${shd(h, c.gH, "", "", "sp-g")}<div class="bxg${s.tall ? " tall" : ""}">${s.ph.slice(1).map(u => `<img class="rv" src="${u}" alt="" loading="lazy">`).join("")}</div></div></section>` + sJoin();
@@ -1568,10 +1621,10 @@ function pStory(id) {
 }
 function page() {
   if (route.startsWith("story-")) return pStory(route.slice(6));
-  return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode,boxing:() => pSport("boxing"),trampoline:() => pSport("trampoline")})[route]();
+  return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode,boxing:() => pSport("boxing"),gymnastics:() => pSport("gymnastics")})[route]();
 }
 function parseHash() {
-  const h = location.hash.slice(1);
+  const h = location.hash.slice(1).replace(/^trampoline$/, "gymnastics");
   if (Object.hasOwn(T, h)) { location.replace("/" + h + "/"); return; }
   route = ROUTES.includes(h) || /^story-[\w-]+$/.test(h) ? h : "home";
 }
