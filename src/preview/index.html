@@ -1550,6 +1550,11 @@ function pCode() {
 /* boxing, club post 2026-10-26: Mon–Fri evenings, Mon/Wed/Fri mornings */
 const BXC = ["katamadze", "chapidze"], TRC = ["menteshashvili"];
 const BOX = [{d:[0,2,4], ts:["10:30"], co:["chapidze"], k:"mo"}, {d:[0,1,2,3,4], ts:["17:00","18:30","19:30"], ad:"19:30", co:BXC, k:"ev"}];
+// trampoline schedule from the club, 2026-10-27; Saturday runs both groups at 10:00
+const TG = {a8:{ka:"8 წლიდან",ru:"с 8 лет",en:"8+ years"}, k67:{ka:"6–7 წლის ბავშვები",ru:"дети 6–7 лет",en:"kids 6–7"}, k35:{ka:"3–5 წლის ბავშვები",ru:"дети 3–5 лет",en:"kids 3–5"},
+ team:{ka:"ნაკრები",ru:"сборная",en:"squad"}, ath:{ka:"სპორტსმენები",ru:"спортсмены",en:"athletes"}};
+const TRS = [{d:[0,2,4], ts:[["10:00",TG.a8],["14:00",TG.team],["17:00",TG.k67],["18:30",TG.a8]], co:TRC},
+ {d:[1,3], ts:[["17:00",TG.k35],["18:30",TG.ath]], co:TRC}, {d:[5], ts:[["10:00",TG.k35],["10:00",TG.ath]], co:TRC}];
 const bxDays = d => d.length === 5 ? `${t().dshort[0]}–${t().dshort[4]}` : d.map(i => t().dshort[i]).join(", ");
 const SPL = {more:{ka:"დაწვრილებით",ru:"Подробнее",en:"More"},
  ka:{eb:"მიმართულება",sEb:"განრიგი",sH:"როდის ვვარჯიშობთ",mo:"დილის ცვლა",ev:"საღამოს ვარჯიშები",tH:"რას ვასწავლით",gH:"დარბაზიდან",sch:"განრიგი",tbc:"განრიგს კლუბი აზუსტებს. მოგვწერეთ — გეტყვით ჯგუფს და დროს."},
@@ -1624,7 +1629,8 @@ const SPT = {
    en:"Boxing at Judo Club Georgia: our own ring, experienced coaches and sessions every weekday, morning and evening. For children and adults."},
   off:{ka:"შაბათი და კვირა დასვენების დღეებია. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Суббота и воскресенье — выходные. Нажмите на время — сообщение будет готово.",en:"Saturday and Sunday are rest days. Tap a time and the message is ready."},
   cH:{ka:"კრივის მწვრთნელები",ru:"Тренеры по боксу",en:"Boxing coaches"}},
- trampoline:{h:SPN.trampoline, slots:[], co:TRC, tall:1, cH:{ka:"ბატუტის მწვრთნელი",ru:"Тренер по батуту",en:"Trampoline coach"}, res:() => sResults(SPT.trampoline.wins),
+ trampoline:{h:SPN.trampoline, slots:TRS, co:TRC,
+  off:{ka:"კვირა დასვენების დღეა. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Воскресенье — выходной. Нажмите на время — сообщение будет готово.",en:"Sunday is a rest day. Tap a time and the message is ready."}, tall:1, cH:{ka:"ბატუტის მწვრთნელი",ru:"Тренер по батуту",en:"Trampoline coach"}, res:() => sResults(SPT.trampoline.wins),
   w:{ka:"გამარჯობა! მინდა ბატუტზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на батут.",en:"Hello! I would like to join trampoline."},
   tg:{ka:"აქ გაიზარდნენ მსოფლიოს ჩემპიონები",ru:"Здесь выросли чемпионки мира",en:"Home of world champions"},
   pf:() => { const n = TRA.flatMap(a => a.r).filter(r => r[0] !== "top").length;
@@ -1658,8 +1664,9 @@ const SPT = {
    en:"Gym and fitness at Judo Club Georgia: strength training, machines and general conditioning, with the load matched to you."}}};
 function pSport(k) {
   const s = SPT[k], c = SPL[lang], h = L(s.h), [, ...it] = DIRS[SPORTS.indexOf(k)][lang], w = s.w[lang], gal = s.ph.slice(1), many = s.co.length > 2;
-  const card = b => `<article class="dir rv"><h3>${esc(c[b.k])}<small>${esc(bxDays(b.d))}</small></h3>
-   <div class="bxt">${b.ts.map(a => jbtn(`${w} ${t().waSes} ${bxDays(b.d)} ${a}`, "", `${a}${a === b.ad ? `<small>${esc(sx().adult)}</small>` : ""}`)).join("")}</div>
+  const card = b => `<article class="dir rv"><h3>${esc(b.k ? c[b.k] : b.d.map(i => t().days[i]).join(", "))}<small>${b.k ? esc(bxDays(b.d)) : ""}</small></h3>
+   <div class="bxt">${b.ts.map(v => { const [a, g] = Array.isArray(v) ? [v[0], L(v[1])] : [v, v === b.ad ? sx().adult : ""];
+    return jbtn(`${w} ${t().waSes} ${bxDays(b.d)} ${a}${g ? ` (${g})` : ""}`, "", `${a}${g ? `<small>${esc(g)}</small>` : ""}`); }).join("")}</div>
    <p>${esc(sx().coach)}: ${esc(b.co.map(id => L(CO[id])).join(", "))}</p></article>`;
   const teach = `<div class="rv">${shd(h, c.tH, "", "", "sp-t")}<article class="dir${!s.co.length || many ? " wide" : ""}"><ul>${it.map(i => `<li>${esc(i)}</li>`).join("")}</ul></article></div>`;
   const coach = s.co.length ? `<div>${shd(h, L(s.cH), "", "", "sp-c")}<div class="cgs">${s.co.map(id => coachCard(COACHES.find(x => x.id === id))).join("")}</div></div>` : "";
