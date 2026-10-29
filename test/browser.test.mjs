@@ -81,6 +81,24 @@ test('no horizontal overflow on small phones', async () => {
   }
 });
 
+// owner 2026-10-29: unconfirmed content stays hidden until the club confirms it
+test('no draft badge or [placeholder] on any route or coach card', async () => {
+  for (const l of LANGS) {
+    const { ctx, page } = await open(`/${l}/`);
+    for (const r of await page.evaluate(() => ROUTES)) {
+      await page.goto(`${srv.url}${l}/#${r}`);
+      const [badges, text] = await page.evaluate(() => {
+        let t = document.body.innerText;
+        document.querySelectorAll('[data-coach]').forEach((b) => { b.click(); t += dlg.innerText; });
+        return [document.querySelectorAll('.badge').length, t];
+      });
+      assert.equal(badges, 0, `${l} #${r}`);
+      assert.doesNotMatch(text, /\[[^\]]{3,}\]/, `${l} #${r}`);
+    }
+    await ctx.close();
+  }
+});
+
 // the family that renders most glyphs of a leaf element (Pitfall 11: wrappers report nothing)
 async function renderedFont(page, selector) {
   await page.evaluate(() => document.fonts.ready);
