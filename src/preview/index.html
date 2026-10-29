@@ -832,6 +832,8 @@ const SPN = {judo:{ka:"ძიუდო",ru:"Дзюдо",en:"Judo"}, boxing:{ka:"
 const SECN = {ka:"სექციები",ru:"Секции",en:"Sports"};
 const LEGAL = ["privacy","cookies","children"];
 const ROUTES = ["home", ...SPORTS, "parents","programs","schedule","coaches","branches","stories","videos","contact","code", ...LEGAL];
+const known = r => ROUTES.includes(r) || /^story-[\w-]+$/.test(r);
+const rp = (r, l = lang) => `/${l}/${r === "home" ? "" : r + "/"}`;
 
 function msg(ctx) { return ctx && Object.values(SPT).some(s => ctx.startsWith(s.w[lang])) ? ctx : t().wa + (ctx ? " " + ctx : ""); }
 const BXW = {ka:"გამარჯობა! მინდა კრივზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на бокс.",en:"Hello! I would like to join boxing."};
@@ -1133,7 +1135,7 @@ const ptext = s => s.split(/\n{2,}/).map(par => `<p>${par.split("\n").map(l => e
 const PP = id => POSTS.find(p => p.id === id);
 const arr = (o) => `<span class="arr${o ? " o" : ""}" aria-hidden="true">${ARROW}</span>`;
 function storyCard(p) {
-  return `<a class="st rv" href="#story-${p.id}"><div class="im"><img src="${pimg(p.ph[0])}" alt="" loading="lazy"></div><span class="kd${p.k === "reel" ? " r" : ""}">${esc(kindLbl(p))}</span>
+  return `<a class="st rv" href="${rp("story-" + p.id)}"><div class="im"><img src="${pimg(p.ph[0])}" alt="" loading="lazy"></div><span class="kd${p.k === "reel" ? " r" : ""}">${esc(kindLbl(p))}</span>
    <div class="ov"><div><time datetime="${p.d}">${fmtDate(p.d)}</time><h3>${esc(pTitle(p))}</h3></div>${arr(1)}</div></a>`;
 }
 
@@ -1143,14 +1145,14 @@ function shd(eb, h, p, link, id) {
   return `<div class="shd rv">${kk(eb)}<h2 class="d h2" id="${id}">${esc(h)}</h2>${p ? `<p class="lead2">${esc(p)}</p>` : ""}${link || ""}</div>`;
 }
 const lnk = (href, label) => `<a class="lk" href="${href}">${esc(label)} ${ARROW}</a>`;
-function wm() { return `<a class="wm" href="#home" aria-label="${esc(t().brand)}"><img src="/img/logo.png" alt="" width="64" height="64"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>`; }
+function wm() { return `<a class="wm" href="${rp("home")}" aria-label="${esc(t().brand)}"><img src="/img/logo.png" alt="" width="64" height="64"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>`; }
 const NAMES = {ka:"ქართული",ru:"Русский",en:"English"};
 function header() {
-  const n = t().nav, a = r => `<a href="#${r}"${route === r || (r === "stories" && route.startsWith("story-")) ? ' aria-current="page"' : ""}>${esc(n[r])}</a>`, sl = SPORTS.map(a).join("");
+  const n = t().nav, a = r => `<a href="${rp(r)}"${route === r || (r === "stories" && route.startsWith("story-")) ? ' aria-current="page"' : ""}>${esc(n[r])}</a>`, sl = SPORTS.map(a).join("");
   return `<header class="hdr" id="hdr"><div class="bar wrap">${wm()}
    <nav class="nav" id="nav" aria-label="Main"><details class="nd"><summary${SPORTS.includes(route) ? ' class="on"' : ""}>${esc(SECN[lang])}</summary><div class="nd-p">${sl}</div></details>
     <div class="ng" role="group" aria-label="${esc(SECN[lang])}"><span>${esc(SECN[lang])}</span>${sl}</div>${NAV.map(a).join("")}</nav>
-   <div class="langs" role="group" aria-label="${{ka:"ენა",ru:"Язык",en:"Language"}[lang]}">${["ka","ru","en"].map(l => `<a href="/${l}/#${route}" hreflang="${l}" lang="${l}" data-set-lang="${l}" aria-label="${NAMES[l]}" title="${NAMES[l]}"${l === lang ? ' aria-current="true"' : ""}>${l.toUpperCase()}</a>`).join("")}</div>
+   <div class="langs" role="group" aria-label="${{ka:"ენა",ru:"Язык",en:"Language"}[lang]}">${["ka","ru","en"].map(l => `<a href="${rp(route, l)}" hreflang="${l}" lang="${l}" data-set-lang="${l}" aria-label="${NAMES[l]}" title="${NAMES[l]}"${l === lang ? ' aria-current="true"' : ""}>${l.toUpperCase()}</a>`).join("")}</div>
    ${trialBtn("btn b-red trial mag", esc(t().join))}
    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-menu>${t().menu}</button>
   </div></header>${trialBtn("btn b-red fab", esc(x().trial) + " " + ARROW)}`;
@@ -1172,11 +1174,11 @@ function sJoin() {
 function footer() {
   const n = t().nav;
   return `<footer class="ftr"><div class="wrap"><div class="top">
-   <a class="lg" href="#home"><img src="/img/logo.png" alt="${esc(t().brand)}" width="120" height="120"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>
-   <nav aria-label="Footer">${FNAV.map(r => `<a href="#${r}">${esc(n[r])}</a>`).join("")}</nav>
+   <a class="lg" href="${rp("home")}"><img src="/img/logo.png" alt="${esc(t().brand)}" width="120" height="120"><span><b>${esc(x().wmS)}<br>${esc(x().wmB)}</b><small>${esc(t().sub)}</small></span></a>
+   <nav aria-label="Footer">${FNAV.map(r => `<a href="${rp(r)}">${esc(n[r])}</a>`).join("")}</nav>
    <div class="soc">${SOC.map(([u, nm, ic]) => `<a href="${u}" target="_blank" rel="noopener" aria-label="${nm}">${ICON[ic]}</a>`).join("")}</div>
    <p class="slg"><span>${esc(w().slogan[0])}<br>${esc(w().slogan[1])}</span><span class="plus" aria-hidden="true"></span></p>
-  </div><div class="fine"><span>© 2008–2026 ${esc(t().foot)}</span><span class="lgn">${LEGAL.map(r => `<a href="#${r}">${esc(lg()[r].nav)}</a>`).join("")}${GA_ID ? `<button type="button" data-ck-open>${esc(lg().settings)}</button>` : ""}</span><span>${esc(ADDR[lang])} · <a href="tel:+${PHONE_RAW}">${PHONE}</a></span></div></div></footer>`;
+  </div><div class="fine"><span>© 2008–2026 ${esc(t().foot)}</span><span class="lgn">${LEGAL.map(r => `<a href="${rp(r)}">${esc(lg()[r].nav)}</a>`).join("")}${GA_ID ? `<button type="button" data-ck-open>${esc(lg().settings)}</button>` : ""}</span><span>${esc(ADDR[lang])} · <a href="tel:+${PHONE_RAW}">${PHONE}</a></span></div></div></footer>`;
 }
 
 /* home */
@@ -1186,14 +1188,14 @@ function sHero() {
    <div class="hero-t">${kk(z().heroEb)}
     <h1 id="h1" class="d h1"><span class="ln l1"><span>${esc(h[0])}</span></span><span class="ln l2"><span>${esc(h[1])}</span></span></h1>
     <p class="lead">${esc(t().lead)}</p>
-    <div class="cta">${trialBtn("btn b-red mag", esc(t().joinClub) + " " + ARROW)}<a class="btn b-o mag" href="#videos">${esc(w().watch)} <span class="pc-i">${ICON.play}</span></a></div></div>
+    <div class="cta">${trialBtn("btn b-red mag", esc(t().joinClub) + " " + ARROW)}<a class="btn b-o mag" href="${rp("videos")}">${esc(w().watch)} <span class="pc-i">${ICON.play}</span></a></div></div>
    <div class="hero-a" aria-hidden="true"><div class="sun-w"><span class="streak"></span><span class="sun"></span><img class="throw" src="/img/throw.png" alt="" width="640" height="519"></div></div>
    <div class="hero-r"><p class="kanji" lang="ja" aria-hidden="true">柔道</p><ul class="vals">${w().vals.map(v => `<li>${esc(v)}</li>`).join("")}</ul><span class="plus" aria-hidden="true"></span></div>
   </div>${marquee(z().mq)}</section>`;
 }
 const PIMG = {"judo-kids":"/photos/jubilee/jubilee-12-bec513a2.jpg","summer-camp-2026":"HMiYnUjJ7Rg_018p0_P","ne-waza-evening":"VMtjVgoVfRo_029p0_P","internal-rating":"cpvFspnAOrE_011p0_P","gymnastics-wrestling":"ivJtWi70XzU_014p8_P","physical-conditioning":"UFNf9xnrM-w_034p0_L","venue-other":"d8oC-x-c_NM_005p9_P"};
 function progCard(p) {
-  return `<a class="pc rv" href="#programs"><div class="im"><img src="${st(PIMG[p.id])}" alt="" loading="lazy"></div>
+  return `<a class="pc rv" href="${rp("programs")}"><div class="im"><img src="${st(PIMG[p.id])}" alt="" loading="lazy"></div>
    <div class="bd"><h3>${esc(L(p.name))}</h3><span class="ag">${p.small ? esc(L(p.small)) + " " : ""}${esc(p.top)}</span>${arr()}<p>${esc(L(p.d))}</p></div></a>`;
 }
 function widget() {
@@ -1201,12 +1203,12 @@ function widget() {
    <div class="sw-d"><span aria-live="polite">${esc(dName(day))}${day === TODAY ? `<span class="tt">${esc(y().today)}</span>` : ""}</span>
     <span class="sw-n"><button type="button" data-wd="-1" aria-label="${esc(z().prev)}">‹</button><button type="button" data-wd="1" aria-label="${esc(z().next)}">›</button></span></div>
    <ul>${sessions(day).map(s => `<li><a href="#" class="wr" data-join="${esc(sCtx(s, day))}"><b>${s.a}</b><span><i>${esc(L(TY[s.ty]))}${s.ad ? ` · ${esc(sx().adult)}` : ""}</i><small>${esc(coList(s))}</small></span></a></li>`).join("") || `<li class="rest">${esc(sx().rest)}</li>`}</ul>
-   <a class="btn b-red mag" href="#schedule">${esc(t().fullSch)} ${ARROW}</a>`;
+   <a class="btn b-red mag" href="${rp("schedule")}">${esc(t().fullSch)} ${ARROW}</a>`;
 }
 function sPrograms() {
   const ps = ["judo-kids", "gymnastics-wrestling", "internal-rating"].map(progOf);
   return `<section class="sec" aria-labelledby="pg-h"><div class="wrap pg"><div>
-    <div class="pg-h">${shd(t().nav.programs, w().progH, "", "", "pg-h")}<div class="rv"><p class="mu">${esc(w().progP)}</p>${lnk("#programs", x().allProg)}</div></div>
+    <div class="pg-h">${shd(t().nav.programs, w().progH, "", "", "pg-h")}<div class="rv"><p class="mu">${esc(w().progP)}</p>${lnk(rp("programs"), x().allProg)}</div></div>
     <div class="pcs">${ps.map(progCard).join("")}</div></div>
    <aside class="sw rv" data-widget aria-label="${esc(t().schH)}">${widget()}</aside></div></section>`;
 }
@@ -1232,14 +1234,14 @@ function openCoach(id) {
 }
 function sCoaches(full) {
   return `<section class="sec nv" aria-labelledby="co-h"><div class="wrap cb">
-   ${full ? `<h2 class="sr" id="co-h">${esc(t().coT)}</h2>` : shd(x().coEb, w().coH, x().coP, lnk("#coaches", t().allCoaches), "co-h")}
+   ${full ? `<h2 class="sr" id="co-h">${esc(t().coT)}</h2>` : shd(x().coEb, w().coH, x().coP, lnk(rp("coaches"), t().allCoaches), "co-h")}
    ${full ? "" : `<figure class="qt rv"><span class="qm" aria-hidden="true">“</span><blockquote>${esc(w().quote)}</blockquote>
     <cite class="kk"><a href="https://www.facebook.com/JudoClubGeorgia/posts/1488502386722506" target="_blank" rel="noopener">${esc(w().cite)} · ${fmtDate("2026-10-12")}</a></cite></figure>`}
    <div class="cgs">${COACHES.map(coachCard).join("")}</div></div></section>`;
 }
 function sStories() {
   const ps = ["jubilee-2025", "1488424940063584", "1493148186257926"].map(PP);
-  return `<section class="sec" aria-labelledby="sto-h"><div class="wrap split">${shd(z().stEb, w().stH, z().stP, lnk("#stories", t().allStories), "sto-h")}
+  return `<section class="sec" aria-labelledby="sto-h"><div class="wrap split">${shd(z().stEb, w().stH, z().stP, lnk(rp("stories"), t().allStories), "sto-h")}
    <div class="row3">${ps.map(storyCard).join("")}</div></div></section>`;
 }
 function vcard(v, wide) {
@@ -1249,7 +1251,7 @@ function vcard(v, wide) {
 }
 function sVideos() {
   const vs = ["2lGgm5RqHi0", "UFNf9xnrM-w", "VMtjVgoVfRo"].map(V);
-  return `<section class="sec nv" aria-labelledby="vi-h"><div class="wrap split">${shd(x().viEb, w().viH, w().viP, lnk("#videos", t().allVideos), "vi-h")}
+  return `<section class="sec nv" aria-labelledby="vi-h"><div class="wrap split">${shd(x().viEb, w().viH, w().viP, lnk(rp("videos"), t().allVideos), "vi-h")}
    <div class="row3">${vs.map(v => vcard(v)).join("")}</div></div></section>`;
 }
 const TRUST = {
@@ -1285,7 +1287,7 @@ function sDirs() {
   const [eb, h, p] = DIRH[lang];
   return `<section class="sec sf" aria-labelledby="dir-h"><div class="wrap">${shd(eb, h, p, "", "dir-h")}
    <div class="dirs">${SPORTS.map(k => { const s = SPT[k];
-    return `<a class="dir dir-bx rv" href="#${k}">${s.ph.length ? `<img src="${s.ph[0]}" alt="" loading="lazy">` : `<span class="np" aria-hidden="true">${esc(L(s.h))}</span>`}<h3>${esc(L(s.h))}</h3>
+    return `<a class="dir dir-bx rv" href="${rp(k)}">${s.ph.length ? `<img src="${s.ph[0]}" alt="" loading="lazy">` : `<span class="np" aria-hidden="true">${esc(L(s.h))}</span>`}<h3>${esc(L(s.h))}</h3>
      <p>${esc(L(s.tg))}</p><p class="pf">${esc(spProof(k))}</p><span class="lk">${esc(SPL.more[lang])} ${ARROW}</span></a>`; }).join("")}</div></div></section>`;
 }
 const SP = {judo:{ka:"ძიუდო",ru:"Дзюдо",en:"Judo"}, sambo:{ka:"სამბო",ru:"Самбо",en:"Sambo"}, para:{ka:"პარაძიუდო",ru:"Параджудо",en:"Para judo"}};
@@ -1304,13 +1306,13 @@ const champIn = c => `${kk(L(SP[c.sp]))}<h3>${esc(L(c.n))}</h3><p>${esc(L(c.t))}
 const champCard = c => { const v = c.v && V(c.v); return v ? `<a class="dir rv" href="${v.url}" target="_blank" rel="noopener">${champIn(c)}</a>` : `<article class="dir rv">${champIn(c)}</article>`; };
 const medals = (a, n) => `<ul class="tra-r">${a.r.filter(r => ok(r[2])).slice(0, n).map(([m, d]) => `<li><i class="md ${m}" title="${esc(x()[m] || "")}"></i><span>${esc(L(d))}</span></li>`).join("")}</ul>`;
 // home highlights per sport; a sport without results is left out
-const HL = {judo:() => CHAMPS.filter(c => ok(c.c)).map(c => `<a class="dir rv" href="#judo">${champIn(c)}</a>`),
- trampoline:() => TRA.map(a => `<a class="dir rv ch-a" href="#trampoline"><img src="${a.ph[0]}" alt="" loading="lazy"><h3>${esc(L(a.n))}</h3>${medals(a, 1)}</a>`)};
+const HL = {judo:() => CHAMPS.filter(c => ok(c.c)).map(c => `<a class="dir rv" href="${rp("judo")}">${champIn(c)}</a>`),
+ trampoline:() => TRA.map(a => `<a class="dir rv ch-a" href="${rp("trampoline")}"><img src="${a.ph[0]}" alt="" loading="lazy"><h3>${esc(L(a.n))}</h3>${medals(a, 1)}</a>`)};
 function sChamps() {
   const [eb, h, p] = CHH[lang];
   return `<section class="sec" aria-labelledby="ch-h"><div class="wrap">${shd(eb, h, p, "", "ch-h")}
    ${SPORTS.filter(k => HL[k]).map(k => { const cs = HL[k]();
-    return `<div class="chg"><div class="chg-h rv"><h3 class="d">${esc(L(SPT[k].h))}</h3>${lnk("#" + k, RAL[lang])}</div><div class="chs" style="--n:${cs.length}">${cs.join("")}</div></div>`; }).join("")}</div></section>`;
+    return `<div class="chg"><div class="chg-h rv"><h3 class="d">${esc(L(SPT[k].h))}</h3>${lnk(rp(k), RAL[lang])}</div><div class="chs" style="--n:${cs.length}">${cs.join("")}</div></div>`; }).join("")}</div></section>`;
 }
 const ABOUT = {ka:["კლუბის შესახებ","ძიუდოს კლუბი „ჯორჯია“",
   "ა.ა.ი.პ. ძიუდოს კლუბი „ჯორჯია“ ოფიციალურად დარეგისტრირდა 2008 წლის 25 დეკემბერს. დღეს ერთ-ერთი ყველაზე წარმატებული და ცნობადი კლუბი ვართ საქართველოში: ძიუდო, ჯიუ-ჯიცუ, სპორტული ტანვარჯიში — ბატუტზე ხტომა, კრივი, სატრენაჟორო დარბაზი და ფიტნესი. ფილიალები გვაქვს თბილისში, რუსთავსა და თელეთში, ჩვენს დარბაზებში საშუალოდ, სისტემატიურად ვარჯიშობს 1000-მდე ადამიანი.",
@@ -1324,7 +1326,7 @@ const ABOUT = {ka:["კლუბის შესახებ","ძიუდო�
 function sAbout() {
   const [eb, h, p1, p2] = ABOUT[lang];
   return `<section class="sec sf" aria-labelledby="ab-h"><div class="wrap">${shd(eb, h, "", "", "ab-h")}<div class="ab2 rv"><p>${esc(p1)}</p><p>${esc(p2)}</p></div>
-   <a class="abp rv" href="#story-jubilee-2025"><img src="/photos/jubilee/jubilee-01-e703ab64.jpg" alt="" loading="lazy"><span>${esc(pTitle(PP("jubilee-2025")))} · ${fmtDate("2025-12-25")}</span></a></div></section>`;
+   <a class="abp rv" href="${rp("story-jubilee-2025")}"><img src="/photos/jubilee/jubilee-01-e703ab64.jpg" alt="" loading="lazy"><span>${esc(pTitle(PP("jubilee-2025")))} · ${fmtDate("2025-12-25")}</span></a></div></section>`;
 }
 function sNumbers() {
   const N = [[2008, "", 1990], [6, "", 0], [15, "", 0], [48, "K", 0], [110, "K", 0]];
@@ -1356,7 +1358,7 @@ function sSchedule() {
    <div data-sched class="rv">${weekView()}</div></div></section>`;
 }
 function sParents(full) {
-  return `<section class="sec sf" aria-labelledby="pa-h"><div class="wrap">${shd(x().parEb, z().parH, x().parP, lnk("#code", CODE_NAV[lang]), "pa-h")}
+  return `<section class="sec sf" aria-labelledby="pa-h"><div class="wrap">${shd(x().parEb, z().parH, x().parP, lnk(rp("code"), CODE_NAV[lang]), "pa-h")}
    <ol class="steps rv">${x().first.map(([b, s]) => `<li><b>${esc(b)}</b>${esc(s)}</li>`).join("")}</ol>
    ${full ? `<div class="pc3 rv"><div><h3 class="d">${esc(x().whyH)}</h3><ul>${x().why.map(s => `<li>${esc(s)}</li>`).join("")}</ul></div>
     <div><h3 class="d">${esc(x().safeH)}</h3><ul>${x().safe.map(s => `<li>${esc(s)}</li>`).join("")}</ul></div>
@@ -1757,13 +1759,13 @@ function pStory(id) {
   const lbl = reel ? (ig ? z().reelIg : z().reelFb) : (ig ? z().openIg : z().openFb);
   const gal = p.ph.map((f, j) => `<a href="${reel ? esc(p.url) : pimg(f)}" target="_blank" rel="noopener"><img src="${pimg(f)}" alt="${esc(reel ? z().reelAlt : z().postAlt)} ${j + 1}" loading="${j ? "lazy" : "eager"}">${reel ? `<span class="pl">${ICON.play} ${esc(lbl)}</span>` : ""}</a>`).join("");
   const pr = POSTS[i - 1], nx = POSTS[i + 1];
-  return `<article><header class="pt"><div class="wrap"><a class="lk" href="#stories" style="color:#fff">← ${esc(t().back)}</a>
+  return `<article><header class="pt"><div class="wrap"><a class="lk" href="${rp("stories")}" style="color:#fff">← ${esc(t().back)}</a>
     <h1 class="d${pTitle(p).length > 90 ? " long xl" : pTitle(p).length > 40 ? " long" : ""}">${esc(pTitle(p))}</h1>
     <div class="sp-meta"><time datetime="${p.d}">${fmtDate(p.d)}</time><span>${p.url ? (ig ? "Instagram" : "Facebook") : L({ka:"კლუბი",ru:"Клуб",en:"Club"})} · ${esc(kindLbl(p))}</span></div></div></header>
    <div class="wrap sp-g"><div class="sp-t"><div class="txt">${ptext(p.tx[lang])}</div>${p.mn ? `<p class="note">${esc(z().minors)}</p>` : ""}
      ${p.url ? `<a class="btn b-red mag" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(lbl)} ${EXT}</a>` : ""}</div>
     <div class="gal${p.ph.length === 1 ? " one" : ""}">${gal}</div></div>
-   <nav class="wrap pn" aria-label="${esc(t().stT)}">${pr ? `<a class="lk" href="#story-${pr.id}">← ${esc(z().prev)}</a>` : "<span></span>"}${nx ? `<a class="lk" href="#story-${nx.id}">${esc(z().next)} →</a>` : ""}</nav></article>` + sJoin();
+   <nav class="wrap pn" aria-label="${esc(t().stT)}">${pr ? `<a class="lk" href="${rp("story-" + pr.id)}">← ${esc(z().prev)}</a>` : "<span></span>"}${nx ? `<a class="lk" href="${rp("story-" + nx.id)}">${esc(z().next)} →</a>` : ""}</nav></article>` + sJoin();
 }
 function page() {
   if (route.startsWith("story-")) return pStory(route.slice(6));
@@ -1771,10 +1773,22 @@ function page() {
   if (LEGAL.includes(route)) return pLegal(route);
   return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode})[route]();
 }
-function parseHash() {
-  const h = location.hash.slice(1);
+function parseRoute() {
+  const h = location.hash.slice(1), p = location.pathname.split("/")[2];
   if (Object.hasOwn(T, h)) { location.replace("/" + h + "/"); return; }
-  route = ROUTES.includes(h) || /^story-[\w-]+$/.test(h) ? h : "home";
+  // pre-path links were /ru/#trampoline
+  if (known(h)) history.replaceState(null, "", rp(h) + location.search);
+  route = known(h) ? h : known(p) ? p : "home";
+}
+// same-language route links swap the page in place; anything else is a normal navigation
+function go(e, a) {
+  const m = !a.target && !e.button && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && !a.dataset.setLang && a.getAttribute("href")[0] === "/" && !a.hash && a.pathname.match(/^\/(\w+)\/([\w-]*)\/?$/);
+  if (!m || m[1] !== lang || !known(m[2] || "home")) return false;
+  e.preventDefault();
+  if (a.pathname === location.pathname) return true;
+  history.pushState(null, "", a.pathname);
+  route = m[2] || "home"; render(); toTop(); pageView();
+  return true;
 }
 
 /* motion: everything is visible by default; GSAP only adds entrances when allowed */
@@ -1846,7 +1860,7 @@ if (GA_ID) {
 }
 function pageView() {
   if (!gaOn) return;
-  const path = `/${lang}/${route === "home" ? "" : route}`;
+  const path = location.pathname;
   gtag("event", "page_view", {page_path:path, page_location:location.origin + path, page_title:document.querySelector("main h1")?.textContent.trim() || document.title});
 }
 function gaStart() {
@@ -1875,7 +1889,7 @@ function ckBar() {
   let b = document.getElementById("ck");
   if (!b) { b = document.createElement("section"); b.id = "ck"; b.className = "ck"; document.body.append(b); }
   b.setAttribute("aria-label", lg().settings);
-  b.innerHTML = `<p>${esc(c[0])} <a href="#cookies">${esc(c[3])}</a></p><div><button type="button" class="btn b-w" data-ck="granted">${esc(c[1])}</button><button type="button" class="btn b-w" data-ck="denied">${esc(c[2])}</button></div>`;
+  b.innerHTML = `<p>${esc(c[0])} <a href="${rp("cookies")}">${esc(c[3])}</a></p><div><button type="button" class="btn b-w" data-ck="granted">${esc(c[1])}</button><button type="button" class="btn b-w" data-ck="denied">${esc(c[2])}</button></div>`;
   b.hidden = false;
 }
 const CHAN = [["https://wa.me/", "whatsapp"], ["viber:", "viber"], ["https://m.me/", "messenger"], ["tel:", "phone"]];
@@ -1897,6 +1911,7 @@ function hdrState() {
 }
 function render(keepFocus) {
   document.documentElement.lang = lang;
+  if (typeof TITLES !== "undefined") document.title = TITLES[route] ?? document.title;
   if (vio) vio.disconnect();
   document.getElementById("app").innerHTML = header() + `<main id="main">${page()}</main>` + footer();
   hdrState(); videos(); motion();
@@ -1907,7 +1922,7 @@ function toTop() { lenis ? lenis.scrollTo(0, {immediate:true}) : scrollTo(0, 0);
 document.addEventListener("click", e => {
   document.querySelectorAll(".nd[open]").forEach(d => { if (!d.contains(e.target) || e.target.closest("a")) d.open = false; });
   const a = e.target.closest("a[href]");
-  if (a) joinClick(a);
+  if (a) { joinClick(a); if (go(e, a)) return; }
   const el = e.target.closest("[data-set-lang],[data-join],[data-coach],[data-wd],[data-pd],[data-menu],[data-close],[data-copy],[data-to],[data-ck],[data-ck-open]");
   if (!el) { if (e.target.closest(".nav.open a")) document.getElementById("nav").classList.remove("open"); return; }
   // only an explicit switch is remembered; the link itself navigates
@@ -1929,7 +1944,7 @@ document.addEventListener("click", e => {
   }
 });
 dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
-addEventListener("hashchange", () => { parseHash(); render(); toTop(); pageView(); });
+addEventListener("popstate", () => { const r = route; parseRoute(); if (route !== r) { render(); toTop(); pageView(); } });
 addEventListener("scroll", () => { const h = document.getElementById("hdr"); if (h) h.classList.toggle("solid", scrollY > 20); }, {passive:true});
 addEventListener("resize", hdrState);
 if (document.fonts) document.fonts.ready.then(() => { hdrState(); if (MO) ScrollTrigger.refresh(); });
@@ -1941,7 +1956,7 @@ addEventListener("keydown", e => {
   if (e.key === "Escape" && n && n.classList.contains("open")) { n.classList.remove("open"); const b = document.querySelector("[data-menu]"); b.setAttribute("aria-expanded", "false"); b.focus(); }
 });
 
-parseHash(); render();
+parseRoute(); render();
 if (GA_ID) {
   let c = null;
   try { c = localStorage.getItem(CK); } catch (x_) {}

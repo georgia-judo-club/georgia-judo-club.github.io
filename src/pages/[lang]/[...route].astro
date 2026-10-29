@@ -1,0 +1,63 @@
+---
+import raw from '../../preview/index.html?raw';
+import '../../styles/fonts.css';
+import geo from '@fontsource-variable/noto-sans-georgian/files/noto-sans-georgian-georgian-wght-normal.woff2?url';
+import interLat from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import interCyr from '@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2?url';
+import montLat from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url';
+import montCyr from '@fontsource-variable/montserrat/files/montserrat-cyrillic-wght-normal.woff2?url';
+import Head from '../../components/Head.astro';
+import { BRAND, DESC, LANGS, TITLE, type Lang } from '../../i18n/ui';
+import { appDates, loadApp } from '../../lib/app.mjs';
+import { GA_ID } from '../../config';
+
+export const getStaticPaths = () => {
+  const app = loadApp(raw);
+  return LANGS.flatMap((lang) => {
+    const heads = app.routes.map((r) => ({ r, ...app.head(lang, r) }));
+    // the club reposts identical captions; number repeats so every title stays unique
+    const seen: Record<string, number> = {};
+    const titles = Object.fromEntries(heads.map(({ r, h1 }) => {
+      const n = (seen[h1] = (seen[h1] ?? 0) + 1);
+      return [r, r === 'home' ? TITLE[lang] : `${h1}${n > 1 ? ` (${n})` : ''} · ${BRAND[lang]}`];
+    }));
+    const club = { name: BRAND[lang], addr: app.ADDR[lang], phone: app.PHONE, raw: app.PHONE_RAW, sameAs: [...app.sameAs] };
+    return heads.map(({ r, desc, img }) => ({
+      params: { lang, route: r === 'home' ? undefined : r },
+      props: { home: r === 'home', path: r === 'home' ? '' : `${r}/`, title: titles[r], desc: r === 'home' ? DESC[lang] : desc, img, titles, club },
+    }));
+  });
+};
+const lang = Astro.params.lang as Lang;
+const { home, path, title, desc, img, titles, club } = Astro.props;
+const site = new URL(`/${lang}/`, Astro.site).href;
+const ld = home && {
+  '@context': 'https://schema.org', '@type': 'SportsClub', name: club.name, url: site, logo: new URL('/img/logo.png', Astro.site).href,
+  telephone: club.phone, foundingDate: '2008-12-25', sameAs: club.sameAs,
+  address: { '@type': 'PostalAddress', streetAddress: 'Beri Gabriel Salosi Ave 144a, Isani', addressLocality: 'Tbilisi', addressCountry: 'GE' },
+};
+// the preview's own head (Google Fonts, title, icon) is replaced by <Head>
+const cut = raw.indexOf('<div id="app">');
+const styles = [...raw.slice(0, cut).matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
+const body = raw.slice(cut).replace('</html>', '');
+// first-screen faces only: the page script plus latin (digits live in latin)
+const dates = appDates(raw, lang);
+const preload = { ka: [geo, interLat], ru: [montCyr, interCyr, interLat], en: [montLat, interLat] }[lang];
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <Head lang={lang} path={path} title={title} desc={desc} image={img} />
+  {ld && <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />}
+  {preload.map((u) => <link rel="preload" href={u} as="font" type="font/woff2" crossorigin />)}
+  {styles.map((s) => <style is:inline set:html={s} />)}
+</head>
+<body>
+  <script is:inline set:html={`const DATES=${JSON.stringify(dates)};const GA_ID=${JSON.stringify(GA_ID)};const TITLES=${JSON.stringify(titles)};`} />
+  <noscript><div style="max-width:40rem;margin:2rem auto;padding:0 1.25rem;background:#fff;color:#0F1B33;font:1rem/1.6 system-ui,sans-serif">
+    <p><b>{club.name}</b></p><p>{DESC[lang]}</p><p>{club.addr}</p>
+    <p><a href={`tel:+${club.raw}`}>{club.phone}</a> · <a href={`https://wa.me/${club.raw}`}>WhatsApp</a></p>
+  </div></noscript>
+  <Fragment set:html={body} />
+</body>
+</html>

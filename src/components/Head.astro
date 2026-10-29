@@ -1,20 +1,27 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { BRAND, DESC, LANGS, OG_LOCALE, TITLE, type Lang } from '../i18n/ui';
-import { GSC_TOKEN } from '../config';
+import { GSC_TOKEN, INDEXABLE } from '../config';
 
 interface Props {
   lang?: Lang;
   title?: string;
+  desc?: string;
+  // route path under the language: '' for home, else e.g. 'judo/'
+  path?: string;
+  image?: string;
 }
-const { lang, title } = Astro.props;
+const { lang, path = '', image } = Astro.props;
+const title = Astro.props.title ?? (lang && TITLE[lang]);
+const desc = Astro.props.desc ?? (lang && DESC[lang]);
 // share scrapers need absolute URLs
 const abs = (p: string) => new URL(p, Astro.site).href;
-const url = lang && abs(getRelativeLocaleUrl(lang));
+const at = (l: Lang) => abs(getRelativeLocaleUrl(l, path));
+const url = lang && at(lang);
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="robots" content="noindex" />
+{!INDEXABLE && <meta name="robots" content="noindex" />}
 {GSC_TOKEN && <meta name="google-site-verification" content={GSC_TOKEN} />}
 <link rel="icon" href="/favicon.ico" sizes="48x48" />
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
@@ -22,22 +29,28 @@ const url = lang && abs(getRelativeLocaleUrl(lang));
 {title && !lang && <title>{title}</title>}
 {lang && (
   <>
-    <title>{TITLE[lang]}</title>
-    <meta name="description" content={DESC[lang]} />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
     <link rel="canonical" href={url} />
-    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={abs(getRelativeLocaleUrl(l))} />)}
-    <link rel="alternate" hreflang="x-default" href={abs('/')} />
+    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={at(l)} />)}
+    <link rel="alternate" hreflang="x-default" href={path ? at('ka') : abs('/')} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={BRAND[lang]} />
-    <meta property="og:title" content={TITLE[lang]} />
-    <meta property="og:description" content={DESC[lang]} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
     <meta property="og:url" content={url} />
-    <meta property="og:image" content={abs(`/og/${lang}.jpg`)} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={TITLE[lang]} />
+    {image ? <meta property="og:image" content={abs(image)} /> : (
+      <>
+        <meta property="og:image" content={abs(`/og/${lang}.jpg`)} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    )}
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={OG_LOCALE[lang]} />
     {LANGS.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={OG_LOCALE[l]} />)}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
   </>
 )}

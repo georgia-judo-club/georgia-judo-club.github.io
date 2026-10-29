@@ -26,11 +26,11 @@ const stored = (page) => page.evaluate(() => localStorage.getItem('gj-lang'));
 const currentRoute = (page) => page.evaluate(() => document.querySelector('.nav a[aria-current="page"]')?.getAttribute('href'));
 
 test('switcher keeps the route and remembers an explicit choice', async () => {
-  const { ctx, page } = await open('/ka/#programs');
+  const { ctx, page } = await open('/ka/programs/');
   await page.click('.langs a[hreflang="ru"]');
-  await page.waitForURL(/\/ru\/#programs$/);
+  await page.waitForURL(/\/ru\/programs\/$/);
   assert.equal(await page.evaluate(() => document.documentElement.lang), 'ru');
-  assert.equal(await currentRoute(page), '#programs');
+  assert.equal(await currentRoute(page), '/ru/programs/');
   assert.equal(await stored(page), 'ru');
   await page.goto(srv.url);
   await page.waitForURL(/\/ru\/$/);
@@ -59,13 +59,42 @@ test('switcher shows KA RU EN in order with native accessible names and no flags
   }
 });
 
-test('legacy language hash replaces to that language; route hashes stay', async () => {
+test('legacy hashes move to real paths: language to its home, route to its page', async () => {
   let { ctx, page } = await open('/ka/#ru');
   await page.waitForURL(/\/ru\/$/);
   await ctx.close();
-  ({ ctx, page } = await open('/ru/#programs'));
-  await page.waitForTimeout(300);
-  assert.match(page.url(), /\/ru\/#programs$/);
+  ({ ctx, page } = await open('/ru/#trampoline'));
+  assert.match(page.url(), /\/ru\/trampoline\/$/);
+  assert.equal(await page.textContent('main h1'), 'Батут');
+  await ctx.close();
+  // the root picker keeps the hash, so old shared links land on the real path too
+  ({ ctx, page } = await open('/#story-jubilee-2025'));
+  await page.waitForURL(/\/en\/story-jubilee-2025\/$/);
+  await ctx.close();
+});
+
+test('in-app links push real paths without reloading; back and forward work', async () => {
+  const { ctx, page } = await open('/en/');
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.evaluate(() => { window.same = 1; });
+  await page.click('.ftr nav a[href="/en/coaches/"]');
+  await page.waitForURL(/\/en\/coaches\/$/);
+  assert.equal(await page.textContent('main h1'), 'Coaches');
+  assert.equal(await page.title(), 'Coaches · Judo Club “Georgia”');
+  await page.click('.ftr nav a[href="/en/boxing/"]');
+  await page.waitForURL(/\/en\/boxing\/$/);
+  await page.goBack();
+  await page.waitForURL(/\/en\/coaches\/$/);
+  assert.equal(await page.textContent('main h1'), 'Coaches');
+  await page.goBack();
+  await page.waitForURL(/\/en\/$/);
+  assert.ok(await page.$('#h1'));
+  assert.equal(await page.title(), 'Judo Club “Georgia” · Tbilisi');
+  await page.goForward();
+  await page.waitForURL(/\/en\/coaches\/$/);
+  assert.equal(await page.evaluate(() => window.same), 1, 'navigation reloaded the page');
+  assert.deepEqual(errors, []);
   await ctx.close();
 });
 
@@ -86,14 +115,14 @@ test('no draft badge or [placeholder] on any route or coach card', async () => {
   for (const l of LANGS) {
     const { ctx, page } = await open(`/${l}/`);
     for (const r of await page.evaluate(() => ROUTES)) {
-      await page.goto(`${srv.url}${l}/#${r}`);
+      await page.goto(`${srv.url}${l}/${r === 'home' ? '' : `${r}/`}`);
       const [badges, text] = await page.evaluate(() => {
         let t = document.body.innerText;
         document.querySelectorAll('[data-coach]').forEach((b) => { b.click(); t += dlg.innerText; });
         return [document.querySelectorAll('.badge').length, t];
       });
-      assert.equal(badges, 0, `${l} #${r}`);
-      assert.doesNotMatch(text, /\[[^\]]{3,}\]/, `${l} #${r}`);
+      assert.equal(badges, 0, `${l} ${r}`);
+      assert.doesNotMatch(text, /\[[^\]]{3,}\]/, `${l} ${r}`);
     }
     await ctx.close();
   }
@@ -125,10 +154,11 @@ test('legal pages render in every language and are linked from the footer', asyn
   for (const l of LANGS) {
     const { ctx, page } = await open(`/${l}/`);
     const links = await page.$$eval('.ftr .lgn a', (as) => as.map((a) => a.getAttribute('href')));
-    assert.deepEqual(links, ['#privacy', '#cookies', '#children'], l);
+    assert.deepEqual(links, ['privacy', 'cookies', 'children'].map((r) => `/${l}/${r}/`), l);
     for (const r of links) {
       await page.click(`.ftr .lgn a[href="${r}"]`);
-      await page.waitForFunction((k) => document.querySelector('.lgl h2')?.textContent === LGL[lang][k].s[0][0], r.slice(1));
+      await page.waitForFunction((k) => document.querySelector('.lgl h2')?.textContent === LGL[lang][k].s[0][0], r.split('/')[2]);
+      assert.equal(new URL(page.url()).pathname, r);
       const [h1, n, upd] = await page.evaluate(() =>
         [document.querySelector('main h1').textContent, document.querySelectorAll('.lgl h2').length, document.querySelector('.lgl time')?.dateTime]);
       assert.ok(h1.trim() && n >= 3, `${l} ${r}`);
@@ -150,14 +180,14 @@ async function openGa(path, gaId) {
     return route.fulfill({ response: res, body: (await res.text()).replace('const GA_ID="";', `const GA_ID="${gaId}";`) });
   });
   await page.goto(srv.url + path.replace(/^\//, ''));
-  // keep chat/phone links from leaving the page; in-page hash links still route
-  await page.evaluate(() => addEventListener('click', (e) => { if (!e.target.closest('a[href^="#"]')) e.preventDefault(); }));
+  // keep chat/phone links from leaving the page; in-app route links still route
+  await page.evaluate(() => addEventListener('click', (e) => { if (!e.target.closest('a[href^="/"]')) e.preventDefault(); }));
   return { ctx, page, gtm };
 }
 const layer = (page) => page.evaluate(() => (window.dataLayer ?? []).map((a) => Array.from(a)));
 
 test('without a GA_ID there is no banner and nothing goes to Google', async () => {
-  const { ctx, page, gtm } = await openGa('/en/#boxing');
+  const { ctx, page, gtm } = await openGa('/en/boxing/');
   await page.click('.bx-h .act [data-join]');
   await page.click('#dlg .chan.wa');
   assert.equal(await page.$('#ck'), null);
@@ -177,7 +207,7 @@ test('with a GA_ID gtag waits for Accept, then tracks views and join clicks', as
   assert.equal(await page.evaluate(() => localStorage.getItem('gj-consent')), 'denied');
   await ctx.close();
 
-  ({ ctx, page, gtm } = await openGa('/ru/#trampoline', 'G-TEST1'));
+  ({ ctx, page, gtm } = await openGa('/ru/trampoline/', 'G-TEST1'));
   assert.deepEqual(gtm, []);
   assert.deepEqual((await layer(page))[0], ['consent', 'default',
     { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' }]);
@@ -188,11 +218,11 @@ test('with a GA_ID gtag waits for Accept, then tracks views and join clicks', as
   await page.click('.bx-h .act [data-join]');
   await page.click('#dlg .chan.wa');
   await page.keyboard.press('Escape');
-  await page.click('.ftr .lgn a[href="#privacy"]');
+  await page.click('.ftr .lgn a[href="/ru/privacy/"]');
   await page.waitForSelector('.lgl');
   const dl = await layer(page);
   assert.deepEqual(dl.find((a) => a[1] === 'update'), ['consent', 'update', { analytics_storage: 'granted' }]);
-  assert.deepEqual(dl.filter((a) => a[1] === 'page_view').map((a) => a[2].page_path), ['/ru/trampoline', '/ru/privacy']);
+  assert.deepEqual(dl.filter((a) => a[1] === 'page_view').map((a) => a[2].page_path), ['/ru/trampoline/', '/ru/privacy/']);
   assert.deepEqual(dl.find((a) => a[1] === 'join_click')[2], { channel: 'whatsapp', sport: 'trampoline', lang: 'ru' });
   await ctx.close();
 });

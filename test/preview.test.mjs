@@ -21,11 +21,11 @@ test('dist ships every public file byte-identical', () => {
   for (const f of files) assert.ok(readFileSync(join(pub, f)).equals(readFileSync(join(dist, f))), `${f} differs or is missing in dist`);
 });
 
-test('served from the root with robots.txt and noindex kept', () => {
+test('served from the root with robots.txt and noindex following INDEXABLE', () => {
   assert.ok(existsSync(join(dist, 'robots.txt')));
   for (const f of walk(dist).filter((f) => f.endsWith('.html'))) {
     const page = readFileSync(join(dist, f), 'utf8');
-    assert.ok(page.includes('<meta name="robots" content="noindex">'), f);
+    assert.equal(page.includes('<meta name="robots" content="noindex">'), !/INDEXABLE = true/.test(readFileSync('src/config.ts', 'utf8')), f);
     assert.doesNotMatch(page, /(?<!\/)\/georgia-judo-club\.github\.io\//, f);
   }
 });
