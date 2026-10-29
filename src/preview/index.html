@@ -336,6 +336,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .slg{display:flex;align-items:center;gap:1rem;text-align:right;font-size:.82rem;color:#DCE2EC;line-height:1.4}
 .ftr .fine{margin-top:1.8rem;padding-top:1.1rem;border-top:1px solid var(--lnD);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;font-size:.72rem;color:var(--muD)}
 .ftr .fine a{color:inherit}
+.ftr .lgn{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem}.ftr .lgn button{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+.lgl{max-width:75ch}.lgl h2{font:800 1.3rem/1.25 var(--fd);margin:2.2rem 0 .7rem}.lgl p,.lgl li{line-height:1.65;color:#36404F}.lgl p+p{margin-top:.8rem}.lgl ul{padding-left:1.3rem;list-style:disc;display:grid;gap:.45rem}.lgl a{color:var(--redT)}
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem 1.5rem;padding:1rem var(--g) max(1rem,env(safe-area-inset-bottom));background:var(--navy3);color:#fff;font-size:.9rem;line-height:1.5;box-shadow:0 -.4rem 1.5rem rgba(0,0,0,.25)}
+@media (max-width:899px){.pt.lgt h1.d{font-size:clamp(20px,6vw,40px)}:lang(ka) .pt.lgt h1.d{font-size:clamp(17px,5vw,34px)}}
+.ck p{max-width:70ch}.ck a{color:#fff}.ck div{display:flex;flex-wrap:wrap;gap:.6rem}
 
 /* page title band */
 .pt{position:relative;overflow:hidden;background:linear-gradient(160deg,#122242,#0B1429 70%);color:#fff;padding-block:3.5rem 3rem}
@@ -825,7 +830,8 @@ const SPORTS = ["judo","boxing","trampoline","gymnastics","bjj","fitness"];
 const SPN = {judo:{ka:"ძიუდო",ru:"Дзюдо",en:"Judo"}, boxing:{ka:"კრივი",ru:"Бокс",en:"Boxing"}, trampoline:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"},
  gymnastics:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}, bjj:{ka:"ჯიუ-ჯიცუ",ru:"Джиу-джитсу",en:"Jiu-jitsu"}, fitness:{ka:"ფიტნესი",ru:"Фитнес",en:"Fitness"}};
 const SECN = {ka:"სექციები",ru:"Секции",en:"Sports"};
-const ROUTES = ["home", ...SPORTS, "parents","programs","schedule","coaches","branches","stories","videos","contact","code"];
+const LEGAL = ["privacy","cookies","children"];
+const ROUTES = ["home", ...SPORTS, "parents","programs","schedule","coaches","branches","stories","videos","contact","code", ...LEGAL];
 
 function msg(ctx) { return ctx && Object.values(SPT).some(s => ctx.startsWith(s.w[lang])) ? ctx : t().wa + (ctx ? " " + ctx : ""); }
 const BXW = {ka:"გამარჯობა! მინდა კრივზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на бокс.",en:"Hello! I would like to join boxing."};
@@ -842,8 +848,10 @@ function channels(m) {
 /* dialog */
 const dlg = document.getElementById("dlg"), dbody = document.getElementById("dlg-body");
 function openDlg(html) { dbody.innerHTML = html; if (!dlg.open) dlg.showModal(); }
+let jctx = "";
 function openJoin(ctx) {
   const m = msg(ctx);
+  jctx = ctx;
   openDlg(`<div class="dlg-h"><h2 id="dlg-title" class="disp">${esc(t().joinClub)}</h2><button type="button" class="x" data-close aria-label="${esc(t().close)}">×</button></div>
    <p class="muted">${esc(t().dlgP)}</p><div class="chans">${channels(m)}</div>
    <label for="jmsg" style="font-size:13px;font-weight:600">${esc(t().msgL)}</label><textarea id="jmsg" readonly>${esc(m)}</textarea>
@@ -982,7 +990,7 @@ en:{heroEb:"Judo club · Tbilisi · Since 2008",h1:["Champions","are made","here
  coachIll:"Illustrative frame"}
 };
 const z = () => Z[lang];
-const FNAV = ROUTES.filter(r => r !== "home"), NAV = FNAV.filter(r => r !== "code" && !SPORTS.includes(r));
+const FNAV = ROUTES.filter(r => r !== "home" && !LEGAL.includes(r)), NAV = FNAV.filter(r => r !== "code" && !SPORTS.includes(r));
 const trialBtn = (cls, label) => jbtn(x().trialMsg, cls, label);
 // Tbilisi weekday, Monday = 0, whatever the visitor's zone
 const TODAY = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].indexOf(new Intl.DateTimeFormat("en-US",{weekday:"short",timeZone:"Asia/Tbilisi"}).format(new Date()));
@@ -1168,7 +1176,7 @@ function footer() {
    <nav aria-label="Footer">${FNAV.map(r => `<a href="#${r}">${esc(n[r])}</a>`).join("")}</nav>
    <div class="soc">${SOC.map(([u, nm, ic]) => `<a href="${u}" target="_blank" rel="noopener" aria-label="${nm}">${ICON[ic]}</a>`).join("")}</div>
    <p class="slg"><span>${esc(w().slogan[0])}<br>${esc(w().slogan[1])}</span><span class="plus" aria-hidden="true"></span></p>
-  </div><div class="fine"><span>© 2008–2026 ${esc(t().foot)}</span><span>${esc(ADDR[lang])} · <a href="tel:+${PHONE_RAW}">${PHONE}</a></span></div></div></footer>`;
+  </div><div class="fine"><span>© 2008–2026 ${esc(t().foot)}</span><span class="lgn">${LEGAL.map(r => `<a href="#${r}">${esc(lg()[r].nav)}</a>`).join("")}${GA_ID ? `<button type="button" data-ck-open>${esc(lg().settings)}</button>` : ""}</span><span>${esc(ADDR[lang])} · <a href="tel:+${PHONE_RAW}">${PHONE}</a></span></div></div></footer>`;
 }
 
 /* home */
@@ -1512,6 +1520,87 @@ function pCode() {
    <p class="jp-end">${jk("心", "hk lg")}</p></div></section>` + sJoin();
 }
 
+/* legal pages: plain-language texts, kind as in codeBlock (1 = paragraphs, default = bullets) */
+const LEGAL_UPD = "2026-10-29";
+const LGL = {
+ ka:{eb:"სამართლებრივი ინფორმაცია", upd:"ბოლო განახლება", settings:"ქუქი-ფაილების პარამეტრები",
+  ck:["გვსურს Google Analytics-ის ქუქი-ფაილების გამოყენება, რომ გავიგოთ, რომელი გვერდებია ოჯახებისთვის სასარგებლო. ისინი მხოლოდ თქვენი თანხმობით ჩაიწერება.","მიღება","უარყოფა","ქუქი-ფაილების შესახებ"],
+  privacy:{nav:"კონფიდენციალურობის პოლიტიკა", h:"კონფიდენციალურობის პოლიტიკა", lead:"როგორ ამუშავებს ძიუდოს კლუბი „ჯორჯია“ პერსონალურ მონაცემებს ამ საიტზე და კლუბთან კომუნიკაციისას.", s:[
+   ["ვინ ვართ", ["მონაცემთა დამმუშავებელია ძიუდოს კლუბი „ჯორჯია“ (კლუბის პრეზიდენტი, ს/კ 206337374), მისამართი: {addr}.","კონტაქტი: ტელეფონი {phone}, ელფოსტა {mail}."], 1],
+   ["რა მონაცემებს ვამუშავებთ", ["საიტზე არ არის ფორმები და ანგარიშები — ჩვენ საიტის მეშვეობით თქვენს სახელს ან ნომერს არ ვაგროვებთ.","როცა აჭერთ WhatsApp-ს, Viber-ს, Messenger-ს ან რეკავთ, კლუბს პირდაპირ უკავშირდებით ამ სერვისით. თქვენი შეტყობინება, სახელი და ნომერი კლუბს მისი მეშვეობით მოდის და მოქმედებს ამ სერვისის კონფიდენციალურობის პოლიტიკაც.","Google Analytics-ის მონაცემები — მხოლოდ თქვენი თანხმობის შემთხვევაში: ნანახი გვერდები, მიახლოებითი მდებარეობა (ქვეყანა, ქალაქი), მოწყობილობისა და ბრაუზერის ტიპი და რომელ საკონტაქტო ღილაკს დააჭირეთ.","სპორტსმენების ფოტოები და სახელები სიახლეებში, შედეგებსა და მწვრთნელების გვერდზე.","ტექნიკური მონაცემები: საიტი განთავსებულია GitHub Pages-ზე, ხოლო რამდენიმე სკრიპტი იტვირთება cdnjs.cloudflare.com-დან და cdn.jsdelivr.net-დან. ეს სერვისები, ნებისმიერი ვებსერვერის მსგავსად, ხედავენ თქვენს IP მისამართს."]],
+   ["რისთვის", ["თქვენს შეკითხვებზე პასუხისთვის და ვარჯიშზე ჩასაწერად.","იმის გასაგებად, რომელი გვერდებია სასარგებლო, და საიტის გასაუმჯობესებლად — მხოლოდ თანხმობით.","კლუბის ისტორიისა და სპორტსმენების წარმატებების საჩვენებლად."]],
+   ["სამართლებრივი საფუძველი", ["მონაცემებს ვამუშავებთ საქართველოს კანონის „პერსონალურ მონაცემთა დაცვის შესახებ“ (მიღებულია 2023 წლის 14 ივნისს, ძალაშია 2024 წლის 1 მარტიდან) შესაბამისად.","შეკითხვები: თქვენი მოთხოვნა და ვარჯიშზე ჩაწერამდე საჭირო ნაბიჯები.","ანალიტიკა: თქვენი თანხმობა.","ფოტოები და სახელები: სპორტსმენის თანხმობა, ხოლო არასრულწლოვნის შემთხვევაში — მშობლის ან კანონიერი წარმომადგენლის თანხმობა."]],
+   ["რამდენ ხანს ვინახავთ", ["შეტყობინებებს ვინახავთ იმდენ ხანს, რამდენიც საჭიროა პასუხისთვის და სანამ კლუბში ვარჯიშობთ.","ანალიტიკის მონაცემები Google Analytics-ში ინახება არაუმეტეს 14 თვისა და შემდეგ ავტომატურად იშლება.","ფოტოები და სახელები საიტზე რჩება, სანამ თანხმობას არ გაიხმობთ ან წაშლას არ მოითხოვთ."]],
+   ["ვინ იღებს მონაცემებს", ["Google (ანალიტიკა, მხოლოდ თანხმობით) — მონაცემები შეიძლება დამუშავდეს საქართველოს ფარგლებს გარეთ.","მესენჯერი ან სატელეფონო სერვისი, რომელსაც თავად აირჩევთ.","მონაცემებს არ ვყიდით და რეკლამისთვის არ ვიყენებთ."]],
+   ["თქვენი უფლებები", ["შეგიძლიათ მოითხოვოთ: თქვენს მონაცემებზე წვდომა, მათი გასწორება ან წაშლა, დამუშავების შეწყვეტა ან შეზღუდვა. თანხმობის გახმობა ნებისმიერ დროს შეგიძლიათ — ეს არ მოქმედებს მანამდე განხორციელებულ დამუშავებაზე.","მოთხოვნისთვის დაგვიკავშირდით ტელეფონზე {phone} ან ელფოსტაზე {mail}. ვუპასუხებთ რაც შეიძლება მალე, კანონით დადგენილ ვადაში."], 1],
+   ["საჩივარი", ["თუ ფიქრობთ, რომ თქვენს მონაცემებს არასწორად ვამუშავებთ, შეგიძლიათ მიმართოთ საქართველოს პერსონალურ მონაცემთა დაცვის სამსახურს: personaldata.ge."], 1],
+   ["ცვლილებები", ["ამ გვერდს ვაახლებთ, როცა ვცვლით მონაცემების დამუშავების წესს. ბოლო განახლების თარიღი მითითებულია ზემოთ."], 1]]},
+  cookies:{nav:"ქუქი-ფაილები", h:"ქუქი-ფაილები", lead:"რას ინახავს საიტი თქვენს ბრაუზერში და როგორ შეცვალოთ თქვენი არჩევანი.", s:[
+   ["რას ინახავს საიტი თავად", ["საიტი თავად ქუქი-ფაილებს არ ქმნის. ბრაუზერის მეხსიერებაში (localStorage) ინახება მხოლოდ თქვენ მიერ არჩეული ენა და ქუქი-ფაილებზე თქვენი პასუხი. ეს ჩვენთან არ იგზავნება."], 1],
+   ["Google Analytics 4 — მხოლოდ „მიღების“ შემდეგ", ["_ga — განასხვავებს ვიზიტორებს, ინახება 2 წლამდე.","_ga_{id} — ინახავს ვიზიტის მდგომარეობას, ინახება 2 წლამდე.","ეს ქუქი-ფაილები ეკუთვნის Google-ს და მონაცემები Google-თან იგზავნება."]],
+   ["თანხმობის გარეშე", ["სანამ „მიღებას“ არ დააჭერთ, Google Analytics-ის სკრიპტი არ იტვირთება და Google-თან არაფერი იგზავნება. „უარყოფა“ ისეთივე მარტივია, როგორც „მიღება“, და საიტი ორივე შემთხვევაში ერთნაირად მუშაობს."], 1],
+   ["როგორ შევცვალოთ არჩევანი", ["ყოველი გვერდის ბოლოს არის ბმული „ქუქი-ფაილების პარამეტრები“. „უარყოფის“ შემდეგ ანალიტიკა ჩერდება და _ga ქუქი-ფაილები იშლება. ასევე შეგიძლიათ ქუქი-ფაილები ბრაუზერის პარამეტრებში წაშალოთ."], 1]]},
+  children:{nav:"ბავშვების ფოტოები", h:"ბავშვების ფოტოები და სახელები", lead:"როგორ ვაქვეყნებთ არასრულწლოვანი სპორტსმენების ფოტოებსა და სახელებს.", s:[
+   ["მხოლოდ მშობლის თანხმობით", ["არასრულწლოვანთა ფოტოები და სახელები საიტზე და კლუბის გვერდებზე ქვეყნდება მხოლოდ მშობლის ან კანონიერი წარმომადგენლის თანხმობით."], 1],
+   ["რას არ ვაქვეყნებთ", ["ბავშვის დაბადების თარიღს.","სკოლას.","სახლის მისამართს და ტელეფონის ნომერს."]],
+   ["რას შეიძლება ნახოთ", ["შედეგებში: სახელი, ტურნირი და მედალი. ტურნირის ასაკობრივი კატეგორია შეიძლება მითითებული იყოს, მაგალითად „2010–2011 წლებში დაბადებული ვაჟები“.","სიახლეებში ბავშვების სახელები, როგორც წესი, შემოკლებულია: სახელი და გვარის პირველი ასო."]],
+   ["წაშლა ნებისმიერ დროს", ["მშობელს შეუძლია ნებისმიერ დროს მოითხოვოს ფოტოს ან სახელის წაშლა კლუბის ტელეფონზე {phone}. მიზეზის ახსნა საჭირო არ არის — მასალას დაუყოვნებლივ წავშლით საიტიდან და, თუ მოითხოვთ, კლუბის Facebook-ისა და Instagram-ის გვერდებიდანაც."], 1]]}},
+ ru:{eb:"Правовая информация", upd:"Последнее обновление", settings:"Настройки cookie",
+  ck:["Мы хотели бы использовать cookie Google Analytics, чтобы понимать, какие страницы полезны семьям. Они сохраняются только с вашего согласия.","Принять","Отклонить","О файлах cookie"],
+  privacy:{nav:"Политика конфиденциальности", h:"Политика конфиденциальности", lead:"Как дзюдо-клуб «Джорджия» обращается с персональными данными на этом сайте и при общении с клубом.", s:[
+   ["Кто мы", ["Обработчик данных — дзюдо-клуб «Джорджия» (президент клуба, ИК 206337374), адрес: {addr}.","Контакты: телефон {phone}, электронная почта {mail}."], 1],
+   ["Какие данные мы обрабатываем", ["На сайте нет форм и учётных записей — через сайт мы не собираем ваше имя или номер.","Когда вы нажимаете WhatsApp, Viber, Messenger или звоните, вы связываетесь с клубом напрямую через этот сервис. Ваше сообщение, имя и номер приходят клубу через него, и действует также политика конфиденциальности этого сервиса.","Данные Google Analytics — только с вашего согласия: просмотренные страницы, примерное местоположение (страна, город), тип устройства и браузера и то, какую кнопку связи вы нажали.","Фото и имена спортсменов в новостях, результатах и на странице тренеров.","Технические данные: сайт размещён на GitHub Pages, а несколько скриптов загружаются с cdnjs.cloudflare.com и cdn.jsdelivr.net. Эти сервисы, как любой веб-сервер, видят ваш IP-адрес."]],
+   ["Зачем", ["Чтобы отвечать на ваши вопросы и записывать на тренировки.","Чтобы понимать, какие страницы полезны, и улучшать сайт — только с согласия.","Чтобы рассказывать историю клуба и об успехах спортсменов."]],
+   ["Правовое основание", ["Мы обрабатываем данные в соответствии с Законом Грузии «О защите персональных данных» (принят 14 июня 2023 года, действует с 1 марта 2024 года).","Вопросы: ваш запрос и шаги перед записью на тренировки.","Аналитика: ваше согласие.","Фото и имена: согласие спортсмена, а для несовершеннолетних — согласие родителя или законного представителя."]],
+   ["Сколько мы храним", ["Сообщения храним столько, сколько нужно для ответа, и пока вы занимаетесь в клубе.","Данные аналитики хранятся в Google Analytics не дольше 14 месяцев и затем удаляются автоматически.","Фото и имена остаются на сайте, пока вы не отзовёте согласие или не попросите их удалить."]],
+   ["Кто получает данные", ["Google (аналитика, только с согласия) — данные могут обрабатываться за пределами Грузии.","Мессенджер или телефонный сервис, который вы выбираете сами.","Мы не продаём данные и не используем их для рекламы."]],
+   ["Ваши права", ["Вы можете запросить доступ к своим данным, их исправление или удаление, прекращение или ограничение обработки. Согласие можно отозвать в любой момент — это не влияет на обработку, проведённую до отзыва.","Для запроса свяжитесь с нами по телефону {phone} или по почте {mail}. Мы ответим как можно скорее, в срок, установленный законом."], 1],
+   ["Жалоба", ["Если вы считаете, что мы обрабатываем ваши данные неправильно, вы можете обратиться в Службу защиты персональных данных Грузии: personaldata.ge."], 1],
+   ["Изменения", ["Мы обновляем эту страницу, когда меняем порядок обработки данных. Дата последнего обновления указана выше."], 1]]},
+  cookies:{nav:"Файлы cookie", h:"Файлы cookie", lead:"Что сайт хранит в вашем браузере и как изменить свой выбор.", s:[
+   ["Что хранит сам сайт", ["Сам сайт не создаёт файлов cookie. В памяти браузера (localStorage) хранятся только выбранный вами язык и ваш ответ о cookie. Эти данные нам не отправляются."], 1],
+   ["Google Analytics 4 — только после «Принять»", ["_ga — различает посетителей, хранится до 2 лет.","_ga_{id} — хранит состояние посещения, хранится до 2 лет.","Эти cookie принадлежат Google, данные отправляются в Google."]],
+   ["Без согласия", ["Пока вы не нажмёте «Принять», скрипт Google Analytics не загружается и в Google ничего не отправляется. Отказаться так же просто, как согласиться, и сайт в обоих случаях работает одинаково."], 1],
+   ["Как изменить выбор", ["Внизу каждой страницы есть ссылка «Настройки cookie». После отказа аналитика останавливается, а cookie _ga удаляются. Cookie также можно удалить в настройках браузера."], 1]]},
+  children:{nav:"Фото детей", h:"Фото и имена детей", lead:"Как мы публикуем фото и имена несовершеннолетних спортсменов.", s:[
+   ["Только с согласия родителя", ["Фото и имена несовершеннолетних публикуются на сайте и на страницах клуба только с согласия родителя или законного представителя."], 1],
+   ["Что мы не публикуем", ["Дату рождения ребёнка.","Школу.","Домашний адрес и номер телефона."]],
+   ["Что может быть указано", ["В результатах: имя, турнир и медаль. Может быть указана возрастная категория турнира, например «юноши 2010–2011 г. р.».","В новостях имена детей, как правило, сокращены: имя и первая буква фамилии."]],
+   ["Удаление в любой момент", ["Родитель может в любой момент попросить удалить фото или имя по телефону клуба {phone}. Объяснять причину не нужно — мы сразу удалим материал с сайта, а по вашей просьбе и со страниц клуба в Facebook и Instagram."], 1]]}},
+ en:{eb:"Legal", upd:"Last updated", settings:"Cookie settings",
+  ck:["We’d like to use Google Analytics cookies to see which pages help families most. They’re set only if you accept.","Accept","Decline","About cookies"],
+  privacy:{nav:"Privacy policy", h:"Privacy policy", lead:"How Judo Club “Georgia” handles personal data on this website and when you contact the club.", s:[
+   ["Who we are", ["The controller is Judo Club “Georgia” (club president, ID 206337374), {addr}.","Contact: phone {phone}, email {mail}."], 1],
+   ["What data we handle", ["The site has no forms and no accounts, so it does not collect your name or number.","When you tap WhatsApp, Viber or Messenger, or call, you contact the club directly through that service. Your message, name and number reach the club through it, and that service’s own privacy policy also applies.","Google Analytics data, only if you agree: pages viewed, approximate location (country, city), device and browser type, and which contact button you tapped.","Photos and names of athletes in news, results and on the coaches page.","Technical data: the site is hosted on GitHub Pages and a few scripts load from cdnjs.cloudflare.com and cdn.jsdelivr.net. Like any web server, these services see your IP address."]],
+   ["Why", ["To answer your questions and sign you up for training.","To learn which pages are useful and improve the site, only with your consent.","To share the club’s story and celebrate our athletes."]],
+   ["Legal basis", ["We process data under the Law of Georgia on Personal Data Protection (adopted 14 June 2023, in force since 1 March 2024).","Enquiries: your request and the steps before you join.","Analytics: your consent.","Photos and names: the athlete’s consent, or for minors the consent of a parent or legal guardian."]],
+   ["How long we keep it", ["Messages are kept as long as needed to reply and while you train at the club.","Analytics data is kept in Google Analytics for no longer than 14 months, then deleted automatically.","Photos and names stay on the site until you withdraw consent or ask us to remove them."]],
+   ["Who receives data", ["Google (analytics, only with consent); data may be processed outside Georgia.","The messaging or phone service you choose.","We do not sell data or use it for advertising."]],
+   ["Your rights", ["You can ask to access, correct or delete your data, or to stop or restrict its processing. You can withdraw consent at any time; this does not affect processing done before.","To make a request, contact us on {phone} or at {mail}. We reply as soon as possible and within the time the law sets."], 1],
+   ["Complaints", ["If you think we handle your data wrongly, you can complain to the Personal Data Protection Service of Georgia: personaldata.ge."], 1],
+   ["Changes", ["We update this page when the way we handle data changes. The date of the last update is shown above."], 1]]},
+  cookies:{nav:"Cookies", h:"Cookies", lead:"What the site stores in your browser and how to change your choice.", s:[
+   ["What the site itself stores", ["The site itself sets no cookies. Your browser’s storage (localStorage) keeps only the language you picked and your cookie choice. Neither is sent to us."], 1],
+   ["Google Analytics 4, only after “Accept”", ["_ga tells visitors apart and lasts up to 2 years.","_ga_{id} keeps the state of your visit and lasts up to 2 years.","These cookies belong to Google and the data goes to Google."]],
+   ["Without consent", ["Until you tap “Accept”, the Google Analytics script does not load and nothing is sent to Google. Declining is as easy as accepting, and the site works the same either way."], 1],
+   ["How to change your choice", ["Every page has a “Cookie settings” link at the bottom. After you decline, analytics stops and the _ga cookies are removed. You can also delete cookies in your browser settings."], 1]]},
+  children:{nav:"Children’s photos", h:"Children’s photos and names", lead:"How we publish photos and names of young athletes.", s:[
+   ["Only with a parent’s consent", ["Photos and names of minors appear on the site and on the club’s pages only with the consent of a parent or legal guardian."], 1],
+   ["What we never publish", ["A child’s date of birth.","Their school.","Home address or phone number."]],
+   ["What you may see", ["In results: name, tournament and medal. A tournament’s age category may be shown, for example “boys born 2010–2011”.","In news posts children’s names are usually shortened to first name and surname initial."]],
+   ["Removal at any time", ["A parent can ask us at any time to remove a photo or name by calling the club on {phone}. No reason is needed: we remove it from the site right away and, if you ask, from the club’s Facebook and Instagram pages too."], 1]]}}};
+const lg = () => LGL[lang];
+const lgFill = s => esc(s).replace("{addr}", esc(ADDR[lang])).replace("{id}", "&lt;id&gt;")
+  .replaceAll("{phone}", `<a href="tel:+${PHONE_RAW}">${PHONE}</a>`).replaceAll("{mail}", `<a href="mailto:geojudoclub@gmail.com">geojudoclub@gmail.com</a>`)
+  .replace("personaldata.ge", `<a href="https://personaldata.ge/" target="_blank" rel="noopener">personaldata.ge</a>`);
+function pLegal(k) {
+  const c = lg()[k];
+  // one long Georgian word in the title would clip at phone widths
+  return ptitleH(c.h, c.lead, lg().eb).replace('class="pt"', 'class="pt lgt"') + `<section class="sec"><div class="wrap"><div class="lgl"><p class="mu">${esc(lg().upd)}: <time datetime="${LEGAL_UPD}">${fmtDate(LEGAL_UPD)}</time></p>
+   ${c.s.map(([h, items, kind]) => `<h2>${esc(h)}</h2>${kind === 1 ? items.map(s => `<p>${lgFill(s)}</p>`).join("") : `<ul>${items.map(s => `<li>${lgFill(s)}</li>`).join("")}</ul>`}`).join("")}
+   ${k === "cookies" && GA_ID ? `<p><button type="button" class="btn b-red" data-ck-open>${esc(lg().settings)}</button></p>` : ""}</div></div></section>`;
+}
+
 /* pages */
 /* boxing, club post 2026-10-26: Mon–Fri evenings, Mon/Wed/Fri mornings */
 const BXC = ["katamadze", "chapidze"], TRC = ["menteshashvili"];
@@ -1679,6 +1768,7 @@ function pStory(id) {
 function page() {
   if (route.startsWith("story-")) return pStory(route.slice(6));
   if (SPORTS.includes(route)) return pSport(route);
+  if (LEGAL.includes(route)) return pLegal(route);
   return ({home:pHome,parents:pParents,programs:pPrograms,schedule:pSchedule,coaches:pCoaches,branches:pBranches,stories:pStories,videos:pVideos,contact:pContact,code:pCode})[route]();
 }
 function parseHash() {
@@ -1746,6 +1836,56 @@ if (MO && matchMedia("(pointer: fine)").matches) {
 const vio = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause(); }), {threshold:.15}) : null;
 function videos() { if (vio) document.querySelectorAll("video").forEach(v => vio.observe(v)); }
 
+/* analytics: GA4 loads only after Accept (Consent Mode v2); GA_ID comes from src/config.ts */
+const CK = "gj-consent";
+let gaOn = false;
+function gtag() { dataLayer.push(arguments); }
+if (GA_ID) {
+  window.dataLayer = window.dataLayer || [];
+  gtag("consent", "default", {analytics_storage:"denied", ad_storage:"denied", ad_user_data:"denied", ad_personalization:"denied"});
+}
+function pageView() {
+  if (!gaOn) return;
+  const path = `/${lang}/${route === "home" ? "" : route}`;
+  gtag("event", "page_view", {page_path:path, page_location:location.origin + path, page_title:document.querySelector("main h1")?.textContent.trim() || document.title});
+}
+function gaStart() {
+  if (gaOn) return;
+  gaOn = true;
+  gtag("consent", "update", {analytics_storage:"granted"});
+  if (!document.getElementById("gtag")) {
+    const sc = document.createElement("script");
+    sc.id = "gtag"; sc.async = true; sc.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+    document.head.append(sc);
+    gtag("js", new Date());
+    gtag("config", GA_ID, {send_page_view:false});
+  }
+  pageView();
+}
+function gaStop() {
+  gaOn = false;
+  gtag("consent", "update", {analytics_storage:"denied"});
+  // GA writes its cookies on the dot-domain, so clear both forms
+  document.cookie.split("; ").map(c => c.split("=")[0]).filter(n => n.startsWith("_ga")).forEach(n => {
+    for (const d of ["", "; domain=." + location.hostname]) document.cookie = `${n}=; max-age=0; path=/${d}`;
+  });
+}
+function ckBar() {
+  const c = lg().ck;
+  let b = document.getElementById("ck");
+  if (!b) { b = document.createElement("section"); b.id = "ck"; b.className = "ck"; document.body.append(b); }
+  b.setAttribute("aria-label", lg().settings);
+  b.innerHTML = `<p>${esc(c[0])} <a href="#cookies">${esc(c[3])}</a></p><div><button type="button" class="btn b-w" data-ck="granted">${esc(c[1])}</button><button type="button" class="btn b-w" data-ck="denied">${esc(c[2])}</button></div>`;
+  b.hidden = false;
+}
+const CHAN = [["https://wa.me/", "whatsapp"], ["viber:", "viber"], ["https://m.me/", "messenger"], ["tel:", "phone"]];
+// t().wa is the judo text too, so match the raw button context, not the composed message
+const sportOf = ctx => SPORTS.find(k => SPT[k].w && ctx.startsWith(SPT[k].w[lang])) || (ctx.startsWith(t().waSes) ? "judo" : SPORTS.includes(route) ? route : "general");
+function joinClick(a) {
+  const ch = CHAN.find(([p]) => a.getAttribute("href").startsWith(p));
+  if (ch && gaOn) gtag("event", "join_click", {channel:ch[1], sport:sportOf(dlg.contains(a) ? jctx : ""), lang});
+}
+
 /* render + events */
 function hdrState() {
   const h = document.getElementById("hdr"), n = document.getElementById("nav");
@@ -1766,11 +1906,15 @@ function toTop() { lenis ? lenis.scrollTo(0, {immediate:true}) : scrollTo(0, 0);
 
 document.addEventListener("click", e => {
   document.querySelectorAll(".nd[open]").forEach(d => { if (!d.contains(e.target) || e.target.closest("a")) d.open = false; });
-  const el = e.target.closest("[data-set-lang],[data-join],[data-coach],[data-wd],[data-pd],[data-menu],[data-close],[data-copy],[data-to]");
+  const a = e.target.closest("a[href]");
+  if (a) joinClick(a);
+  const el = e.target.closest("[data-set-lang],[data-join],[data-coach],[data-wd],[data-pd],[data-menu],[data-close],[data-copy],[data-to],[data-ck],[data-ck-open]");
   if (!el) { if (e.target.closest(".nav.open a")) document.getElementById("nav").classList.remove("open"); return; }
   // only an explicit switch is remembered; the link itself navigates
   if (el.dataset.setLang) { try { localStorage.setItem("gj-lang", el.dataset.setLang); } catch (x_) {} return; }
   if (el.dataset.join !== undefined) { e.preventDefault(); openJoin(el.dataset.join); return; }
+  if (el.dataset.ck) { try { localStorage.setItem(CK, el.dataset.ck); } catch (x_) {} document.getElementById("ck").hidden = true; el.dataset.ck === "granted" ? gaStart() : gaStop(); return; }
+  if (el.hasAttribute("data-ck-open")) { ckBar(); document.querySelector("#ck button").focus(); return; }
   if (el.dataset.coach) { openCoach(el.dataset.coach); return; }
   if (el.dataset.to) { const tg = document.getElementById(el.dataset.to); lenis ? lenis.scrollTo(tg, {offset:-90}) : tg.scrollIntoView({behavior:RM ? "auto" : "smooth"}); return; }
   if (el.dataset.wd) { day = (day + +el.dataset.wd + 7) % 7; const wg = document.querySelector("[data-widget]"); wg.innerHTML = widget(); wg.querySelector(`[data-wd="${el.dataset.wd}"]`).focus(); return; }
@@ -1785,7 +1929,7 @@ document.addEventListener("click", e => {
   }
 });
 dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
-addEventListener("hashchange", () => { parseHash(); render(); toTop(); });
+addEventListener("hashchange", () => { parseHash(); render(); toTop(); pageView(); });
 addEventListener("scroll", () => { const h = document.getElementById("hdr"); if (h) h.classList.toggle("solid", scrollY > 20); }, {passive:true});
 addEventListener("resize", hdrState);
 if (document.fonts) document.fonts.ready.then(() => { hdrState(); if (MO) ScrollTrigger.refresh(); });
@@ -1798,6 +1942,11 @@ addEventListener("keydown", e => {
 });
 
 parseHash(); render();
+if (GA_ID) {
+  let c = null;
+  try { c = localStorage.getItem(CK); } catch (x_) {}
+  if (c === "granted") gaStart(); else if (!c) ckBar();
+}
 </script>
 
 </html>

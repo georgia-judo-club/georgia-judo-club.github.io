@@ -66,3 +66,7 @@ test('every page is noindex, links the icons and uses no "ge" code', () => {
     assert.doesNotMatch(h, BAD, f);
   }
 });
+
+test('Search Console and GA4 stay off until their IDs are set', () => {
+  for (const f of html) assert.doesNotMatch(read(f), /google-site-verification|const GA_ID="[^"]/, f);
+});

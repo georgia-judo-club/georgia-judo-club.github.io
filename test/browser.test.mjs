@@ -120,3 +120,79 @@ test('rendered fonts are the self-hosted families', async () => {
   assert.equal(await renderedFont(page, '.lead'), 'Inter');
   await ctx.close();
 });
+
+test('legal pages render in every language and are linked from the footer', async () => {
+  for (const l of LANGS) {
+    const { ctx, page } = await open(`/${l}/`);
+    const links = await page.$$eval('.ftr .lgn a', (as) => as.map((a) => a.getAttribute('href')));
+    assert.deepEqual(links, ['#privacy', '#cookies', '#children'], l);
+    for (const r of links) {
+      await page.click(`.ftr .lgn a[href="${r}"]`);
+      await page.waitForFunction((k) => document.querySelector('.lgl h2')?.textContent === LGL[lang][k].s[0][0], r.slice(1));
+      const [h1, n, upd] = await page.evaluate(() =>
+        [document.querySelector('main h1').textContent, document.querySelectorAll('.lgl h2').length, document.querySelector('.lgl time')?.dateTime]);
+      assert.ok(h1.trim() && n >= 3, `${l} ${r}`);
+      assert.equal(upd, '2026-10-29', `${l} ${r}`);
+    }
+    await ctx.close();
+  }
+});
+
+// GA requests are stubbed; the test ID is spliced into the served page, the build itself stays ID-less
+async function openGa(path, gaId) {
+  const { ctx, page } = await open('/');
+  const gtm = [];
+  await ctx.route('**/*', async (route) => {
+    const url = route.request().url();
+    if (url.includes('googletagmanager.com')) { gtm.push(url); return route.fulfill({ contentType: 'text/javascript', body: '' }); }
+    if (!gaId || route.request().resourceType() !== 'document') return route.continue();
+    const res = await route.fetch();
+    return route.fulfill({ response: res, body: (await res.text()).replace('const GA_ID="";', `const GA_ID="${gaId}";`) });
+  });
+  await page.goto(srv.url + path.replace(/^\//, ''));
+  // keep chat/phone links from leaving the page; in-page hash links still route
+  await page.evaluate(() => addEventListener('click', (e) => { if (!e.target.closest('a[href^="#"]')) e.preventDefault(); }));
+  return { ctx, page, gtm };
+}
+const layer = (page) => page.evaluate(() => (window.dataLayer ?? []).map((a) => Array.from(a)));
+
+test('without a GA_ID there is no banner and nothing goes to Google', async () => {
+  const { ctx, page, gtm } = await openGa('/en/#boxing');
+  await page.click('.bx-h .act [data-join]');
+  await page.click('#dlg .chan.wa');
+  assert.equal(await page.$('#ck'), null);
+  assert.equal(await page.$('[data-ck-open]'), null);
+  assert.deepEqual(gtm, []);
+  await ctx.close();
+});
+
+test('with a GA_ID gtag waits for Accept, then tracks views and join clicks', async () => {
+  let { ctx, page, gtm } = await openGa('/ru/', 'G-TEST1');
+  assert.ok(await page.isVisible('#ck'));
+  const cls = await page.$$eval('#ck button', (bs) => bs.map((b) => b.className));
+  assert.equal(cls.length, 2);
+  assert.equal(cls[0], cls[1], 'Accept and Decline look the same');
+  await page.click('[data-ck="denied"]');
+  assert.deepEqual(gtm, []);
+  assert.equal(await page.evaluate(() => localStorage.getItem('gj-consent')), 'denied');
+  await ctx.close();
+
+  ({ ctx, page, gtm } = await openGa('/ru/#trampoline', 'G-TEST1'));
+  assert.deepEqual(gtm, []);
+  assert.deepEqual((await layer(page))[0], ['consent', 'default',
+    { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' }]);
+  await page.click('[data-ck="granted"]');
+  await page.waitForFunction(() => document.getElementById('gtag'));
+  assert.ok(await page.isHidden('#ck'));
+  assert.match(gtm[0], /gtag\/js\?id=G-TEST1/);
+  await page.click('.bx-h .act [data-join]');
+  await page.click('#dlg .chan.wa');
+  await page.keyboard.press('Escape');
+  await page.click('.ftr .lgn a[href="#privacy"]');
+  await page.waitForSelector('.lgl');
+  const dl = await layer(page);
+  assert.deepEqual(dl.find((a) => a[1] === 'update'), ['consent', 'update', { analytics_storage: 'granted' }]);
+  assert.deepEqual(dl.filter((a) => a[1] === 'page_view').map((a) => a[2].page_path), ['/ru/trampoline', '/ru/privacy']);
+  assert.deepEqual(dl.find((a) => a[1] === 'join_click')[2], { channel: 'whatsapp', sport: 'trampoline', lang: 'ru' });
+  await ctx.close();
+});

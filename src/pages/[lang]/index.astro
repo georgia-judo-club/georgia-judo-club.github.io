@@ -9,6 +9,7 @@ import montCyr from '@fontsource-variable/montserrat/files/montserrat-cyrillic-w
 import Head from '../../components/Head.astro';
 import { LANGS, type Lang } from '../../i18n/ui';
 import { fmtDate } from '../../lib/intl.mjs';
+import { GA_ID } from '../../config';
 
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
@@ -28,7 +29,7 @@ const preload = { ka: [geo, interLat], ru: [montCyr, interCyr, interLat], en: [m
   {styles.map((s) => <style is:inline set:html={s} />)}
 </head>
 <body>
-  <script is:inline set:html={`const DATES=${JSON.stringify(dates)};`} />
+  <script is:inline set:html={`const DATES=${JSON.stringify(dates)};const GA_ID=${JSON.stringify(GA_ID)};`} />
   <Fragment set:html={body} />
 </body>
 </html>
