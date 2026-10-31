@@ -1051,6 +1051,7 @@ const CO = {
  kitober:{ka:"გაბრიელ კიტობერი",ru:"Габриэль Китобер",en:"Gabriel Kitober"},
  kantaria:{ka:"გიორგი ქანთარია",ru:"Гиорги Кантария",en:"Giorgi Kantaria"},
  luka:{ka:"ლუკა ცაგარეიშვილი",ru:"Лука Цагареишвили",en:"Luka Tsagareishvili"},
+ nika:{ka:"ნიკა აფშილაშვილი",ru:"Ника Апшилашвили",en:"Nika Apshilashvili"},
  loladze:{ka:"ალექსანდრე ლოლაძე",ru:"Александре Лоладзе",en:"Aleksandre Loladze"},
  paata:{ka:"პაატა ნოზაძე",ru:"Паата Нозадзе",en:"Paata Nozadze"},
  baratashvili:{ka:"გელა ბარათაშვილი",ru:"Гела Бараташвили",en:"Gela Baratashvili"},
@@ -1078,10 +1079,10 @@ const SX = {
   gymD:"Gymnastics with Paata Nozadze: Wednesday 16:30 and Saturday 11:00.",physD:"Physical conditioning: every Wednesday session and Saturday 09:30.",grpS:"Times and session types are on the Schedule page."}};
 const sx = () => SX[lang];
 const BASE = [["09:30","11:00",["eldari","davit","arsen","kitober"]],["11:00","12:30",["kitober"],0,1],["15:00","16:30",["kantaria","arsen"]],
- ["16:30","18:30",["karen","davit","kantaria","kitober"],1],["18:30","20:00",["eldari","kantaria","davit","luka"]],["20:00","21:30",["davit","luka","loladze"]]];
+ ["16:30","18:30",["karen","davit","kantaria","kitober"],1],["18:30","20:00",["eldari","kantaria","davit","luka","nika"]],["20:00","21:30",["davit","luka","loladze","nika"]]];
 function sessions(i) {
   if (i === 6) return [];
-  if (i === 5) return [{a:"09:30",b:"11:00",ty:"phys",co:["karen","davit","kantaria","eldari","luka"]},{a:"11:00",b:"12:30",ty:"gym",co:["paata"]}];
+  if (i === 5) return [{a:"09:30",b:"11:00",ty:"phys",co:["karen","davit","kantaria","eldari","luka","nika"]},{a:"11:00",b:"12:30",ty:"gym",co:["paata"]}];
   const ty = ["tech","ran","phys","tech","ran"][i];
   const ss = BASE.flatMap(([a, b, co, ad, nw]) => i === 2 && a === "16:30" ? [{a, b:"18:00", ty:"gym", co:["paata"], ad}, {a:"18:00", b:"18:30", ty:"grap", co:[]}] : [{a, b, ty, co, ad, nw}]);
   return i % 2 ? ss : ss.concat({a:"21:30", b:"22:30", ty:"nw", co:["kitober"], ad:1});
@@ -1091,7 +1092,7 @@ const short = id => { const [f, ...r] = L(CO[id]).split(" "); return `${f[0]}. $
 const coList = s => s.co.map(short).join(", ");
 const tyL = s => L(TY[s.ty]) + (s.nw ? " + " + L(TY.nw) : "");
 const sCtx = (s, i) => `${t().waSes} ${dName(i)} ${s.a}–${s.b}, ${tyL(s)}`;
-const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","loladze","paata","baratashvili","zanguri","katamadze","chapidze","menteshashvili"];
+const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","nika","loladze","paata","baratashvili","zanguri","katamadze","chapidze","menteshashvili"];
 // a coach's slots grouped by identical day sets, e.g. "Mon–Fri 09:30, 18:30 · Sat 09:30"
 function coachSlots(id) {
   if (BXC.includes(id)) return BOX.filter(b => b.co.includes(id)).map(b => `${bxDays(b.d)} ${b.ts.join(", ")}`).join(" · ");
