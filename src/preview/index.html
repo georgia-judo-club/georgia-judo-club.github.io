@@ -432,7 +432,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .slot .ty{color:var(--ink);font-weight:600}
 .slot .ad{color:var(--redT);font-weight:600;font-size:.72rem}
 .slot .co{font-size:.72rem}
-.slot.phys{box-shadow:inset 3px 0 0 #7E8AA3}.slot.gym{box-shadow:inset 3px 0 0 var(--red)}
+.slot.phys{box-shadow:inset 3px 0 0 #7E8AA3}.slot.gym{box-shadow:inset 3px 0 0 var(--red)}.slot.nw,.slot.grap{box-shadow:inset 3px 0 0 var(--navy)}
 .slot span{font-size:.82rem;color:var(--mu);min-width:0;overflow-wrap:anywhere}
 .slot em{font-style:normal;font-weight:700;color:var(--redT);font-size:.82rem}
 .slot.camp b{color:var(--redT)}
@@ -823,8 +823,7 @@ const ICON = {
 const MARK = (s=40) => `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true"><path d="M17 3h6v14h14v6H23v14h-6V23H3v-6h14z" fill="#C8102E"/><g fill="#C8102E"><path d="M8 6h2v2h2v2h-2v2H8v-2H6V8h2z"/><path d="M30 6h2v2h2v2h-2v2h-2v-2h-2V8h2z"/><path d="M8 28h2v2h2v2h-2v2H8v-2H6v-2h2z"/><path d="M30 28h2v2h2v2h-2v2h-2v-2h-2v-2h2z"/></g></svg>`;
 const SILH = '<svg viewBox="0 0 120 110" aria-hidden="true"><circle cx="60" cy="34" r="20" fill="#B3BAC8"/><path d="M14 110c2-30 20-46 46-46s44 16 46 46z" fill="#fff"/><path d="M48 66l12 26 12-26" fill="none" stroke="#D4D9E2" stroke-width="3"/><rect x="24" y="92" width="72" height="7" fill="#1B1F2A"/></svg>';
 
-const TIKTOK = ["https://www.tiktok.com/@georgia.club", "u"];
-const SOC = [["https://www.instagram.com/geojudoclub/","Instagram","ig"],["https://www.youtube.com/@judoclubgeorgia","YouTube","yt"],["https://www.facebook.com/JudoClubGeorgia/","Facebook","fb"]];
+const SOC = [["https://www.instagram.com/geojudoclub/","Instagram","ig"],["https://www.youtube.com/@judoclubgeorgia","YouTube","yt"],["https://www.facebook.com/JudoClubGeorgia/","Facebook","fb"],["https://www.tiktok.com/@judoclubgeorgia_official","TikTok","tt"]];
 const CODE_NAV = {ka:"ქცევის კოდექსი",ru:"Кодекс поведения",en:"Code of conduct"};
 const SPORTS = ["judo","boxing","trampoline","gymnastics","bjj","fitness"];
 const SPN = {judo:{ka:"ძიუდო",ru:"Дзюдо",en:"Judo"}, boxing:{ka:"კრივი",ru:"Бокс",en:"Boxing"}, trampoline:{ka:"ბატუტი",ru:"Батут",en:"Trampoline"},
@@ -873,14 +872,13 @@ ka:{wmS:"ძიუდოს კლუბი",wmB:"ჯორჯია",trial:"ს
  parEb:"მშობლებისთვის",parH:"აქ იზრდებიან მომავალი ჩემპიონები!",parP:"გსურთ, თქვენი შვილი იყოს ძლიერი, თავდაჯერებული, დისციპლინირებული და მიზანდასახული? JUDO CLUB GEORGIA-ში სპორტი მხოლოდ ვარჯიში არ არის — ეს არის გზა წარმატებისკენ! ჩვენი კლუბი ბავშვებისა და მოზარდებისთვის შექმნილი სპორტული სკოლაა, სადაც თითოეული მოსწავლე პროფესიონალი მწვრთნელების ხელმძღვანელობით ავითარებს ფიზიკურ შესაძლებლობებს, სწავლობს გუნდურობასა და პასუხისმგებლობას და ემზადება ახალი გამარჯვებებისთვის. კლუბში ბავშვების მიღება 4 წლიდან იწყება. ვარჯიშები ტარდება კვირაში ექვსი დღე.",
  whyH:"რატომ ძიუდო",why:["დისციპლინა და პატივისცემა: ყოველი ვარჯიში მისალმებით იწყება და მთავრდება.","კოორდინაცია, ძალა და თავდაჯერებულობა — პატარა ასაკში თამაშით.","კანოს ორი პრინციპი: ძალის საუკეთესო გამოყენება და ერთად წარმატება.","საქართველო ძიუდოს ერთ-ერთი უძლიერესი ქვეყანაა — ბავშვებს ნამდვილი მაგალითები ჰყავთ."],
  safeH:"უსაფრთხოება ტატამზე",safe:["ბავშვები პირველ ილეთებთან ერთად სწორად დაცემას (უკემი) სწავლობენ.","ვარჯიში ტატამზე, კლუბის საკუთარ დარბაზში."],
- firstH:"როგორ გადის პირველი ვარჯიში",first:[["მოგვწერეთ","WhatsApp, Viber, Messenger ან დარეკეთ: +995 599 93 38 97."],["შეგირჩევთ ჯგუფს","ბავშვის ასაკის მიხედვით. [რომელი ჯგუფი როდის ვარჯიშობს — კლუბისგან]"],["მობრძანდით დარბაზში","ბერი გაბრიელ სალოსის გამზ. 144ა, ისანი. ორშ–შაბ 09:30–22:00."]],
+ firstH:"როგორ გადის პირველი ვარჯიში",first:[["მოგვწერეთ","WhatsApp, Viber, Messenger ან დარეკეთ: +995 599 93 38 97."],["შეგირჩევთ ჯგუფს","ბავშვის ასაკის მიხედვით. [რომელი ჯგუფი როდის ვარჯიშობს — კლუბისგან]"],["მობრძანდით დარბაზში","ბერი გაბრიელ სალოსის გამზ. 144ა, ისანი. ორშ–შაბ 09:30–22:00."],["პირველი ვარჯიში","პირველი, საცდელი ვარჯიში უფასოა."]],
   rev:"შეფასება",rec:"გვირჩევს",
  grpEb:"ჯგუფები",grpH:"ჯგუფები და პროგრამები",grpP:"პირველი ვარჯიშიდან 4 წლის ასაკში — ტურნირებამდე საქართველოში და საზღვარგარეთ.",
  comp:{name:"შეჯიბრებები",small:"შედეგები",d:"კლუბის სპორტსმენები ასპარეზობენ საქართველოში და საზღვარგარეთ: U15 ოქრო საფრანგეთში, მასტერსის ბრინჯაო (2010–11 წ.დ.), 2026 წლის ოქტომბერი."},
  allProg:"ყველა პროგრამა",coEb:"მწვრთნელები",coP:"გაიცანით ისინი, ვინც ტატამზე გხვდებათ.",roleL:"როლი",gradeL:"წოდება",licL:"ლიცენზია",
  schEb:"განრიგი",schP:"ექვსი ყოველდღიური ვარჯიში და საღამოს ნე-ვაზა, ორშ–შაბ 09:30–22:00.",hallMain:"მთავარი დარბაზი · ისანი",hallTbc:"ფილიალი",
  brEb:"ფილიალები",brH:"ჩვენი დარბაზები",brP:"თბილისი • რუსთავი • თელეთი. მთავარი დარბაზი ისანშია.",mainTag:"მთავარი დარბაზი",
- tbcSub:"მოგვწერეთ — გეტყვით მისამართს და დროს.",
  resEb:"შედეგები",resH:"2026 წლის შემოდგომა ტატამზე",resP:"კლუბის პოსტებიდან. ბავშვების სახელებს არ ვაქვეყნებთ.",
  medals:"მედალი",gold:"ოქრო",silver:"ვერცხლი",bronze:"ბრინჯაო",champ:"ჩემპიონი",
  bigT:"საბა დადვანის ხსოვნისადმი მიძღვნილი XVIII საერთაშორისო ტურნირი",bigP:"ბოლნისი, 2026 წლის 10–11 ოქტომბერი. 200-ზე მეტი სპორტსმენი საქართველოს რეგიონებიდან.",
@@ -893,14 +891,13 @@ ru:{wmS:"Клуб дзюдо",wmB:"Джорджия",trial:"Пробное за�
  parEb:"Родителям",parH:"Здесь растут будущие чемпионы!",parP:"Хотите, чтобы ваш ребёнок был сильным, уверенным, дисциплинированным и целеустремлённым? В Judo Club Georgia спорт — не просто тренировки, а путь к успеху! Наш клуб — спортивная школа для детей и подростков: под руководством профессиональных тренеров каждый ученик развивает физические возможности, учится командной работе и ответственности и готовится к новым победам. Детей принимаем с 4 лет. Тренировки — шесть дней в неделю.",
  whyH:"Почему дзюдо",why:["Дисциплина и уважение: каждая тренировка начинается и заканчивается поклоном.","Координация, сила и уверенность — в младшем возрасте через игру.","Два принципа Кано: максимальная эффективность и взаимное процветание.","Грузия — одна из сильнейших стран в дзюдо: у детей есть настоящие примеры."],
  safeH:"Безопасность на татами",safe:["Дети учатся правильно падать (укэми) вместе с первыми бросками.","Тренировки на татами в собственном зале клуба."],
- firstH:"Как проходит первое занятие",first:[["Напишите нам","WhatsApp, Viber, Messenger или звонок: +995 599 93 38 97."],["Подберём группу","По возрасту ребёнка. [какая группа когда занимается — от клуба]"],["Приходите в зал","пр. Бери Габриэла Салоси, 144а, Исани. Пн–Сб 09:30–22:00."]],
+ firstH:"Как проходит первое занятие",first:[["Напишите нам","WhatsApp, Viber, Messenger или звонок: +995 599 93 38 97."],["Подберём группу","По возрасту ребёнка. [какая группа когда занимается — от клуба]"],["Приходите в зал","пр. Бери Габриэла Салоси, 144а, Исани. Пн–Сб 09:30–22:00."],["Первое занятие","Первое, пробное занятие — бесплатно."]],
   rev:"отзывов",rec:"рекомендуют",
  grpEb:"Группы",grpH:"Группы и программы",grpP:"От первой тренировки в 4 года до турниров в Грузии и за рубежом.",
  comp:{name:"Соревнования",small:"результаты",d:"Спортсмены клуба выступают в Грузии и за рубежом: золото U15 во Франции, бронза Мастерса (2010–11 г.р.), октябрь 2026."},
  allProg:"Все программы",coEb:"Тренера",coP:"Знакомьтесь — те, кто встретит вас на татами.",roleL:"Роль",gradeL:"Степень",licL:"Лицензия",
  schEb:"Расписание",schP:"Шесть ежедневных тренировок и вечерняя не-вадза, Пн–Сб 09:30–22:00.",hallMain:"Главный зал · Исани",hallTbc:"Филиал",
  brEb:"Филиалы",brH:"Наши залы",brP:"Тбилиси • Рустави • Телети. Главный зал — в Исани.",mainTag:"Главный зал",
- tbcSub:"Напишите нам — подскажем адрес и время.",
  resEb:"Результаты",resH:"Осень 2026 на татами",resP:"Из постов клуба. Имена детей не публикуем.",
  medals:"медалей",gold:"золото",silver:"серебро",bronze:"бронза",champ:"Чемпион",
  bigT:"XVIII международный турнир памяти Сабы Дадвани",bigP:"Болниси, 10–11 октября 2026. Более 200 спортсменов из регионов Грузии.",
@@ -913,14 +910,13 @@ en:{wmS:"Judo Club",wmB:"Georgia",trial:"Trial lesson",trialL:"Book a trial less
  parEb:"For parents",parH:"Future champions grow here",parP:"Want your child to be strong, confident, disciplined and driven? At Judo Club Georgia, sport is more than training: it's a path to success. We are a sports school for children and teenagers where every student, guided by professional coaches, builds physical ability, learns teamwork and responsibility, and gets ready for new wins. We take children from age 4. Training runs six days a week.",
  whyH:"Why judo",why:["Discipline and respect: every session starts and ends with a bow.","Coordination, strength and confidence, built through play at a young age.","Kano's two principles: maximum efficiency, mutual welfare and benefit.","Georgia is one of the strongest judo nations, so children grow up with real role models."],
  safeH:"Safety on the tatami",safe:["Children learn safe falling (ukemi) along with their first throws.","Training on tatami in the club's own hall."],
- firstH:"How the first lesson goes",first:[["Send us a message","WhatsApp, Viber, Messenger or a call: +995 599 93 38 97."],["We suggest a group","Based on your child's age. [Which group trains when: from the club]"],["Come to the hall","Beri Gabriel Salosi Ave 144a, Isani. Mon–Sat 09:30–22:00."]],
+ firstH:"How the first lesson goes",first:[["Send us a message","WhatsApp, Viber, Messenger or a call: +995 599 93 38 97."],["We suggest a group","Based on your child's age. [Which group trains when: from the club]"],["Come to the hall","Beri Gabriel Salosi Ave 144a, Isani. Mon–Sat 09:30–22:00."],["The first lesson","The first, trial lesson is free."]],
   rev:"reviews",rec:"recommend",
  grpEb:"Groups",grpH:"Groups and programmes",grpP:"From a first judo class at 4 to tournaments in Georgia and abroad.",
  comp:{name:"Competition",small:"results",d:"Club athletes compete in Georgia and abroad: U15 gold in France and a Masters bronze (born 2010–11), October 2026."},
  allProg:"All programmes",coEb:"Coaches",coP:"Meet the people your child will see on the tatami.",roleL:"Role",gradeL:"Grade",licL:"Licence",
  schEb:"Schedule",schP:"Six daily sessions plus evening ne-waza, Mon–Sat 09:30–22:00.",hallMain:"Main hall · Isani",hallTbc:"Branch",
  brEb:"Branches",brH:"Our halls",brP:"Tbilisi • Rustavi • Teleti. The main hall is in Isani.",mainTag:"Main hall",
- tbcSub:"Message us and we’ll share the address and hours.",
  resEb:"Results",resH:"Autumn 2026 on the tatami",resP:"From the club's own posts. We don't publish children's names.",
  medals:"medals",gold:"gold",silver:"silver",bronze:"bronze",champ:"Champion",
  bigT:"XVIII International Judo Tournament in memory of Saba Dadvani",bigP:"Bolnisi, 10–11 October 2026. 200+ athletes from regions of Georgia.",
@@ -1055,7 +1051,6 @@ const CO = {
  kitober:{ka:"გაბრიელ კიტობერი",ru:"Габриэль Китобер",en:"Gabriel Kitober"},
  kantaria:{ka:"გიორგი ქანთარია",ru:"Гиорги Кантария",en:"Giorgi Kantaria"},
  luka:{ka:"ლუკა ცაგარეიშვილი",ru:"Лука Цагареишвили",en:"Luka Tsagareishvili"},
- nika:{ka:"ნიკა აფშილაშვილი",ru:"Ника Апшилашвили",en:"Nika Apshilashvili"},
  loladze:{ka:"ალექსანდრე ლოლაძე",ru:"Александре Лоладзе",en:"Aleksandre Loladze"},
  paata:{ka:"პაატა ნოზაძე",ru:"Паата Нозадзе",en:"Paata Nozadze"},
  baratashvili:{ka:"გელა ბარათაშვილი",ru:"Гела Бараташвили",en:"Gela Baratashvili"},
@@ -1064,37 +1059,39 @@ const CO = {
  chapidze:{ka:"პაატა ჩაფიძე",ru:"Паата Чапидзе",en:"Paata Chapidze"},
  menteshashvili:{ka:"ინგა მენთეშაშვილი",ru:"Инга Ментешашвили",en:"Inga Menteshashvili"}};
 const TY = {tech:{ka:"ტექნიკური ვარჯიში + რანდორი",ru:"Техника + рандори",en:"Technical training + Randori"},
- ran:{ka:"რანდორი",ru:"Рандори",en:"Randori"},phys:{ka:"ფიზიკური მომზადება",ru:"ОФП",en:"Physical conditioning"},gym:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}};
+ ran:{ka:"რანდორი",ru:"Рандори",en:"Randori"},nw:{ka:"ნე-ვაზა",ru:"Не-вадза",en:"Ne-waza"},grap:{ka:"გრეპლინგი",ru:"Грэпплинг",en:"Grappling"},phys:{ka:"ფიზიკური მომზადება",ru:"ОФП",en:"Physical conditioning"},gym:{ka:"ტანვარჯიში",ru:"Гимнастика",en:"Gymnastics"}};
 const SX = {
- ka:{adult:"მხოლოდ მოზრდილებისთვის",sun:"კვირა",sunS:"კვი",rest:"დასვენების დღე",week:"მთელი კვირა",coach:"მწვრთნელი",
-  hours:"ორშ–პარ 09:30–21:30 · შაბ 09:30–12:30",schP:"ვარჯიშები ორშაბათიდან შაბათამდე. კვირა დასვენების დღეა. დააჭირე ვარჯიშს — შეტყობინება მზად იქნება.",
-  faq:"ორშ–პარ: 09:30, 11:00, 15:00, 16:30 (მოზრდილები), 18:30 და 20:00. შაბათი: 09:30 და 11:00. კვირა დასვენების დღეა.",
+ ka:{adult:"მხოლოდ მოზრდილებისთვის",a14:"მხოლოდ 14 წლიდან",ages:"ყველა ასაკი ვარჯიშობს ნებისმიერ დროს. გამონაკლისია 16:30 და 21:30 — მხოლოდ 14 წლიდან.",sun:"კვირა",sunS:"კვი",rest:"დასვენების დღე",week:"მთელი კვირა",coach:"მწვრთნელი",
+  hours:"ორშ–პარ 09:30–22:30 · შაბ 09:30–12:30",schP:"ვარჯიშები ორშაბათიდან შაბათამდე. კვირა დასვენების დღეა. ყველა ასაკი ვარჯიშობს ნებისმიერ დროს. გამონაკლისია 16:30 და 21:30 — მხოლოდ 14 წლიდან. დააჭირე ვარჯიშს — შეტყობინება მზად იქნება.",
+  faq:"ორშ–პარ: 09:30, 11:00 (+ ნე-ვაზა), 15:00, 16:30 (14 წლიდან), 18:30 და 20:00. ნე-ვაზა: ორშ, ოთხ, პარ 21:30 (14 წლიდან). შაბათი: 09:30 და 11:00. კვირა დასვენების დღეა.",
   nw:"ბრაზილიელი მწვრთნელი, ნე-ვაზის აღიარებული სპეციალისტი.",nwD:"პარტერის ტექნიკა ბრაზილიელ მწვრთნელთან, გაბრიელ კიტობერთან.",
   gymD:"ტანვარჯიში პაატა ნოზაძესთან: ოთხშაბათი 16:30 და შაბათი 11:00.",physD:"ფიზიკური მომზადება: ოთხშაბათი ყველა ვარჯიშზე, შაბათი 09:30.",grpS:"განრიგი — „განრიგის“ გვერდზე."},
- ru:{adult:"только взрослые",sun:"Воскресенье",sunS:"Вс",rest:"Выходной",week:"Вся неделя",coach:"Тренер",
-  hours:"Пн–Пт 09:30–21:30 · Сб 09:30–12:30",schP:"Тренировки с понедельника по субботу. Воскресенье — выходной. Нажмите на тренировку — сообщение будет готово.",
-  faq:"Пн–Пт: 09:30, 11:00, 15:00, 16:30 (взрослые), 18:30 и 20:00. Суббота: 09:30 и 11:00. Воскресенье — выходной.",
+ ru:{adult:"только взрослые",a14:"только с 14 лет",ages:"Все возрасты занимаются в любое время. Исключение — 16:30 и 21:30: только с 14 лет.",sun:"Воскресенье",sunS:"Вс",rest:"Выходной",week:"Вся неделя",coach:"Тренер",
+  hours:"Пн–Пт 09:30–22:30 · Сб 09:30–12:30",schP:"Тренировки с понедельника по субботу. Воскресенье — выходной. Все возрасты занимаются в любое время. Исключение — 16:30 и 21:30: только с 14 лет. Нажмите на тренировку — сообщение будет готово.",
+  faq:"Пн–Пт: 09:30, 11:00 (+ не-вадза), 15:00, 16:30 (с 14 лет), 18:30 и 20:00. Не-вадза: Пн, Ср, Пт в 21:30 (с 14 лет). Суббота: 09:30 и 11:00. Воскресенье — выходной.",
   nw:"Бразильский тренер, признанный специалист по не-вадза.",nwD:"Борьба в партере с бразильским тренером Габриэлем Китобером.",
   gymD:"Гимнастика с Паатой Нозадзе: среда 16:30 и суббота 11:00.",physD:"ОФП: по средам на всех тренировках, в субботу в 09:30.",grpS:"Время и тип тренировок — на странице «Расписание»."},
- en:{adult:"adults only",sun:"Sunday",sunS:"Sun",rest:"Rest day",week:"Whole week",coach:"Coach",
-  hours:"Mon–Fri 09:30–21:30 · Sat 09:30–12:30",schP:"Training Monday to Saturday. Sunday is a rest day. Tap a session and the message is ready.",
-  faq:"Mon–Fri: 09:30, 11:00, 15:00, 16:30 (adults), 18:30 and 20:00. Saturday: 09:30 and 11:00. Sunday is a rest day.",
+ en:{adult:"adults only",a14:"14+ only",ages:"All ages train at any time, except 16:30 and 21:30: 14+ only.",sun:"Sunday",sunS:"Sun",rest:"Rest day",week:"Whole week",coach:"Coach",
+  hours:"Mon–Fri 09:30–22:30 · Sat 09:30–12:30",schP:"Training Monday to Saturday. Sunday is a rest day. All ages train at any time, except 16:30 and 21:30: 14+ only. Tap a session and the message is ready.",
+  faq:"Mon–Fri: 09:30, 11:00 (+ ne-waza), 15:00, 16:30 (14+), 18:30 and 20:00. Ne-waza: Mon, Wed, Fri at 21:30 (14+). Saturday: 09:30 and 11:00. Sunday is a rest day.",
   nw:"Brazilian coach and recognised ne-waza specialist.",nwD:"Ground work with Brazilian coach and ne-waza specialist Gabriel Kitober.",
   gymD:"Gymnastics with Paata Nozadze: Wednesday 16:30 and Saturday 11:00.",physD:"Physical conditioning: every Wednesday session and Saturday 09:30.",grpS:"Times and session types are on the Schedule page."}};
 const sx = () => SX[lang];
-const BASE = [["09:30","11:00",["eldari","davit","arsen","kitober"]],["11:00","12:30",["kitober"],0,3],["15:00","16:30",["kantaria","arsen"]],
- ["16:30","18:30",["karen","davit","kantaria","kitober"],1],["18:30","20:00",["eldari","kantaria","davit","luka","nika"]],["20:00","21:30",["davit","luka","loladze","nika"]]];
+const BASE = [["09:30","11:00",["eldari","davit","arsen","kitober"]],["11:00","12:30",["kitober"],0,1],["15:00","16:30",["kantaria","arsen"]],
+ ["16:30","18:30",["karen","davit","kantaria","kitober"],1],["18:30","20:00",["eldari","kantaria","davit","luka"]],["20:00","21:30",["davit","luka","loladze"]]];
 function sessions(i) {
   if (i === 6) return [];
-  if (i === 5) return [{a:"09:30",b:"11:00",ty:"phys",co:["karen","davit","kantaria","eldari","luka","nika"]},{a:"11:00",b:"12:00",ty:"gym",co:["paata"],cf:1}];
+  if (i === 5) return [{a:"09:30",b:"11:00",ty:"phys",co:["karen","davit","kantaria","eldari","luka"]},{a:"11:00",b:"12:30",ty:"gym",co:["paata"]}];
   const ty = ["tech","ran","phys","tech","ran"][i];
-  return BASE.map(([a, b, co, ad, cf]) => i === 2 && a === "16:30" ? {a, b:"17:30", ty:"gym", co:["paata"], cf:2} : {a, b, ty, co, ad, cf});
+  const ss = BASE.flatMap(([a, b, co, ad, nw]) => i === 2 && a === "16:30" ? [{a, b:"18:00", ty:"gym", co:["paata"], ad}, {a:"18:00", b:"18:30", ty:"grap", co:[]}] : [{a, b, ty, co, ad, nw}]);
+  return i % 2 ? ss : ss.concat({a:"21:30", b:"22:30", ty:"nw", co:["kitober"], ad:1});
 }
 const dName = i => i === 6 ? sx().sun : t().days[i], dShort = i => i === 6 ? sx().sunS : t().dshort[i];
 const short = id => { const [f, ...r] = L(CO[id]).split(" "); return `${f[0]}. ${r.join(" ")}`; };
 const coList = s => s.co.map(short).join(", ");
-const sCtx = (s, i) => `${t().waSes} ${dName(i)} ${s.a}–${s.b}, ${L(TY[s.ty])}`;
-const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","nika","loladze","paata","baratashvili","zanguri","katamadze","chapidze","menteshashvili"];
+const tyL = s => L(TY[s.ty]) + (s.nw ? " + " + L(TY.nw) : "");
+const sCtx = (s, i) => `${t().waSes} ${dName(i)} ${s.a}–${s.b}, ${tyL(s)}`;
+const ROSTER = ["karen","davit","eldari","arsen","kitober","kantaria","luka","loladze","paata","baratashvili","zanguri","katamadze","chapidze","menteshashvili"];
 // a coach's slots grouped by identical day sets, e.g. "Mon–Fri 09:30, 18:30 · Sat 09:30"
 function coachSlots(id) {
   if (BXC.includes(id)) return BOX.filter(b => b.co.includes(id)).map(b => `${bxDays(b.d)} ${b.ts.join(", ")}`).join(" · ");
@@ -1114,12 +1111,13 @@ for (const l of ["ka","ru","en"]) {
   X[l].schP = SX[l].schP;
   X[l].first[2][1] = X[l].first[2][1].replace(/(ორშ–შაბ|Пн–Сб|Mon–Sat) 09:30–22:00/, SX[l].hours);
   FAQ[1][1][l] = SX[l].faq;
-  X[l].first[1][1] = X[l].first[1][1].replace(/\s*\[[^\]]*\]/, " " + SX[l].grpS);
+  X[l].first[1][1] = X[l].first[1][1].replace(/\s*\[[^\]]*\]/, " " + SX[l].ages + " " + SX[l].grpS);
 }
 COACHES.length = 0;
 ROSTER.forEach(id => COACHES.push({id, name:CO[id]}));
 Object.assign(progOf("ne-waza-evening"), {top:"11:00", name:{ka:"ნე-ვაზა",ru:"Не-вадза",en:"Ne-waza"}, small:{ka:"ორშ–პარ",ru:"Пн–Пт",en:"Mon–Fri"},
- d:{ka:SX.ka.nwD,ru:SX.ru.nwD,en:SX.en.nwD}, facts:[["timeL",{ka:"ორშ–პარ 11:00–12:30",ru:"Пн–Пт 11:00–12:30",en:"Mon–Fri 11:00–12:30"},"d3"],["ledL",CO.kitober,"c"]]});
+ d:{ka:SX.ka.nwD,ru:SX.ru.nwD,en:SX.en.nwD}, facts:[["timeL",{ka:"ორშ–პარ 11:00–12:30",ru:"Пн–Пт 11:00–12:30",en:"Mon–Fri 11:00–12:30"},"c"],
+ ["timeL",{ka:"ორშ, ოთხ, პარ 21:30–22:30 (14 წლიდან)",ru:"Пн, Ср, Пт 21:30–22:30 (с 14 лет)",en:"Mon, Wed, Fri 21:30–22:30 (14+)"},"c"],["ledL",CO.kitober,"c"]]});
 Object.assign(progOf("gymnastics-wrestling"), {conf:"c", top:"16:30", name:TY.gym, small:{ka:"ოთხ",ru:"Ср",en:"Wed"}, d:{ka:SX.ka.gymD,ru:SX.ru.gymD,en:SX.en.gymD}, facts:[["ledL",CO.paata,"c"]]});
 Object.assign(progOf("physical-conditioning"), {conf:"c", d:{ka:SX.ka.physD,ru:SX.ru.physD,en:SX.en.physD}});
 
@@ -1202,7 +1200,7 @@ function widget() {
   return `<h3><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2"/></svg>${esc(t().schH)}</h3>
    <div class="sw-d"><span aria-live="polite">${esc(dName(day))}${day === TODAY ? `<span class="tt">${esc(y().today)}</span>` : ""}</span>
     <span class="sw-n"><button type="button" data-wd="-1" aria-label="${esc(z().prev)}">‹</button><button type="button" data-wd="1" aria-label="${esc(z().next)}">›</button></span></div>
-   <ul>${sessions(day).map(s => `<li><a href="#" class="wr" data-join="${esc(sCtx(s, day))}"><b>${s.a}</b><span><i>${esc(L(TY[s.ty]))}${s.ad ? ` · ${esc(sx().adult)}` : ""}</i><small>${esc(coList(s))}</small></span></a></li>`).join("") || `<li class="rest">${esc(sx().rest)}</li>`}</ul>
+   <ul>${sessions(day).map(s => `<li><a href="#" class="wr" data-join="${esc(sCtx(s, day))}"><b>${s.a}</b><span><i>${esc(tyL(s))}${s.ad ? ` · ${esc(sx().a14)}` : ""}</i><small>${esc(coList(s))}</small></span></a></li>`).join("") || `<li class="rest">${esc(sx().rest)}</li>`}</ul>
    <a class="btn b-red mag" href="${rp("schedule")}">${esc(t().fullSch)} ${ARROW}</a>`;
 }
 function sPrograms() {
@@ -1295,7 +1293,7 @@ const CHAMPS = [
  {n:{ka:"გელა ზაალიშვილი",ru:"Гела Заалишвили",en:"Gela Zaalishvili"}, sp:"judo", v:"GFKY7QXTcro", t:{ka:"მსოფლიოს ჩემპიონი",ru:"Чемпион мира",en:"World champion"}},
  {n:{ka:"ალექსანდრე ლოლაძე",ru:"Александре Лоладзе",en:"Aleksandre Loladze"}, sp:"judo", t:{ka:"მსოფლიოს ვიცე-ჩემპიონი",ru:"Вице-чемпион мира",en:"World silver medallist"}},
  {n:{ka:"გიორგი ქალდანი",ru:"Гиорги Калдани",en:"Giorgi Kaldani"}, sp:"para", t:{ka:"ევროპის ორგზის ჩემპიონი",ru:"Двукратный чемпион Европы",en:"Two-time European champion"}},
- {n:{ka:"ინა ქალდანი",ru:"Ина Калдани",en:"Ina Kaldani"}, sp:"para", c:"i", t:{ka:"ორგზის პარალიმპიური ვიცე-ჩემპიონი",ru:"Двукратная вице-чемпионка Паралимпийских игр",en:"Two-time Paralympic silver medallist"}},
+ {n:{ka:"ინა ქალდანი",ru:"Ина Калдани",en:"Ina Kaldani"}, sp:"para", c:"c", t:{ka:"ორგზის პარალიმპიური ვიცე-ჩემპიონი",ru:"Двукратная вице-чемпионка Паралимпийских игр",en:"Two-time Paralympic silver medallist"}},
  {n:{ka:"დავით არუთინიანი",ru:"Давит Арутинян",en:"Davit Arutinian"}, sp:"sambo", t:{ka:"ევროპის ვერცხლის პრიზიორი",ru:"Серебряный призёр Европы",en:"European silver medallist"}},
  {n:{ka:"ლაშა აბულაძე",ru:"Лаша Абуладзе",en:"Lasha Abuladze"}, sp:"sambo", t:{ka:"ევროპის თასის ბრინჯაოს პრიზიორი",ru:"Бронзовый призёр Кубка Европы",en:"European Cup bronze medallist"}}];
 const CHH = {ka:["ჩვენი სიამაყე","შედეგები სექციების მიხედვით","ჩვენს დარბაზებში გაზრდილი სპორტსმენები."],
@@ -1334,7 +1332,9 @@ function sNumbers() {
   return `<section class="sec sf" aria-labelledby="num-h"><div class="wrap split">${shd(z().numEb, w().numH, "", "", "num-h")}
    <ul class="nums">${N.map(([v, s, f], i) => `<li class="rv"><b class="n"><span class="cnt" data-to="${v}" data-from="${f}">${v}</span><span class="s">${s}</span></b><span>${esc(lb[i])}</span></li>`).join("")}</ul></div></section>`;
 }
-const BRANCHES = [{name:{ka:"რუსთავი",ru:"Рустави",en:"Rustavi"}, co:RUSTAVI}, {name:{ka:"თელეთი",ru:"Телети",en:"Teleti"}}];
+// club answers 2026-10-31; Rustavi days not given
+const BRANCHES = [{name:{ka:"რუსთავი",ru:"Рустави",en:"Rustavi"}, co:RUSTAVI, ad:{ka:"რუსთავის მე-10 სკოლა",ru:"Рустави, школа № 10",en:"Rustavi, School No. 10"}, h:"17:00–18:00 · 18:00–19:30 · 19:30–21:00"},
+ {name:{ka:"თელეთი",ru:"Телети",en:"Teleti"}, ad:{ka:"ზემო ტელეთი",ru:"Земо Телети",en:"Zemo Teleti"}, h:{ka:"ორშ–პარ 20:30–22:00 · შაბ 10:00–11:30",ru:"Пн–Пт 20:30–22:00 · Сб 10:00–11:30",en:"Mon–Fri 20:30–22:00 · Sat 10:00–11:30"}}];
 function sHall() {
   const q = encodeURIComponent(ADDR.en);
   return `<section class="nv" aria-labelledby="hall-h"><div class="hall"><img src="${st("2lGgm5RqHi0_004p0_L")}" alt="${esc(x().heroAlt)}" loading="lazy">
@@ -1342,9 +1342,10 @@ function sHall() {
    <div class="brs"><div class="rv">${kk(x().mainTag)}<h3 class="d">${esc(t().brand)}</h3><p>${esc(ADDR[lang])}</p>
      <dl><dt>${esc(t().hoursL)}</dt><dd>${esc(t().hours)}</dd><dt>${esc(t().phoneL)}</dt><dd><a href="tel:+${PHONE_RAW}">${PHONE}</a></dd></dl>
      <a class="lk" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">${esc(t().maps)} ${EXT}</a></div>
-    ${BRANCHES.map(b => `<div class="rv">${kk(x().hallTbc)}<h3 class="d">${esc(L(b.name))}</h3>${b.co ? `<p>${esc(b.co.map(id => L(CO[id])).join(", "))}</p>` : ""}<p style="margin-top:10px">${esc(x().tbcSub)}</p></div>`).join("")}</div></section>`;
+    ${BRANCHES.map(b => `<div class="rv">${kk(x().hallTbc)}<h3 class="d">${esc(L(b.name))}</h3><p>${esc(L(b.ad))}</p>
+     <dl><dt>${esc(t().hoursL)}</dt><dd>${esc(L(b.h))}</dd>${b.co ? `<dt>${esc(sx().coach)}</dt><dd>${esc(b.co.map(id => L(CO[id])).join(", "))}</dd>` : ""}</dl></div>`).join("")}</div></section>`;
 }
-const slotA = (s, i) => `<a href="#" class="slot ${s.ty}" data-join="${esc(sCtx(s, i))}"><b>${s.a}–${s.b}</b><span class="ty">${esc(L(TY[s.ty]))}</span>${s.ad ? `<span class="ad">${esc(sx().adult)}</span>` : ""}<span class="co">${esc(coList(s))}</span></a>`;
+const slotA = (s, i) => `<a href="#" class="slot ${s.ty}" data-join="${esc(sCtx(s, i))}"><b>${s.a}–${s.b}</b><span class="ty">${esc(tyL(s))}</span>${s.ad ? `<span class="ad">${esc(sx().a14)}</span>` : ""}<span class="co">${esc(coList(s))}</span></a>`;
 function dayChips() {
   return `<div class="chips" role="group" aria-label="${esc(t().schH)}">${[-1, 0, 1, 2, 3, 4, 5, 6].map(i => `<button type="button" data-pd="${i}" aria-pressed="${pday === i}">${esc(i < 0 ? sx().week : dShort(i))}</button>`).join("")}</div>`;
 }
@@ -1371,7 +1372,7 @@ function sContact() {
    <div><h3>${esc(t().addrL)}</h3><p class="big">${esc(ADDR[lang])}</p><p style="margin:-14px 0 28px"><a class="lk" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">${esc(t().maps)} ${EXT}</a></p>
     <h3>${esc(t().hoursL)}</h3><p class="big">${esc(t().hours)}</p><p class="mu" style="font-size:14px">${esc(sx().sun)}: ${esc(sx().rest)}</p></div>
    <div><h3>${esc(t().phoneL)}</h3><p class="big"><a href="tel:+${PHONE_RAW}">${PHONE}</a></p><h3>${esc(t().mailL)}</h3><p class="big"><a href="mailto:geojudoclub@gmail.com">geojudoclub@gmail.com</a></p><div class="chans">${channels(msg(""))}</div></div>
-   <div><h3>${esc(t().socL)}</h3><div class="chans">${SOC.map(([u, nm, ic]) => `<a class="chan" href="${u}" target="_blank" rel="noopener">${ICON[ic]}${nm}</a>`).join("")}${ok(TIKTOK[1]) ? `<a class="chan" href="${TIKTOK[0]}" target="_blank" rel="noopener">${ICON.tt}TikTok</a>` : ""}</div>
+   <div><h3>${esc(t().socL)}</h3><div class="chans">${SOC.map(([u, nm, ic]) => `<a class="chan" href="${u}" target="_blank" rel="noopener">${ICON[ic]}${nm}</a>`).join("")}</div>
     <h3 style="margin-top:28px">${esc(t().rateL)}</h3>${t().rates.map(r => `<p>${esc(r)}</p>`).join("")}</div>
   </div></div></section>`;
 }
@@ -1424,7 +1425,7 @@ const CODE = {
   vEb:"Моральный кодекс дзюдо", vH:"Восемь ценностей", vP:"Дзюдоист всегда следует этим ценностям.",
   vals:["Смелость","Вежливость","Дружба","Честность","Честь","Скромность","Уважение","Самоконтроль"],
   dEb:"EJU · 30 марта 2025", dH:"Кодекс поведения EJU", dP:"Комиссия EJU по спорту и образованию. Действует на уровнях U13/U15, кадетов (U18) и юниоров (U21).",
-  note:"",
+  note:"Перевод клуба с грузинской версии.",
   link:"Кодекс поведения",
   groups:[
    ["1. Введение и контроль веса", [
@@ -1467,7 +1468,7 @@ const CODE = {
   vEb:"The judo moral code", vH:"Eight values", vP:"A judoka lives by these values.",
   vals:["Courage","Politeness","Friendship","Sincerity","Honour","Modesty","Respect","Self-control"],
   dEb:"EJU · 30 March 2025", dH:"The EJU code of conduct", dP:"EJU Sport and Education Commission. Applies at U13/U15, cadet (U18) and junior (U21) levels.",
-  note:"",
+  note:"The club's translation from the Georgian version.",
   link:"Code of conduct",
   groups:[
    ["1. Introduction and weight control", [
@@ -1528,7 +1529,7 @@ const LGL = {
  ka:{eb:"სამართლებრივი ინფორმაცია", upd:"ბოლო განახლება", settings:"ქუქი-ფაილების პარამეტრები",
   ck:["გვსურს Google Analytics-ის ქუქი-ფაილების გამოყენება, რომ გავიგოთ, რომელი გვერდებია ოჯახებისთვის სასარგებლო. ისინი მხოლოდ თქვენი თანხმობით ჩაიწერება.","მიღება","უარყოფა","ქუქი-ფაილების შესახებ"],
   privacy:{nav:"კონფიდენციალურობის პოლიტიკა", h:"კონფიდენციალურობის პოლიტიკა", lead:"როგორ ამუშავებს ძიუდოს კლუბი „ჯორჯია“ პერსონალურ მონაცემებს ამ საიტზე და კლუბთან კომუნიკაციისას.", s:[
-   ["ვინ ვართ", ["მონაცემთა დამმუშავებელია ძიუდოს კლუბი „ჯორჯია“ (კლუბის პრეზიდენტი, ს/კ 206337374), მისამართი: {addr}.","კონტაქტი: ტელეფონი {phone}, ელფოსტა {mail}."], 1],
+   ["ვინ ვართ", ["მონაცემთა დამმუშავებელია ა(ა)იპ „ძიუდოს კლუბი ჯორჯია“ (ს/კ 206337374), მისამართი: {addr}.","კონტაქტი: ტელეფონი {phone}, ელფოსტა {mail}."], 1],
    ["რა მონაცემებს ვამუშავებთ", ["საიტზე არ არის ფორმები და ანგარიშები — ჩვენ საიტის მეშვეობით თქვენს სახელს ან ნომერს არ ვაგროვებთ.","როცა აჭერთ WhatsApp-ს, Viber-ს, Messenger-ს ან რეკავთ, კლუბს პირდაპირ უკავშირდებით ამ სერვისით. თქვენი შეტყობინება, სახელი და ნომერი კლუბს მისი მეშვეობით მოდის და მოქმედებს ამ სერვისის კონფიდენციალურობის პოლიტიკაც.","Google Analytics-ის მონაცემები — მხოლოდ თქვენი თანხმობის შემთხვევაში: ნანახი გვერდები, მიახლოებითი მდებარეობა (ქვეყანა, ქალაქი), მოწყობილობისა და ბრაუზერის ტიპი და რომელ საკონტაქტო ღილაკს დააჭირეთ.","სპორტსმენების ფოტოები და სახელები სიახლეებში, შედეგებსა და მწვრთნელების გვერდზე.","ტექნიკური მონაცემები: საიტი განთავსებულია GitHub Pages-ზე, ხოლო რამდენიმე სკრიპტი იტვირთება cdnjs.cloudflare.com-დან და cdn.jsdelivr.net-დან. ეს სერვისები, ნებისმიერი ვებსერვერის მსგავსად, ხედავენ თქვენს IP მისამართს."]],
    ["რისთვის", ["თქვენს შეკითხვებზე პასუხისთვის და ვარჯიშზე ჩასაწერად.","იმის გასაგებად, რომელი გვერდებია სასარგებლო, და საიტის გასაუმჯობესებლად — მხოლოდ თანხმობით.","კლუბის ისტორიისა და სპორტსმენების წარმატებების საჩვენებლად."]],
    ["სამართლებრივი საფუძველი", ["მონაცემებს ვამუშავებთ საქართველოს კანონის „პერსონალურ მონაცემთა დაცვის შესახებ“ (მიღებულია 2023 წლის 14 ივნისს, ძალაშია 2024 წლის 1 მარტიდან) შესაბამისად.","შეკითხვები: თქვენი მოთხოვნა და ვარჯიშზე ჩაწერამდე საჭირო ნაბიჯები.","ანალიტიკა: თქვენი თანხმობა.","ფოტოები და სახელები: სპორტსმენის თანხმობა, ხოლო არასრულწლოვნის შემთხვევაში — მშობლის ან კანონიერი წარმომადგენლის თანხმობა."]],
@@ -1550,7 +1551,7 @@ const LGL = {
  ru:{eb:"Правовая информация", upd:"Последнее обновление", settings:"Настройки cookie",
   ck:["Мы хотели бы использовать cookie Google Analytics, чтобы понимать, какие страницы полезны семьям. Они сохраняются только с вашего согласия.","Принять","Отклонить","О файлах cookie"],
   privacy:{nav:"Политика конфиденциальности", h:"Политика конфиденциальности", lead:"Как дзюдо-клуб «Джорджия» обращается с персональными данными на этом сайте и при общении с клубом.", s:[
-   ["Кто мы", ["Обработчик данных — дзюдо-клуб «Джорджия» (президент клуба, ИК 206337374), адрес: {addr}.","Контакты: телефон {phone}, электронная почта {mail}."], 1],
+   ["Кто мы", ["Обработчик данных — ННЮЛ «Клуб дзюдо „Джорджия“» (ИК 206337374), адрес: {addr}.","Контакты: телефон {phone}, электронная почта {mail}."], 1],
    ["Какие данные мы обрабатываем", ["На сайте нет форм и учётных записей — через сайт мы не собираем ваше имя или номер.","Когда вы нажимаете WhatsApp, Viber, Messenger или звоните, вы связываетесь с клубом напрямую через этот сервис. Ваше сообщение, имя и номер приходят клубу через него, и действует также политика конфиденциальности этого сервиса.","Данные Google Analytics — только с вашего согласия: просмотренные страницы, примерное местоположение (страна, город), тип устройства и браузера и то, какую кнопку связи вы нажали.","Фото и имена спортсменов в новостях, результатах и на странице тренеров.","Технические данные: сайт размещён на GitHub Pages, а несколько скриптов загружаются с cdnjs.cloudflare.com и cdn.jsdelivr.net. Эти сервисы, как любой веб-сервер, видят ваш IP-адрес."]],
    ["Зачем", ["Чтобы отвечать на ваши вопросы и записывать на тренировки.","Чтобы понимать, какие страницы полезны, и улучшать сайт — только с согласия.","Чтобы рассказывать историю клуба и об успехах спортсменов."]],
    ["Правовое основание", ["Мы обрабатываем данные в соответствии с Законом Грузии «О защите персональных данных» (принят 14 июня 2023 года, действует с 1 марта 2024 года).","Вопросы: ваш запрос и шаги перед записью на тренировки.","Аналитика: ваше согласие.","Фото и имена: согласие спортсмена, а для несовершеннолетних — согласие родителя или законного представителя."]],
@@ -1572,7 +1573,7 @@ const LGL = {
  en:{eb:"Legal", upd:"Last updated", settings:"Cookie settings",
   ck:["We’d like to use Google Analytics cookies to see which pages help families most. They’re set only if you accept.","Accept","Decline","About cookies"],
   privacy:{nav:"Privacy policy", h:"Privacy policy", lead:"How Judo Club “Georgia” handles personal data on this website and when you contact the club.", s:[
-   ["Who we are", ["The controller is Judo Club “Georgia” (club president, ID 206337374), {addr}.","Contact: phone {phone}, email {mail}."], 1],
+   ["Who we are", ["The controller is NNLE Judo Club Georgia (ID 206337374), {addr}.","Contact: phone {phone}, email {mail}."], 1],
    ["What data we handle", ["The site has no forms and no accounts, so it does not collect your name or number.","When you tap WhatsApp, Viber or Messenger, or call, you contact the club directly through that service. Your message, name and number reach the club through it, and that service’s own privacy policy also applies.","Google Analytics data, only if you agree: pages viewed, approximate location (country, city), device and browser type, and which contact button you tapped.","Photos and names of athletes in news, results and on the coaches page.","Technical data: the site is hosted on GitHub Pages and a few scripts load from cdnjs.cloudflare.com and cdn.jsdelivr.net. Like any web server, these services see your IP address."]],
    ["Why", ["To answer your questions and sign you up for training.","To learn which pages are useful and improve the site, only with your consent.","To share the club’s story and celebrate our athletes."]],
    ["Legal basis", ["We process data under the Law of Georgia on Personal Data Protection (adopted 14 June 2023, in force since 1 March 2024).","Enquiries: your request and the steps before you join.","Analytics: your consent.","Photos and names: the athlete’s consent, or for minors the consent of a parent or legal guardian."]],
@@ -1612,7 +1613,7 @@ const TG = {a8:{ka:"8 წლიდან",ru:"с 8 лет",en:"8+ years"}, k67:{
  team:{ka:"ნაკრები",ru:"сборная",en:"squad"}, ath:{ka:"სპორტსმენები",ru:"спортсмены",en:"athletes"}};
 const TRS = [{d:[0,2,4], ts:[["10:00",TG.a8],["14:00",TG.team],["17:00",TG.k67],["18:30",TG.a8]], co:TRC},
  {d:[1,3], ts:[["17:00",TG.k35],["18:30",TG.ath]], co:TRC}, {d:[5], ts:[["10:00",TG.k35],["10:00",TG.ath]], co:TRC}];
-const bxDays = d => d.length === 5 ? `${t().dshort[0]}–${t().dshort[4]}` : d.map(i => t().dshort[i]).join(", ");
+const bxDays = d => d.length === 5 ? `${t().dshort[0]}–${t().dshort[4]}` : d.map(dShort).join(", ");
 const SPL = {more:{ka:"დაწვრილებით",ru:"Подробнее",en:"More"},
  ka:{eb:"მიმართულება",sEb:"განრიგი",sH:"როდის ვვარჯიშობთ",mo:"დილის ცვლა",ev:"საღამოს ვარჯიშები",tH:"რას ვასწავლით",gH:"დარბაზიდან",sch:"განრიგი",tbc:"მოგვწერეთ — გეტყვით ჯგუფს და დროს."},
  ru:{eb:"Направление",sEb:"Расписание",sH:"Когда тренируемся",mo:"Утренняя смена",ev:"Вечерние тренировки",tH:"Чему учим",gH:"Из зала",sch:"Расписание",tbc:"Напишите нам — подскажем группу и время."},
@@ -1626,24 +1627,34 @@ const TRA = [
   ["silver",EPT],
   ["silver",{ka:"საქართველოს ჩემპიონატი · 2026 · ოსტატები",ru:"Чемпионат Грузии · 2026 · категория мастеров",en:"Georgian Championships · 2026 · masters"}]]},
  {n:{ka:"ანანო ქარსაულიძე",ru:"Анано Карсаулидзе",en:"Anano Karsaulidze"}, ph:["anano-01-fb88c3d0","anano-02-46290975","anano-03-0789201a","anano-04-8fbbe3f7","anano-05-d014cd22"].map(n => `/photos/athletes/${n}.jpg`), r:[
-  ["gold",{ka:"AERE მსოფლიო თასი · იტალია, 2026 · სინქრონი მარიამ ბერიასთან, 11–12 წელი",ru:"Кубок мира AERE · Италия, 2026 · синхрон с Мариам Берия, девочки 11–12 лет",en:"AERE World Cup · Italy, 2026 · synchro with Mariam Beria, girls 11–12"}],
-  ["silver",{ka:"AERE მსოფლიო თასი · იტალია, 2026 · ინდივიდუალური, 11–12 წელი",ru:"Кубок мира AERE · Италия, 2026 · личный зачёт, девочки 11–12 лет",en:"AERE World Cup · Italy, 2026 · individual, girls 11–12"}],
-  ["bronze",{ka:"საქართველოს ჩემპიონატი · 2026 · 11–12 წელი",ru:"Чемпионат Грузии · 2026 · девочки 11–12 лет",en:"Georgian Championships · 2026 · girls 11–12"},"c"]]},
+  ["gold",{ka:"AERE მსოფლიო თასი · რიმინი, იტალია, 2026 · სინქრონი მარიამ ბერიასთან, 11–12 წელი",ru:"Кубок мира AERE · Римини, Италия, 2026 · синхрон с Мариам Берия, девочки 11–12 лет",en:"AERE World Cup · Rimini, Italy, 2026 · synchro with Mariam Beria, girls 11–12"}],
+  ["silver",{ka:"AERE მსოფლიო თასი · რიმინი, იტალია, 2026 · ინდივიდუალური, 11–12 წელი",ru:"Кубок мира AERE · Римини, Италия, 2026 · личный зачёт, девочки 11–12 лет",en:"AERE World Cup · Rimini, Italy, 2026 · individual, girls 11–12"}],
+  ["bronze",{ka:"საქართველოს ჩემპიონატი · 2026 · 11–12 წელი",ru:"Чемпионат Грузии · 2026 · девочки 11–12 лет",en:"Georgian Championships · 2026 · girls 11–12"},"c"],
+  ["silver",{ka:"Winter Cup · 2025",ru:"Winter Cup · 2025",en:"Winter Cup · 2025"}]]},
  {n:{ka:"ელენე კირთაძე",ru:"Элене Киртадзе",en:"Elene Kirtadze"}, ph:["elene-01-d764d141","elene-02-6a6f38dc","elene-03-bd01cbc1","elene-04-0f68bd32","elene-05-4c9c0bac"].map(n => `/photos/athletes/${n}.jpg`), r:[
-  ["gold",{ka:"მსოფლიო ჩემპიონატი · სინქრონული ხტომები",ru:"Чемпионат мира · синхронные прыжки",en:"World Championships · synchronised"},"c"],
+  ["gold",{ka:"მსოფლიო ჩემპიონატი · 2026 · ახალგაზრდები, სინქრონული ხტომები",ru:"Чемпионат мира · 2026 · юниоры, синхронные прыжки",en:"World Championships · 2026 · juniors, synchronised"},"c"],
   ["silver",EPT],
   ["silver",{ka:"საერთაშორისო ტურნირი · კოიმბრა, 2025 · გუნდური, 13–14 წელი",ru:"Международный турнир · Коимбра, 2025 · команда, девочки 13–14 лет",en:"International tournament · Coimbra, 2025 · team, girls 13–14"}]]},
  {n:{ka:"მარიამ ბერია",ru:"Мариам Берия",en:"Mariam Beria"}, ph:["mariam-01-dd694188","mariam-02-f129bce6"].map(n => `/photos/athletes/${n}.jpg`), r:[
-  ["gold",{ka:"AERE მსოფლიო თასი · იტალია, 2026 · სინქრონი ანანო ქარსაულიძესთან, 11–12 წელი",ru:"Кубок мира AERE · Италия, 2026 · синхрон с Анано Карсаулидзе, девочки 11–12 лет",en:"AERE World Cup · Italy, 2026 · synchro with Anano Karsaulidze, girls 11–12"}]]},
+  ["gold",{ka:"AERE მსოფლიო თასი · რიმინი, იტალია, 2026 · სინქრონი ანანო ქარსაულიძესთან, 11–12 წელი",ru:"Кубок мира AERE · Римини, Италия, 2026 · синхрон с Анано Карсаулидзе, девочки 11–12 лет",en:"AERE World Cup · Rimini, Italy, 2026 · synchro with Anano Karsaulidze, girls 11–12"}]]},
  {n:{ka:"გიორგი კოდიაშვილი",ru:"Гиорги Кодиашвили",en:"Giorgi Kodiashvili"}, ph:["giorgi-01-7b50cc29","giorgi-02-62f0dd57"].map(n => `/photos/athletes/${n}.jpg`), r:[
-  ["silver",{ka:"საერთაშორისო ტურნირი · პორტუგალია, 2026",ru:"Международный турнир · Португалия, 2026",en:"International tournament · Portugal, 2026"}]]},
+  ["silver",{ka:"საერთაშორისო ტურნირი · პორტუგალია, 2026",ru:"Международный турнир · Португалия, 2026",en:"International tournament · Portugal, 2026"}],
+  ["gold",{ka:"კლუბის ტურნირი · 2026",ru:"Клубный турнир · 2026",en:"Club tournament · 2026"}]]},
  {n:{ka:"მოსე კოხია",ru:"Мосе Кохия",en:"Mose Kokhia"}, ph:["mose-01-bd452377","mose-02-d285987f","mose-03-7f553ca5","mose-04-4d81f3af","mose-05-173ebbce"].map(n => `/photos/athletes/${n}.jpg`), r:[
+  ["silver",{ka:"Winter Cup · 2026 · 14–15 წელი",ru:"Winter Cup · 2026 · 14–15 лет",en:"Winter Cup · 2026 · 14–15 years"}],
   ["bronze",{ka:"საქართველოს ჩემპიონატი · 2026 · 2015–2016 წ. დაბადებულები",ru:"Чемпионат Грузии · 2026 · 2015–2016 г. р.",en:"Georgian Championships · 2026 · born 2015–2016"}],
   ["bronze",{ka:"სპორტის ოსტატობის კანდიდატის პროგრამა · 2021 · პირველი თანრიგი",ru:"Программа КМС · 2021 · первый разряд",en:"Candidate Master of Sport programme · 2021 · first category"}]]},
  {n:{ka:"ლილე ფრუიძე",ru:"Лиле Фруидзе",en:"Lile Fruidze"}, ph:["lile-01-5d0de9ea","lile-02-b1957143","lile-03-76e3f633","lile-04-f8fbcdf6"].map(n => `/photos/athletes/${n}.jpg`), r:[
   ["silver",{ka:"საქართველოს ეროვნული ჩემპიონატი · ინდივიდუალური პროგრამა",ru:"Национальный чемпионат Грузии · индивидуальная программа",en:"Georgian National Championships · individual"},"c"],
-  ["gold",{ka:"საერთაშორისო ახალგაზრდული ტურნირი „Golden Jump“",ru:"Международный юношеский турнир «Golden Jump»",en:"Golden Jump international youth tournament"},"c"],
+  ["silver",{ka:"საერთაშორისო ახალგაზრდული ტურნირი „Golden Jump“ · 2023",ru:"Международный юношеский турнир «Golden Jump» · 2023",en:"Golden Jump international youth tournament · 2023"},"c"],
   ["top",{ka:"საქართველოს ასაკობრივი პირველობები · ტოპ-3, ინდივიდუალური და სინქრონული ხტომები",ru:"Первенства Грузии по возрастам · регулярно в тройке, личные и синхронные прыжки",en:"Georgian age-group championships · regularly top 3, individual and synchro"}]]}];
+// minors: first name and surname initial only
+const BXR = [{n:{ka:"გიგი კ.",ru:"Гиги К.",en:"Gigi K."}, r:[
+  ["gold",{ka:"„ოლაინეს კაუსს 2026“ · რიგა, ლატვია",ru:"«Olaines Kauss 2026» · Рига, Латвия",en:"Olaines Kauss 2026 · Riga, Latvia"}],
+  ["bronze",{ka:"კრივის მე-15 საერთაშორისო ტურნირი U17 · ქუთაისი, 2026",ru:"15-й международный турнир по боксу U17 · Кутаиси, 2026",en:"15th International U17 Boxing Tournament · Kutaisi, 2026"}]]}];
+const BXH = {ka:["შედეგები","ჩვენი მოკრივეების მედლები","სია ივსება ყოველი ტურნირის შემდეგ."],
+ ru:["Результаты","Медали наших боксёров","Список пополняется после каждого турнира."],
+ en:["Results","Our boxing medals","Updated after every competition."]};
 const TRH = {ka:["შედეგები","ჩვენი ბატუტისტების მედლები","სია ივსება ყოველი ტურნირის შემდეგ."],
  ru:["Результаты","Медали наших батутистов","Список пополняется после каждого турнира."],
  en:["Results","Our trampoline medals","Updated after every competition."]};
@@ -1656,15 +1667,16 @@ function sJudoRes() {
    ${ps.length ? `<h3 class="d chg-t rv">${esc(x().resH)}</h3><div class="row3">${ps.map(storyCard).join("")}</div>` : ""}</div></section>`;
 }
 const ruN = (n, f) => f[n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
-function sResults(wins) {
-  const [eb, h, p] = TRH[lang], all = TRA.flatMap(a => a.r).filter(r => ok(r[2]));
+function sResults(list, head, wins = []) {
+  const [eb, h, p] = head[lang], all = list.flatMap(a => a.r).filter(r => ok(r[2]));
   return `<section class="sec" aria-labelledby="sp-a"><div class="wrap">${shd(eb, h, p, "", "sp-a")}
-   <div class="tra-n rv">${["gold","silver","bronze"].map(m => `<div><b>${all.filter(r => r[0] === m).length}</b><span><i class="md ${m}"></i>${esc(x()[m])}</span></div>`).join("")}</div>
-   <div class="tra-w">${wins.map(u => `<img class="rv" src="${u}" alt="" loading="lazy">`).join("")}</div>
-   <div class="tra">${TRA.map(a => { const body = `<h3>${esc(L(a.n))}</h3>${medals(a)}`;
+   <div class="tra-n rv">${["gold","silver","bronze"].filter(m => all.some(r => r[0] === m)).map(m => `<div><b>${all.filter(r => r[0] === m).length}</b><span><i class="md ${m}"></i>${esc(x()[m])}</span></div>`).join("")}</div>
+   ${wins.length ? `<div class="tra-w">${wins.map(u => `<img class="rv" src="${u}" alt="" loading="lazy">`).join("")}</div>` : ""}
+   <div class="tra">${list.map(a => { const body = `<h3>${esc(L(a.n))}</h3>${medals(a)}`;
     return a.ph ? `<article class="dir rv tra-f"><div class="tra-fm"><img src="${a.ph[0]}" alt="${esc(L(a.n))}" loading="lazy"></div><div class="tra-fb">${body}<div class="tra-th">${a.ph.slice(1).map(u => `<img src="${u}" alt="" loading="lazy">`).join("")}</div></div></article>`
      : `<article class="dir rv">${body}</article>`; }).join("")}</div></div></section>`;
 }
+const TRO = {ka:"კვირა დასვენების დღეა. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Воскресенье — выходной. Нажмите на время — сообщение будет готово.",en:"Sunday is a rest day. Tap a time and the message is ready."};
 // sport pages, in SPORTS order; DIRS[i] holds what each one teaches
 const SPT = {
  judo:{h:SPN.judo, wk:1, co:ROSTER.filter(id => !BXC.includes(id) && !TRC.includes(id)), slots:[], res:sJudoRes,
@@ -1677,7 +1689,7 @@ const SPT = {
    en:"Judo has been the heart of the club since 2008: children from age 4, adults and competition groups. World champion Gela Zaalishvili and world silver medallist Aleksandre Loladze grew up here."},
   off:{ka:SX.ka.schP,ru:SX.ru.schP,en:SX.en.schP},
   cH:{ka:"ძიუდოს მწვრთნელები",ru:"Тренеры по дзюдо",en:"Judo coaches"}},
- boxing:{h:SPN.boxing, w:BXW, slots:BOX, co:BXC,
+ boxing:{h:SPN.boxing, w:BXW, slots:BOX, co:BXC, res:() => sResults(BXR, BXH),
   tg:{ka:"საკუთარი რინგი და გამოცდილი მწვრთნელები",ru:"Свой ринг и опытные тренеры",en:"Our own ring and experienced coaches"},
   pf:{ka:"ყოველ სამუშაო დღეს · დილით და საღამოს",ru:"Каждый будний день · утром и вечером",en:"Every weekday · mornings and evenings"},
   ph:["boxing-01-3b5c87b3","boxing-02-6e59a679","boxing-03-65b7b800","boxing-04-edd619f1"].map(n => `/photos/boxing/${n}.jpg`),
@@ -1687,7 +1699,7 @@ const SPT = {
   off:{ka:"შაბათი და კვირა დასვენების დღეებია. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Суббота и воскресенье — выходные. Нажмите на время — сообщение будет готово.",en:"Saturday and Sunday are rest days. Tap a time and the message is ready."},
   cH:{ka:"კრივის მწვრთნელები",ru:"Тренеры по боксу",en:"Boxing coaches"}},
  trampoline:{h:SPN.trampoline, slots:TRS, co:TRC,
-  off:{ka:"კვირა დასვენების დღეა. დააჭირე დროს — შეტყობინება მზად იქნება.",ru:"Воскресенье — выходной. Нажмите на время — сообщение будет готово.",en:"Sunday is a rest day. Tap a time and the message is ready."}, tall:1, cH:{ka:"ბატუტის მწვრთნელი",ru:"Тренер по батуту",en:"Trampoline coach"}, res:() => sResults(SPT.trampoline.wins),
+  off:TRO, tall:1, cH:{ka:"ბატუტის მწვრთნელი",ru:"Тренер по батуту",en:"Trampoline coach"}, res:() => sResults(TRA, TRH, SPT.trampoline.wins),
   w:{ka:"გამარჯობა! მინდა ბატუტზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на батут.",en:"Hello! I would like to join trampoline."},
   tg:{ka:"აქ გაიზარდნენ მსოფლიოს ჩემპიონები",ru:"Здесь выросли чемпионки мира",en:"Home of world champions"},
   pf:() => { const n = TRA.flatMap(a => a.r).filter(r => r[0] !== "top").length;
@@ -1697,7 +1709,8 @@ const SPT = {
   p:{ka:"ბატუტზე ხტომა კლუბში „ჯორჯია“: ინდივიდუალური და სინქრონული ხტომები, აკრობატიკა და სხეულის კონტროლი. ჩვენი სპორტსმენები მსოფლიოს ჩემპიონები და ევროპის ჩემპიონატისა და მსოფლიო თასის პრიზიორები არიან.",
    ru:"Прыжки на батуте в клубе «Джорджия»: индивидуальные и синхронные прыжки, акробатика и контроль тела. Наши спортсмены — чемпионки мира, призёры чемпионата Европы и Кубка мира.",
    en:"Trampoline at Judo Club Georgia: individual and synchronised jumps, acrobatics and body control. Our athletes are world champions and medallists at the European Championships and the World Cup."}},
- gymnastics:{h:SPN.gymnastics, eb:{ka:"სპორტული ტანვარჯიში",ru:"Спортивная гимнастика",en:"Gymnastics"}, slots:[], co:[],
+ // the club runs gymnastics and trampoline as one group
+ gymnastics:{h:SPN.gymnastics, eb:{ka:"სპორტული ტანვარჯიში",ru:"Спортивная гимнастика",en:"Gymnastics"}, slots:TRS, co:TRC, off:TRO, cH:{ka:"ტანვარჯიშის მწვრთნელი",ru:"Тренер по гимнастике",en:"Gymnastics coach"},
   w:{ka:"გამარჯობა! მინდა ტანვარჯიშზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на гимнастику.",en:"Hello! I would like to join gymnastics."},
   tg:{ka:"მოქნილობა, ძალა და სხეულის კონტროლი",ru:"Гибкость, сила и контроль тела",en:"Flexibility, strength and body control"},
   pf:{ka:"ძირითადი ელემენტები · აკრობატიკა · ძელი",ru:"Базовая подготовка · акробатика · бревно",en:"Basics · acrobatics · beam"},
@@ -1705,7 +1718,8 @@ const SPT = {
   p:{ka:"სპორტული ტანვარჯიში კლუბში „ჯორჯია“: ძირითადი ელემენტები, აკრობატიკა, ძელი, მოქნილობა და კოორდინაცია. მყარი საფუძველი ნებისმიერი სპორტისთვის.",
    ru:"Спортивная гимнастика в клубе «Джорджия»: базовые элементы, акробатика, бревно, гибкость и координация. Крепкая основа для любого спорта.",
    en:"Gymnastics at Judo Club Georgia: basics, acrobatics, beam, flexibility and coordination. A strong foundation for any sport."}},
- bjj:{h:SPN.bjj, eb:{ka:"ბრაზილიური ჯიუ-ჯიცუ",ru:"Бразильское джиу-джитсу",en:"Brazilian jiu-jitsu"}, slots:[], co:[], ph:[],
+ bjj:{h:SPN.bjj, eb:{ka:"ბრაზილიური ჯიუ-ჯიცუ",ru:"Бразильское джиу-джитсу",en:"Brazilian jiu-jitsu"}, slots:[{d:[5,6], ts:["13:00–14:00"], co:["kitober"]}], co:["kitober"], ph:[],
+  cH:{ka:"ჯიუ-ჯიცუს მწვრთნელი",ru:"Тренер по джиу-джитсу",en:"Jiu-jitsu coach"},
   w:{ka:"გამარჯობა! მინდა ჯიუ-ჯიცუზე ჩაწერა.",ru:"Здравствуйте! Хочу записаться на джиу-джитсу.",en:"Hello! I would like to join jiu-jitsu."},
   tg:{ka:"ბრაზილიური ჯიუ-ჯიცუ (BJJ)",ru:"Бразильское джиу-джитсу (BJJ)",en:"Brazilian jiu-jitsu (BJJ)"},
   pf:{ka:"პარტერი · მტკივნეული და მახრჩობელა ილეთები",ru:"Борьба в партере · болевые и удушающие",en:"Groundwork · joint locks and chokes"},
@@ -1721,7 +1735,7 @@ const SPT = {
    en:"Gym and fitness at Judo Club Georgia: strength training, machines and general conditioning, with the load matched to you."}}};
 function pSport(k) {
   const s = SPT[k], c = SPL[lang], h = L(s.h), [, ...it] = DIRS[SPORTS.indexOf(k)][lang], w = s.w[lang], gal = s.ph.slice(1), many = s.co.length > 2;
-  const card = b => `<article class="dir rv"><h3>${esc(b.k ? c[b.k] : b.d.map(i => t().days[i]).join(", "))}<small>${b.k ? esc(bxDays(b.d)) : ""}</small></h3>
+  const card = b => `<article class="dir rv"><h3>${esc(b.k ? c[b.k] : b.d.map(dName).join(", "))}<small>${b.k ? esc(bxDays(b.d)) : ""}</small></h3>
    <div class="bxt">${b.ts.map(v => { const [a, g] = Array.isArray(v) ? [v[0], L(v[1])] : [v, v === b.ad ? sx().adult : ""];
     return jbtn(`${w} ${t().waSes} ${bxDays(b.d)} ${a}${g ? ` (${g})` : ""}`, "", `${a}${g ? `<small>${esc(g)}</small>` : ""}`); }).join("")}</div>
    <p>${esc(sx().coach)}: ${esc(b.co.map(id => L(CO[id])).join(", "))}</p></article>`;

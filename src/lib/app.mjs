@@ -19,7 +19,7 @@ export function loadApp(raw) {
   const ctx = { DATES: {}, GA_ID: '', document: { documentElement: { lang: 'ka' }, getElementById: () => ({}) }, matchMedia: () => ({ matches: false }) };
   vm.runInNewContext(src.slice(0, cut) +
     ';globalThis.app={ROUTES,SPORTS,ADDR,PHONE,PHONE_RAW,page,set:(l,r)=>{lang=l;route=r},' +
-    'stories:POSTS.map(p=>"story-"+p.id),sameAs:[...SOC.map(s=>s[0]),...(ok(TIKTOK[1])?[TIKTOK[0]]:[])]}', ctx);
+    'stories:POSTS.map(p=>"story-"+p.id),sameAs:SOC.map(s=>s[0])}', ctx);
   const { app } = ctx;
   const head = (lang, route) => {
     ctx.DATES = appDates(raw, lang);
